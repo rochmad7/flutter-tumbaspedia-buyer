@@ -1,5 +1,5 @@
-name: doltinuku
-description: Sebuah aplikasi sistem informasi penjualan untuk UKM berbasis android
+name: tumbaspedia
+description: Sebuah aplikasi sistem informasi penjualan untuk UMKM berbasis android
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.

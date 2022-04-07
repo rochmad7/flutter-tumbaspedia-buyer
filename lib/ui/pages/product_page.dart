@@ -73,9 +73,9 @@ class _ProductPageState extends State<ProductPage> {
                 .toList();
             category.clear();
             category.addAll(categories);
-            if (!category.contains(mockCategories[0])) {
-              category.insert(0, mockCategories[0]);
-            }
+            // if (!category.contains(mockCategories[0])) {
+            //   category.insert(0, mockCategories[0]);
+            // }
             isLoading = false;
           });
         }

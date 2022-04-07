@@ -5,24 +5,26 @@ class CategoryServices {
       {http.Client client}) async {
     try {
       client ??= http.Client();
-      limit ??= 1000;
+      limit ??= 100;
 
       String url = baseURLAPI + 'category/?limit=' + limit.toString();
 
       var response = await client.get(Uri.parse(url), headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Token": tokenAPI
+        // "Token": tokenAPI
       });
 
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(),
+            error: data['errors']);
       }
 
-      List<Category> categories = (data['data']['data'] as Iterable)
+      print(data);
+
+      List<Category> categories = (data['data'] as Iterable)
           .map((e) => Category.fromJson(e))
           .toList();
 

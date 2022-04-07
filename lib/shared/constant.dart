@@ -18,10 +18,9 @@ String capitalize(String string) {
   return "${string[0].toUpperCase()}${string.substring(1)}";
 }
 
-String tokenAPI = "VUJDZFIYZD6TJ4DFDGULFGXZDPOVI94R";
+String tokenAPI = "aqnXBEi7KgPCMOP2qiOslLEd6u8Q2jQVFaYnlYQdtzLEVLtu0fRqTWZiPB1g";
 
-String baseURL = 'http://192.168.81.14:8000/';
-// String baseURL = 'https://betav2.doltinuku.id/';
+String baseURL = 'http://localhost:3000/';
 String baseURLStorage = baseURL + 'storage/';
 String baseURLAPI = baseURL + 'api/';
 

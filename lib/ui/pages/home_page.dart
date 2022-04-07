@@ -36,11 +36,11 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Doltinuku",
+                          "Tumbaspedia",
                           style: blackFontStyle1,
                         ),
                         Text(
-                          "Marketplace produk UKM Gerai Kopimi",
+                          "Marketplace produk UMKM Rowosari",
                           style: greyFontStyle.copyWith(
                             fontWeight: FontWeight.w300,
                           ),

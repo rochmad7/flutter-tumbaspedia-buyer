@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:doltinuku/shared/shared.dart';
+import 'package:tumbaspedia/shared/shared.dart';
 
 part 'product.dart';
 part 'shop.dart';

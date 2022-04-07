@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:doltinuku/models/models.dart';
-import 'package:doltinuku/services/services.dart';
+import 'package:tumbaspedia/models/models.dart';
+import 'package:tumbaspedia/services/services.dart';
 import 'package:equatable/equatable.dart';
 
 part '../state/shop_state.dart';

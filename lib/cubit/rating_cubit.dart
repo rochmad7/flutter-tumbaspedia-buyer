@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 
 import 'package:equatable/equatable.dart';
-import 'package:doltinuku/models/models.dart';
-import 'package:doltinuku/services/services.dart';
+import 'package:tumbaspedia/models/models.dart';
+import 'package:tumbaspedia/services/services.dart';
 
 part '../state/rating_state.dart';
 

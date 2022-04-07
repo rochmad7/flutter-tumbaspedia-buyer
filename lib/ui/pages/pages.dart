@@ -3,13 +3,13 @@ import 'dart:math';
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:doltinuku/cubit/cubit.dart';
-import 'package:doltinuku/models/models.dart';
-import 'package:doltinuku/services/services.dart';
+import 'package:tumbaspedia/cubit/cubit.dart';
+import 'package:tumbaspedia/models/models.dart';
+import 'package:tumbaspedia/services/services.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:doltinuku/shared/shared.dart';
-import 'package:doltinuku/ui/widgets/widgets.dart';
+import 'package:tumbaspedia/shared/shared.dart';
+import 'package:tumbaspedia/ui/widgets/widgets.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -48,9 +48,9 @@ part 'forgot_password_page.dart';
 part 'change_password_page.dart';
 part 'all_reviews_page.dart';
 
-part 'doltinuku/payment_instructions_page.dart';
-part 'doltinuku/help_page.dart';
-part 'doltinuku/privacy_page.dart';
-part 'doltinuku/security_page.dart';
-part 'doltinuku/term_page.dart';
-part 'doltinuku/about_page.dart';
+part 'tumbaspedia/payment_instructions_page.dart';
+part 'tumbaspedia/help_page.dart';
+part 'tumbaspedia/privacy_page.dart';
+part 'tumbaspedia/security_page.dart';
+part 'tumbaspedia/term_page.dart';
+part 'tumbaspedia/about_page.dart';
