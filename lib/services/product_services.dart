@@ -10,7 +10,7 @@ class ProductServices {
       query ??= '';
       start ??= 0;
       url =
-          baseURLAPI + 'product?start=' + start.toString() + '&search=' + query;
+          baseURLAPI + '/products?start=' + start.toString() + '&search=' + query;
       if (categoryId != null) {
         url += '&category_id=' + categoryId.toString();
       }
@@ -31,17 +31,16 @@ class ProductServices {
       var response = await client.get(Uri.parse(url), headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Token": tokenAPI
       });
 
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(),
+            error: data['errors']);
       }
 
-      List<Product> products = (data['data']['data'] as Iterable)
+      List<Product> products = (data['data'] as Iterable)
           .map((e) => Product.fromJson(e))
           .toList();
 

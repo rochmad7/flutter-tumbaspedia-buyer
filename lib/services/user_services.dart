@@ -26,10 +26,10 @@ class UserServices {
             error: data['data']['error']);
       }
 
-      User.token = data['data']['access_token'];
+      // User.token = data['data']['access_token'];
       User value = User.fromJson(data['data']['user']);
       removeUserData();
-      saveUserData(email: email, password: password, token: User.token);
+      // saveUserData(email: email, password: password, token: User.token);
 
       return ApiReturnValue(value: value);
     } on SocketException {
@@ -107,9 +107,9 @@ class UserServices {
             error: data['data']['error']);
       }
 
-      User.token = data['data']['access_token'];
+      // User.token = data['data']['access_token'];
       User user = User.fromJson(data['data']['user']);
-      saveUserData(email: user.email, password: newPassword, token: User.token);
+      // saveUserData(email: user.email, password: newPassword, token: User.token);
       return ApiReturnValue(value: user);
     } on SocketException {
       return ApiReturnValue(message: socketException, isException: true);
@@ -150,10 +150,10 @@ class UserServices {
             error: data['data']['error']);
       }
 
-      User.token = data['data']['access_token'];
+      // User.token = data['data']['access_token'];
       User value = User.fromJson(data['data']['user']);
       removeUserData();
-      saveUserData(email: user.email, password: password, token: User.token);
+      // saveUserData(email: user.email, password: password, token: User.token);
       return ApiReturnValue(value: value);
     } on SocketException {
       return ApiReturnValue(message: socketException, isException: true);

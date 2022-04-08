@@ -59,7 +59,7 @@ class HomePage extends StatelessWidget {
                           focusNode: focusNode,
                         ));
                   },
-                  title: "Cari Produk UKM",
+                  title: "Cari Produk UMKM",
                   searchController: keywordController,
                 ),
               ),

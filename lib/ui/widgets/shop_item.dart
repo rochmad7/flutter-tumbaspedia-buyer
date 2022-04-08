@@ -2,6 +2,7 @@ part of 'widgets.dart';
 
 class ShopItem extends StatelessWidget {
   final Function press;
+
   const ShopItem(
       {Key key,
       this.width = 140,
@@ -52,7 +53,7 @@ class ShopItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    imageUrl: shop.images,
+                    imageUrl: shop.shopPicture,
                     placeholder: (context, url) => CardShimmer(
                         isSymmetric: false, height: 140, isCircular: true),
                     errorWidget: (context, url, error) => Icon(Icons.error),
@@ -72,7 +73,8 @@ class ShopItem extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 12.0),
                     child: iconText(
                         MdiIcons.cart,
-                        shop.totalProducts.toString() + " produk",
+                        // shop.totalProducts.toString() + " produk",
+                        "10 produk",
                         null,
                         null,
                         greyFontStyle,
@@ -80,7 +82,7 @@ class ShopItem extends StatelessWidget {
                   ),
                 ],
               ),
-              shop.status
+              shop.isOpen
                   ? SizedBox()
                   : Positioned(
                       top: 15,

@@ -10,7 +10,7 @@ class ShopServices {
       String url;
 
       url = baseURLAPI +
-          'shop?page=' +
+          '/shops?page=' +
           page.toString() +
           '&start=' +
           start.toString() +
@@ -23,20 +23,19 @@ class ShopServices {
       var response = await client.get(Uri.parse(url), headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Token": tokenAPI
       });
 
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(),
+            error: data['errors']);
       }
 
-      List<Shop> shops = (data['data']['data'] as Iterable)
+      List<Shop> shops = (data['data'] as Iterable)
           .map((e) => Shop.fromJson(e))
           .toList();
-      int length = data['data']['length'];
+      int length = shops.length;
 
       return ApiReturnValue(value: shops, length: length);
     } on SocketException {

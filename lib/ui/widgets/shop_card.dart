@@ -49,7 +49,7 @@ class ShopCard extends StatelessWidget {
                         //   ),
                         // ),
                         child: CachedNetworkImage(
-                          imageUrl: shop.images,
+                          imageUrl: shop.shopPicture,
                           fit: BoxFit.cover,
                           placeholder: (context, url) => CardShimmer(),
                           errorWidget: (context, url, error) =>
@@ -102,7 +102,7 @@ class ShopCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  shop.status
+                  shop.isOpen
                       ? SizedBox()
                       : Positioned(
                           top: 15,

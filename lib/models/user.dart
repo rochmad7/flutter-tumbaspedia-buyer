@@ -8,8 +8,7 @@ class User extends Equatable {
   final String email;
   final String address;
   final String phoneNumber;
-  final String picturePath;
-  static String token;
+  final String profilePicture;
 
   User(
       {this.id,
@@ -17,15 +16,15 @@ class User extends Equatable {
       this.email,
       this.address,
       this.phoneNumber,
-      this.picturePath});
+      this.profilePicture});
 
   factory User.fromJson(Map<String, dynamic> data) => User(
         id: data["id"],
         name: data["name"],
         email: data["email"],
         address: data["address"],
-        phoneNumber: data["phoneNumber"].toString(),
-        picturePath: data["profile_photo_url"],
+        phoneNumber: data["phone_number"].toString(),
+        profilePicture: data["profile_picture"],
       );
 
   User copyWith({
@@ -42,7 +41,7 @@ class User extends Equatable {
         email: email ?? this.email,
         address: address ?? this.address,
         phoneNumber: phoneNumber ?? this.phoneNumber,
-        picturePath: picturePath ?? this.picturePath,
+        profilePicture: picturePath ?? this.profilePicture,
       );
 
   @override
@@ -52,15 +51,6 @@ class User extends Equatable {
         email,
         address,
         phoneNumber,
-        picturePath,
+        profilePicture,
       ];
 }
-
-User mockUser = User(
-    id: 1,
-    name: 'Jennie Kim',
-    address: 'Jalan Jenderal Sudirman',
-    phoneNumber: '08123456789',
-    email: 'jennie.kim@blackpink.com',
-    picturePath:
-        'https://i.pinimg.com/474x/8a/f4/7e/8af47e18b14b741f6be2ae499d23fcbe.jpg');

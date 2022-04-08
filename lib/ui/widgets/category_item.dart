@@ -27,7 +27,8 @@ class CategoryItem extends StatelessWidget {
                 color: Color(0xFFFFECDF),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Image.asset("assets/images/default.png"),
+              child: Image.network(icon),
+              // child: Image.asset("assets/images/default.png"),
             ),
             SizedBox(height: 5),
             Text(

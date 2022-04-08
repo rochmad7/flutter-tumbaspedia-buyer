@@ -73,7 +73,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
               ),
               placeholder: (context, url) => CardShimmer(
                   isSymmetric: false, height: 300, isCircular: true),
-              imageUrl: widget.transaction.shop.images,
+              imageUrl: widget.transaction.shop.shopPicture,
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
@@ -120,7 +120,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                         MdiIcons.clockOutline,
                                         "Buka " +
                                             widget
-                                                .transaction.shop.openingHours,
+                                                .transaction.shop.openedAt,
                                         15,
                                         Colors.green[900],
                                         null,
@@ -129,7 +129,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                     iconText(
                                         MdiIcons.clockAlertOutline,
                                         "Tutup " +
-                                            widget.transaction.shop.closedHours,
+                                            widget.transaction.shop.closedAt,
                                         15,
                                         Colors.red,
                                         null,
@@ -143,12 +143,12 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                   horizontal: 6, vertical: 2),
                               decoration: BoxDecoration(
                                   shape: BoxShape.rectangle,
-                                  color: widget.transaction.shop.status
+                                  color: widget.transaction.shop.isOpen
                                       ? Colors.green
                                       : Colors.red),
                               alignment: Alignment.center,
                               child: Text(
-                                  widget.transaction.shop.status
+                                  widget.transaction.shop.isOpen
                                       ? "Buka"
                                       : "Tutup",
                                   style:

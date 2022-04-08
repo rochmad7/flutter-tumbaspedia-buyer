@@ -7,7 +7,7 @@ class CategoryServices {
       client ??= http.Client();
       limit ??= 100;
 
-      String url = baseURLAPI + 'category/?limit=' + limit.toString();
+      String url = baseURLAPI + '/categories?' + limit.toString();
 
       var response = await client.get(Uri.parse(url), headers: {
         "Content-Type": "application/json",
@@ -22,12 +22,10 @@ class CategoryServices {
             error: data['errors']);
       }
 
-      print(data);
-
       List<Category> categories = (data['data'] as Iterable)
           .map((e) => Category.fromJson(e))
           .toList();
-
+      
       return ApiReturnValue(value: categories);
     } on SocketException {
       return ApiReturnValue(message: socketException, isException: true);

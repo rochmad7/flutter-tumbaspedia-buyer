@@ -12,7 +12,7 @@ class Category extends Equatable {
       return Category(
         id: data["id"],
         name: data["name"],
-        icon: baseURLStorage + data["icon"],
+        icon: data["icon"],
       );
     }
     return null;

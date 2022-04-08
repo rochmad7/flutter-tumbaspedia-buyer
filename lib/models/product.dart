@@ -38,10 +38,10 @@ class Product extends Equatable {
             ? Category.fromJson(data["category"])
             : null,
         name: data["name"],
-        images: data["picturePath"],
+        images: data["product_picture"],
         description: data["description"],
-        stock: data["stock"] != null ? int.parse(data["stock"].toString()) : 0,
-        price: data["price"] != null ? int.parse(data["price"].toString()) : 0,
+        stock: data["stock"] ,
+        price: data["price"],
         totalReview: data["total_review"] != null
             ? int.parse(data["total_review"].toString())
             : 0,

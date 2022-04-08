@@ -351,7 +351,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                                 "Silahkan hubungi penjual",
                                                 'warning')
                                             : (!widget.transaction.product.shop
-                                                    .status)
+                                                    .isOpen)
                                                 ? snackBar(
                                                     "Maaf, toko sedang tutup",
                                                     "Silahkan hubungi penjual",
