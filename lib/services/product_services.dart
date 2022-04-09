@@ -12,10 +12,10 @@ class ProductServices {
       url =
           baseURLAPI + '/products?start=' + start.toString() + '&search=' + query;
       if (categoryId != null) {
-        url += '&category_id=' + categoryId.toString();
+        url += '&category=' + categoryId.toString();
       }
       if (shopId != null) {
-        url += '&shop_id=' + shopId.toString();
+        url += '&shop=' + shopId.toString();
       }
       if (limit != null) {
         url += '&limit=' + limit.toString();
@@ -104,24 +104,25 @@ class ProductServices {
     try {
       client ??= http.Client();
 
-      String url = baseURLAPI + 'product?shop_id=' + shop.id.toString();
+      String url = baseURLAPI + '/products?shop=' + shop.id.toString();
 
       var response = await client.get(Uri.parse(url), headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Token": tokenAPI
       });
 
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(),
+            error: data['error']);
       }
 
-      List<Product> products = (data['data']['data'] as Iterable)
+      List<Product> products = (data['data'] as Iterable)
           .map((e) => Product.fromJson(e))
           .toList();
+
+      print(data);
 
       return ApiReturnValue(value: products);
     } on SocketException {

@@ -99,17 +99,16 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   void fetchDataByShop() async {
     isLoading1 = true;
     String url1 =
-        baseURLAPI + 'product?shop_id=' + widget.transaction.shop.id.toString();
+        baseURLAPI + '/products?shop=' + widget.transaction.shop.id.toString();
     final response1 = await http.get(Uri.parse(url1), headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
-      "Token": tokenAPI
     });
     if (response1.statusCode == 200) {
       if (mounted) {
         setState(() {
           var data1 = jsonDecode(response1.body);
-          products1 = (data1['data']['data'] as Iterable)
+          products1 = (data1['data'] as Iterable)
               .map((e) => Product.fromJson(e))
               .toList();
           items1.clear();
@@ -123,18 +122,17 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   void fetchDataByCategory() async {
     isLoading2 = true;
     String url2 = baseURLAPI +
-        'product?category_id=' +
+        '/products?category=' +
         widget.transaction.product.category.id.toString();
     final response2 = await http.get(Uri.parse(url2), headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
-      "Token": tokenAPI
     });
     if (response2.statusCode == 200) {
       if (mounted) {
         setState(() {
           var data2 = jsonDecode(response2.body);
-          products2 = (data2['data']['data'] as Iterable)
+          products2 = (data2['data'] as Iterable)
               .map((e) => Product.fromJson(e))
               .toList();
           items2.clear();

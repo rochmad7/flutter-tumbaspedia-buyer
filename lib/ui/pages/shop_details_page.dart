@@ -25,17 +25,16 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
   void fetchDataByShop() async {
     isLoading = true;
     String url =
-        baseURLAPI + 'product?shop_id=' + widget.transaction.shop.id.toString();
+        baseURLAPI + '/products?shop=' + widget.transaction.shop.id.toString();
     final response = await http.get(Uri.parse(url), headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
-      "Token": tokenAPI
     });
     if (response.statusCode == 200) {
       if (mounted) {
         setState(() {
           var data = jsonDecode(response.body);
-          products = (data['data']['data'] as Iterable)
+          products = (data['data'] as Iterable)
               .map((e) => Product.fromJson(e))
               .toList();
           items.clear();

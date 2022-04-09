@@ -27,7 +27,14 @@ class CategoryItem extends StatelessWidget {
                 color: Color(0xFFFFECDF),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Image.network(icon),
+              // child: Image.network(icon),
+              child: CachedNetworkImage(
+                imageUrl: icon,
+                // placeholder: (context, url) => Center(
+                //   child: CircularProgressIndicator(),
+                // ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
               // child: Image.asset("assets/images/default.png"),
             ),
             SizedBox(height: 5),
