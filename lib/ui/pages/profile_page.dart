@@ -47,8 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                             ),
-                            imageUrl:
-                                "https://ui-avatars.com/api/?name=" + user.name,
+                            imageUrl: user.profilePicture,
                             fit: BoxFit.cover,
                             // placeholder: (context, url) =>
                             //     CircularProgressIndicator(),
@@ -192,6 +191,7 @@ class SettingTitle extends StatelessWidget {
   final String title;
   final bool isCustomStyle;
   final TextStyle style;
+
   SettingTitle({this.title, this.isCustomStyle = false, this.style});
 
   @override

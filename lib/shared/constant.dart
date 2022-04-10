@@ -1,24 +1,28 @@
 part of 'shared.dart';
 
 void saveUserData({String email, String password, String token}) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString('email', email);
-  prefs.setString('password', password);
-  prefs.setString('token', token);
+  final _storage = const FlutterSecureStorage();
+  _storage.write(key: 'email', value: email);
+  _storage.write(key: 'token', value: token);
 }
 
 void removeUserData() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.remove('email');
-  prefs.remove('password');
-  prefs.remove('token');
+  final _storage = const FlutterSecureStorage();
+  _storage.delete(key: 'email');
+  _storage.delete(key: 'token');
+}
+
+void saveToken(String token) async {
+  final _storage = const FlutterSecureStorage();
+  _storage.write(key: 'token', value: token);
 }
 
 String capitalize(String string) {
   return "${string[0].toUpperCase()}${string.substring(1)}";
 }
 
-String tokenAPI = "aqnXBEi7KgPCMOP2qiOslLEd6u8Q2jQVFaYnlYQdtzLEVLtu0fRqTWZiPB1g";
+String tokenAPI =
+    "aqnXBEi7KgPCMOP2qiOslLEd6u8Q2jQVFaYnlYQdtzLEVLtu0fRqTWZiPB1g";
 
 String baseURL = 'http://localhost:3000/';
 String baseURLStorage = baseURL + 'storage/';

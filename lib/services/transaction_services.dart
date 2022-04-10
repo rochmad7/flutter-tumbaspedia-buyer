@@ -5,8 +5,10 @@ class TransactionServices {
       {http.Client client}) async {
     try {
       client ??= http.Client();
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String url = baseURLAPI + 'transaction';
+      final _storage = const FlutterSecureStorage();
+      final token = await _storage.read(key: 'token');
+
+      String url = baseURLAPI + '/transactions';
       if (limit != null) {
         url = url + '?limit=' + limit.toString();
       }
@@ -14,18 +16,17 @@ class TransactionServices {
       var response = await client.get(Uri.parse(url), headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Token": tokenAPI,
-        "Authorization": "Bearer ${prefs.getString('token')}"
+        "Authorization": "Bearer $token"
       });
 
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(),
+            error: data['error']);
       }
 
-      List<Transaction> transactions = (data['data']['data'] as Iterable)
+      List<Transaction> transactions = (data['data'] as Iterable)
           .map((e) => Transaction.fromJson(e))
           .toList();
 

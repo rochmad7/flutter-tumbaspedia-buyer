@@ -2,19 +2,17 @@ part of 'services.dart';
 
 class UserServices {
   static Future<ApiReturnValue<User>> signIn(
-      String email, String password, bool hasToken,
+      String email, String password,
       {http.Client client}) async {
     try {
       client ??= http.Client();
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String url = baseURLAPI + 'login4';
+      String url = baseURLAPI + '/auth/login';
 
       var response = await client.post(Uri.parse(url),
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Token": tokenAPI,
-            "HasToken": hasToken ? prefs.getString('token') : ''
           },
           body: jsonEncode(
               <String, String>{'email': email, 'password': password}));
@@ -22,14 +20,14 @@ class UserServices {
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(), error: data['error']);
       }
 
       // User.token = data['data']['access_token'];
       User value = User.fromJson(data['data']['user']);
       removeUserData();
       // saveUserData(email: email, password: password, token: User.token);
+      saveToken(data['data']['access_token']);
 
       return ApiReturnValue(value: value);
     } on SocketException {

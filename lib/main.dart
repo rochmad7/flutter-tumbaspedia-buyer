@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               ? BlocProvider(create: (_) => UserCubit()..userInitial())
               : BlocProvider(
                   create: (_) =>
-                      UserCubit()..signIn(email, password, true, true)),
+                      UserCubit()..signIn(email, password, true)),
           BlocProvider(create: (_) => CategoryCubit()..getCategories(null)),
           BlocProvider(
               create: (_) => ShopCubit()..getShops(null, null, 10, null)),

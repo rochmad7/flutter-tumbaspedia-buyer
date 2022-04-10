@@ -35,21 +35,21 @@ class Transaction extends Equatable {
             data["product"] != null ? Product.fromJson(data["product"]) : null,
         user: data["user"] != null ? User.fromJson(data["user"]) : null,
         shop: data["shop"] != null ? Shop.fromJson(data["shop"]) : null,
-        quantity: int.parse(data["quantity"].toString()),
-        total: int.parse(data["total"].toString()),
-        dateTime: DateTime.fromMillisecondsSinceEpoch(data["created_at"]),
-        updateTime: DateTime.fromMillisecondsSinceEpoch(data["updated_at"]),
+        quantity: data["quantity"],
+        total: data["total"],
+        dateTime: DateTime.parse(data["created_at"]),
+        updateTime: DateTime.parse(data["updated_at"]),
         confirmedAt: data["confirmed_at"] != null
-            ? DateTime.fromMillisecondsSinceEpoch(data["created_at"])
+            ? DateTime.parse(data["created_at"])
             : null,
         deliveredAt: data["delivered_at"] != null
-            ? DateTime.fromMillisecondsSinceEpoch(data["updated_at"])
+            ? DateTime.parse(data["updated_at"])
             : null,
-        status: (data["status"] == 'PENDING')
+        status: (data["status"] == 'pending')
             ? TransactionStatus.pending
-            : (data['status'] == 'DELIVERED')
+            : (data['status'] == 'delivered')
                 ? TransactionStatus.delivered
-                : (data['status'] == 'CANCELLED')
+                : (data['status'] == 'canceled')
                     ? TransactionStatus.cancelled
                     : TransactionStatus.on_delivery,
       );
