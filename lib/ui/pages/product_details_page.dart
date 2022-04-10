@@ -43,9 +43,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   void fetchPhotoByProduct() async {
     isLoadingPhoto = true;
     final response = await http.get(
-        baseURLAPI +
+        Uri.parse(baseURLAPI +
             'product/photo?product_id=' +
-            widget.transaction.product.id.toString(),
+            widget.transaction.product.id.toString()),
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",

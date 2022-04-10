@@ -78,6 +78,7 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   sweetalert: ^0.0.1
   carousel_slider: ^3.0.0
+  flutter_secure_storage: ^4.2.1
 
 flutter_icons:
   image_path: "assets/images/logo/logo.png"
