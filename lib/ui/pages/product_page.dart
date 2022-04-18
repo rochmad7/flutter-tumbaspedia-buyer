@@ -59,16 +59,15 @@ class _ProductPageState extends State<ProductPage> {
     isLoading = true;
     try {
       final response =
-          await http.get(Uri.parse(baseURLAPI + 'category'), headers: {
+          await http.get(Uri.parse(baseURLAPI + '/categories'), headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Token": tokenAPI
       });
       if (response.statusCode == 200) {
         if (mounted) {
           setState(() {
             var data = jsonDecode(response.body);
-            categories = (data['data']['data'] as Iterable)
+            categories = (data['data'] as Iterable)
                 .map((e) => Category.fromJson(e))
                 .toList();
             category.clear();

@@ -11,9 +11,9 @@ class PhotoServices {
       start ??= 0;
 
       if (productId == null) {
-        url = baseURLAPI + 'photo/product?start=' + start.toString();
+        url = baseURLAPI + '/product-pictures?start=' + start.toString();
       } else {
-        url = baseURLAPI + 'photo/product?product_id=' + productId.toString();
+        url = baseURLAPI + '/product-pictures/' + productId.toString();
       }
       if (limit != null) {
         url += '&limit=' + limit.toString();
@@ -22,17 +22,16 @@ class PhotoServices {
       var response = await client.get(Uri.parse(url), headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Token": tokenAPI
       });
 
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(),
+            error: data['errors']);
       }
 
-      List<Photo> photos = (data['data']['data'] as Iterable)
+      List<Photo> photos = (data['data'] as Iterable)
           .map((e) => Photo.fromJson(e))
           .toList();
 
@@ -68,9 +67,11 @@ class PhotoServices {
             error: data['data']['error']);
       }
 
-      List<Photo> photos = (data['data']['data'] as Iterable)
+      List<Photo> photos = (data['data'] as Iterable)
           .map((e) => Photo.fromJson(e))
           .toList();
+      print(photos);
+      print(data);
 
       return ApiReturnValue(value: photos);
     } on SocketException {

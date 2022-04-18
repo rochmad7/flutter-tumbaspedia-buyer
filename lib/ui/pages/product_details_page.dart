@@ -44,20 +44,18 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     isLoadingPhoto = true;
     final response = await http.get(
         Uri.parse(baseURLAPI +
-            'product/photo?product_id=' +
+            '/product-pictures/' +
             widget.transaction.product.id.toString()),
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          "Token": tokenAPI
         });
     if (response.statusCode == 200) {
       if (mounted) {
         setState(() {
           var data = jsonDecode(response.body);
-          photos = (data['data']['data'] as Iterable)
-              .map((e) => Photo.fromJson(e))
-              .toList();
+          photos =
+              (data['data'] as Iterable).map((e) => Photo.fromJson(e)).toList();
           listPhotos.clear();
           listPhotos.addAll(photos);
           Photo initial =
@@ -393,43 +391,43 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       ],
                     ),
                   ),
-                  Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SectionTitle(
-                          all: widget.transaction.product.totalReview > 1
-                              ? true
-                              : false,
-                          press: () {
-                            Get.to(() => AllReviewsPage(
-                                productId: widget.transaction.product.id));
-                          },
-                          isColor: true,
-                          sizeTitle: 15,
-                          title: "Penilaian Produk",
-                          defaultMargin: 0,
-                        ),
-                        SizedBox(height: 10),
-                        widget.transaction.product.totalReview < 1
-                            ? CustomAlert(
-                                icon: MdiIcons.alert,
-                                type: 'warning',
-                                isDistance: false,
-                                title: 'Belum ada penilaian produk')
-                            : isLoadingRating
-                                ? ShimmerRow(
-                                    height: 80,
-                                    itemCount: 2,
-                                    isNoMargin: true,
-                                    isSymmetric: false)
-                                : CommentRating(rating: rating),
-                        SizedBox(height: 30),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   color: Colors.white,
+                  //   padding: EdgeInsets.symmetric(horizontal: 16),
+                  //   child: Column(
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     children: [
+                  //       SectionTitle(
+                  //         all: widget.transaction.product.totalReview > 1
+                  //             ? true
+                  //             : false,
+                  //         press: () {
+                  //           Get.to(() => AllReviewsPage(
+                  //               productId: widget.transaction.product.id));
+                  //         },
+                  //         isColor: true,
+                  //         sizeTitle: 15,
+                  //         title: "Penilaian Produk",
+                  //         defaultMargin: 0,
+                  //       ),
+                  //       SizedBox(height: 10),
+                  //       widget.transaction.product.totalReview < 1
+                  //           ? CustomAlert(
+                  //               icon: MdiIcons.alert,
+                  //               type: 'warning',
+                  //               isDistance: false,
+                  //               title: 'Belum ada penilaian produk')
+                  //           : isLoadingRating
+                  //               ? ShimmerRow(
+                  //                   height: 80,
+                  //                   itemCount: 2,
+                  //                   isNoMargin: true,
+                  //                   isSymmetric: false)
+                  //               : CommentRating(rating: rating),
+                  //       SizedBox(height: 30),
+                  //     ],
+                  //   ),
+                  // ),
                   UserInfo(
                       shopuser: widget.transaction.shop.user,
                       pressContact: () async {
@@ -516,6 +514,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 class ModalOrder extends StatefulWidget {
   final Transaction transaction;
   final User user;
+
   ModalOrder(this.transaction, this.user);
 
   @override
@@ -665,6 +664,7 @@ Widget _productImages(int selectedIndex, int index, String imageUrl) {
 class ButtonQuantity extends StatelessWidget {
   final Function press;
   final String image;
+
   ButtonQuantity({this.press, this.image});
 
   @override

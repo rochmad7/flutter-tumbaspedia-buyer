@@ -9,8 +9,11 @@ class ProductServices {
       String url;
       query ??= '';
       start ??= 0;
-      url =
-          baseURLAPI + '/products?start=' + start.toString() + '&search=' + query;
+      url = baseURLAPI +
+          '/products?start=' +
+          start.toString() +
+          '&search=' +
+          query;
       if (categoryId != null) {
         url += '&category=' + categoryId.toString();
       }
@@ -21,11 +24,11 @@ class ProductServices {
         url += '&limit=' + limit.toString();
       }
       if (sort == SortMethod.terbaru) {
-        url += '&sort_by=datedesc';
+        url += '&sortBy=date&sortType=desc';
       } else if (sort == SortMethod.terlaris) {
-        url += '&sort_by=solddesc';
+        url += '&sortBy=sold&sortType=desc';
       } else if (sort == SortMethod.termurah) {
-        url += '&sort_by=priceasc';
+        url += '&sortBy=price&sortType=asc';
       }
 
       var response = await client.get(Uri.parse(url), headers: {
@@ -36,13 +39,11 @@ class ProductServices {
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
         return ApiReturnValue(
-            message: data['message'].toString(),
-            error: data['errors']);
+            message: data['message'].toString(), error: data['errors']);
       }
 
-      List<Product> products = (data['data'] as Iterable)
-          .map((e) => Product.fromJson(e))
-          .toList();
+      List<Product> products =
+          (data['data'] as Iterable).map((e) => Product.fromJson(e)).toList();
 
       return ApiReturnValue(value: products);
     } on SocketException {
@@ -114,13 +115,11 @@ class ProductServices {
       var data = jsonDecode(response.body);
       if (response.statusCode != 200) {
         return ApiReturnValue(
-            message: data['message'].toString(),
-            error: data['error']);
+            message: data['message'].toString(), error: data['error']);
       }
 
-      List<Product> products = (data['data'] as Iterable)
-          .map((e) => Product.fromJson(e))
-          .toList();
+      List<Product> products =
+          (data['data'] as Iterable).map((e) => Product.fromJson(e)).toList();
 
       print(data);
 
