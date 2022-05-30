@@ -26,7 +26,7 @@ class UserServices {
       // User.token = data['data']['access_token'];
       User value = User.fromJson(data['data']['user']);
       removeUserData();
-      // saveUserData(email: email, password: password, token: User.token);
+      saveUserData(email: email, password: password);
       saveToken(data['data']['access_token']);
 
       return ApiReturnValue(value: value);

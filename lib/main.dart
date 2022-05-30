@@ -1,3 +1,4 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tumbaspedia/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,13 +9,13 @@ import 'ui/pages/pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final _storage = const FlutterSecureStorage();
   String password = '';
   String email = '';
   String token = '';
-  email = prefs.getString('email');
-  password = prefs.getString('password');
-  token = prefs.getString('token');
+  email = await _storage.read(key: 'email');
+  password = await _storage.read(key: 'password');
+  token = await _storage.read(key: 'token');
   runApp(MyApp(
     email: email,
     password: password,
@@ -45,8 +46,7 @@ class MyApp extends StatelessWidget {
           email == '' && password == '' && token == ''
               ? BlocProvider(create: (_) => UserCubit()..userInitial())
               : BlocProvider(
-                  create: (_) =>
-                      UserCubit()..signIn(email, password, true)),
+                  create: (_) => UserCubit()..signIn(email, password, true)),
           BlocProvider(create: (_) => CategoryCubit()..getCategories(null)),
           BlocProvider(
               create: (_) => ShopCubit()..getShops(null, null, 10, null)),

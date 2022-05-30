@@ -83,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ? Column(
                       children: [
                         CustomTabBar(
-                          titles: ["Akun", "Doltinuku"],
+                          titles: ["Akun", "Tumbaspedia"],
                           selectedIndex: selectedIndex,
                           onTap: (index) {
                             setState(() {
