@@ -8,7 +8,7 @@ class Shop extends Equatable {
   final User user;
 
   // final double rating;
-  // final int totalProducts;
+  final int totalProducts;
   final bool isOpen;
   final String openedAt;
   final String closedAt;
@@ -21,7 +21,7 @@ class Shop extends Equatable {
     this.shopPicture,
     this.description,
     // this.rating,
-    // this.totalProducts,
+    this.totalProducts,
     this.isOpen,
     this.openedAt,
     this.closedAt,
@@ -35,9 +35,8 @@ class Shop extends Equatable {
         address: data["address"],
         name: data["name"],
         shopPicture: data["shop_picture"],
-        // totalProducts: data["total_products"] != null
-        //     ? int.parse(data["total_products"].toString())
-        //     : 0,
+        totalProducts:
+            data["total_products"] != null ? data["total_products"] : 0,
         description: data["description"],
         openedAt: data["opened_at"],
         closedAt: data["closed_at"],
@@ -69,7 +68,7 @@ class Shop extends Equatable {
       address: address ?? this.address,
       name: name ?? this.name,
       shopPicture: images ?? this.shopPicture,
-      // totalProducts: totalProducts ?? this.totalProducts,
+      totalProducts: totalProducts ?? this.totalProducts,
       description: description ?? this.description,
       openedAt: openingHours ?? this.openedAt,
       closedAt: closedHours ?? this.closedAt,
@@ -84,7 +83,7 @@ class Shop extends Equatable {
         name,
         address,
         shopPicture,
-        // totalProducts,
+        totalProducts,
         description,
         // rating,
         user,

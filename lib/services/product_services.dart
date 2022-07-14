@@ -2,16 +2,16 @@ part of 'services.dart';
 
 class ProductServices {
   static Future<ApiReturnValue<List<Product>>> getProducts(String query,
-      int start, int limit, int categoryId, int shopId, SortMethod sort,
+      int page, int limit, int categoryId, int shopId, SortMethod sort,
       {http.Client client}) async {
     try {
       client ??= http.Client();
       String url;
       query ??= '';
-      start ??= 0;
+      page ??= 1;
       url = baseURLAPI +
-          '/products?start=' +
-          start.toString() +
+          '/products?page=' +
+          page.toString() +
           '&search=' +
           query;
       if (categoryId != null) {
@@ -20,15 +20,17 @@ class ProductServices {
       if (shopId != null) {
         url += '&shop=' + shopId.toString();
       }
-      if (limit != null) {
-        url += '&limit=' + limit.toString();
-      }
+      // if (limit != null) {
+      //   url += '&limit=' + limit.toString();
+      // }
       if (sort == SortMethod.terbaru) {
         url += '&sortBy=date&sortType=desc';
       } else if (sort == SortMethod.terlaris) {
         url += '&sortBy=sold&sortType=desc';
       } else if (sort == SortMethod.termurah) {
         url += '&sortBy=price&sortType=asc';
+      } else if (sort == null) {
+        url += '&sortBy=id&sortType=desc';
       }
 
       var response = await client.get(Uri.parse(url), headers: {

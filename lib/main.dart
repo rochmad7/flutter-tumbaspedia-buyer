@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
               : BlocProvider(
                   create: (_) => TransactionCubit()..getTransactions(null)),
           BlocProvider(create: (_) => PhotoCubit()),
-          BlocProvider(create: (_) => RatingCubit()),
+          // BlocProvider(create: (_) => RatingCubit()),
           BlocProvider(create: (_) => SliderCubit()..getSliders(0, 8)),
         ],
         child: GetMaterialApp(

@@ -73,8 +73,7 @@ class ShopItem extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 12.0),
                     child: iconText(
                         MdiIcons.cart,
-                        // shop.totalProducts.toString() + " produk",
-                        "10 produk",
+                        shop.totalProducts.toString() + " produk",
                         null,
                         null,
                         greyFontStyle,
