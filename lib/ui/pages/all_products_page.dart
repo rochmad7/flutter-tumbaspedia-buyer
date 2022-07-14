@@ -40,8 +40,11 @@ class _AllProductsPageState extends State<AllProductsPage> {
       if (isLastPage) {
         _pagingController.appendLastPage(newItems.value);
       } else {
-        final nextPageKey = pageKey + newItems.value.length;
-        _pagingController.appendPage(newItems.value, nextPageKey);
+        if (pageKey == 0) {
+          _pagingController.appendPage(newItems.value, pageKey + 2);
+        } else {
+          _pagingController.appendPage(newItems.value, pageKey + 1);
+        }
       }
     } catch (error) {
       _pagingController.error = error;

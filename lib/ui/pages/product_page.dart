@@ -21,7 +21,7 @@ class _ProductPageState extends State<ProductPage> {
   static const _pageSize = 4;
 
   final PagingController<int, Product> _pagingController =
-      PagingController(firstPageKey: 0);
+      PagingController(firstPageKey: 1);
 
   @override
   void initState() {
@@ -47,8 +47,11 @@ class _ProductPageState extends State<ProductPage> {
       if (isLastPage) {
         _pagingController.appendLastPage(newItems.value);
       } else {
-        final nextPageKey = pageKey + newItems.value.length;
-        _pagingController.appendPage(newItems.value, nextPageKey);
+        if (pageKey == 0) {
+          _pagingController.appendPage(newItems.value, pageKey + 2);
+        } else {
+          _pagingController.appendPage(newItems.value, pageKey + 1);
+        }
       }
     } catch (error) {
       _pagingController.error = error;
@@ -328,11 +331,11 @@ class _ProductPageState extends State<ProductPage> {
     _pagingController.refresh();
   }
 
-  // @override
-  // void dispose() {
-  //   _pagingController.dispose();
-  //   super.dispose();
-  // }
+// @override
+// void dispose() {
+//   _pagingController.dispose();
+//   super.dispose();
+// }
 }
 
 class ContestTabHeader extends SliverPersistentHeaderDelegate {
@@ -340,6 +343,7 @@ class ContestTabHeader extends SliverPersistentHeaderDelegate {
     this.searchUI,
     this.message,
   );
+
   final String message;
   final Widget searchUI;
 
