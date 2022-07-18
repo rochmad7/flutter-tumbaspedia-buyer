@@ -2,8 +2,9 @@ part of 'pages.dart';
 
 class PaymentPage extends StatefulWidget {
   final Transaction transaction;
+  final Product product;
 
-  PaymentPage({this.transaction});
+  PaymentPage({this.transaction, this.product});
 
   @override
   _PaymentPageState createState() => _PaymentPageState();
@@ -80,7 +81,7 @@ class _PaymentPageState extends State<PaymentPage> {
                             ),
                             Text(
                               getFormatRupiah(
-                                  (widget.transaction.total).round(), true),
+                                  (widget.product.price).round(), true),
                               style: textListStyle.copyWith(fontSize: 13),
                             )
                           ],
@@ -150,7 +151,7 @@ class _PaymentPageState extends State<PaymentPage> {
                             defaultMargin -
                             5,
                         child: Text(
-                          getFormatRupiah(widget.transaction.total, true),
+                          getFormatRupiah(widget.product.price, true),
                           style: blackFontStyle3,
                           textAlign: TextAlign.right,
                         ))

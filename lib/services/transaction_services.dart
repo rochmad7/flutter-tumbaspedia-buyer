@@ -48,15 +48,15 @@ class TransactionServices {
     try {
       client ??= http.Client();
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String url = baseURLAPI + 'transaction/checkout';
+      final _storage = const FlutterSecureStorage();
+      final token = await _storage.read(key: 'token');
+      String url = baseURLAPI + '/transactions';
 
       var response = await client.post(Uri.parse(url),
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Token": tokenAPI,
-            "Authorization": "Bearer ${prefs.getString('token')}"
+            "Authorization": "Bearer $token"
           },
           body: jsonEncode(<String, dynamic>{
             'shop_id': transaction.product.shop.id,
@@ -68,10 +68,10 @@ class TransactionServices {
           }));
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      if (response.statusCode != 201) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(),
+            error: data['errors']);
       }
 
       Transaction value = Transaction.fromJson(data['data']);

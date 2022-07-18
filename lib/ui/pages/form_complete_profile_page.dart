@@ -95,7 +95,7 @@ class _FormCompleteProfilePageState extends State<FormCompleteProfilePage> {
                   Get.to(
                     () => PaymentPage(
                         transaction:
-                            widget.transaction.copyWith(user: state.user)),
+                            widget.transaction.copyWith(user: state.user), product: widget.transaction.product,),
                   );
                   snackBar("Success", "Profile berhasil diupdate", 'success');
 
