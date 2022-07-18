@@ -44,7 +44,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     isLoadingPhoto = true;
     final response = await http.get(
         Uri.parse(baseURLAPI +
-            '/product-pictures/' +
+            '/product-pictures?product_id=' +
             widget.transaction.product.id.toString()),
         headers: {
           "Content-Type": "application/json",
@@ -528,6 +528,7 @@ class _ModalOrderState extends State<ModalOrder> {
   Widget build(BuildContext context) {
     Transaction transaction = widget.transaction.copyWith(
         quantity: quantity, total: quantity * widget.transaction.product.price);
+    Product product = widget.transaction.product;
     return Column(children: [
       productBottomSheet(
           context,
@@ -596,7 +597,7 @@ class _ModalOrderState extends State<ModalOrder> {
         press: () {
           Navigator.pop(context);
           (widget.user.address != null)
-              ? Get.to(() => PaymentPage(transaction: transaction))
+              ? Get.to(() => PaymentPage(transaction: transaction, product: product))
               : Get.to(() => CompleteProfilePage(transaction: transaction));
         },
         title: "Lanjutkan",
