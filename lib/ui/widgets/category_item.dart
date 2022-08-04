@@ -30,6 +30,7 @@ class CategoryItem extends StatelessWidget {
               // child: Image.network(icon),
               child: CachedNetworkImage(
                 imageUrl: icon,
+                color: mainColor,
                 // placeholder: (context, url) => Center(
                 //   child: CircularProgressIndicator(),
                 // ),
