@@ -19,8 +19,9 @@ class UserServices {
 
       var data = jsonDecode(response.body);
       if (data['errors'] != null) {
+        removeUserData();
         return ApiReturnValue(
-            message: data['message'].toString(), error: data['error']);
+            message: 'Email atau password salah', error: data['errors']);
       }
 
       // User.token = data['data']['access_token'];
