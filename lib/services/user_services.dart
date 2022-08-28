@@ -18,7 +18,7 @@ class UserServices {
               <String, String>{'email': email, 'password': password}));
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      if (data['errors'] != null) {
         return ApiReturnValue(
             message: data['message'].toString(), error: data['error']);
       }

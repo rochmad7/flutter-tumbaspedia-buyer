@@ -38,13 +38,13 @@ class Slider extends Equatable {
 
 // Our demo Photos
 
-List<Slider> mockSliders = [
-  Slider(
-    id: 1,
-    images: baseURLStorage + 'assets/img/slider/1.jpg',
-  ),
-  Slider(
-    id: 2,
-    images: baseURLStorage + 'assets/img/slider/2.jpg',
-  ),
-];
+// List<Slider> mockSliders = [
+//   Slider(
+//     id: 1,
+//     images: baseURLStorage + 'assets/img/slider/1.jpg',
+//   ),
+//   Slider(
+//     id: 2,
+//     images: baseURLStorage + 'assets/img/slider/2.jpg',
+//   ),
+// ];
