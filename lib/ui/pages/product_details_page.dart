@@ -435,7 +435,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         await launch("https://wa.me/62" +
                             widget.transaction.shop.user.phoneNumber
                                 .allAfter("0") +
-                            "?text=[Pesan dari aplikasi Doltinuku] Halo Saya " +
+                            "?text=[Pesan dari aplikasi Tumbaspedia] Halo Saya " +
                             name +
                             " ingin bertanya-tanya kepada penjual toko " +
                             widget.transaction.shop.name +

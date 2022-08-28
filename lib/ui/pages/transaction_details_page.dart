@@ -58,7 +58,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
     String url = "https://wa.me/62" +
         widget.transaction.shop.user.phoneNumber.allAfter("0");
     String message = url +
-        "?text=[Pesan dari aplikasi Doltinuku] Halo Saya " +
+        "?text=[Pesan dari aplikasi Tumbaspedia] Halo Saya " +
         widget.transaction.user.name +
         " ingin memesan " +
         widget.transaction.product.name +

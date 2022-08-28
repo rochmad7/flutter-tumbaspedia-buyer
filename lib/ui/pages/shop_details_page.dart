@@ -219,7 +219,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                             widget.transaction.shop.user
                                                 .phoneNumber
                                                 .allAfter("0") +
-                                            "?text=[Pesan dari aplikasi Doltinuku] Halo Saya " +
+                                            "?text=[Pesan dari aplikasi Tumbaspedia] Halo Saya " +
                                             (context
                                                 .read<UserCubit>()
                                                 .state as UserLoaded)

@@ -18,7 +18,7 @@ class PaymentMethodPage extends StatelessWidget {
           buttonTap1: () async => await launch(
             "https://wa.me/62" +
                 transaction.shop.user.phoneNumber.allAfter("0") +
-                "?text=[Pesan dari aplikasi Doltinuku] Halo Saya " +
+                "?text=[Pesan dari aplikasi Tumbaspedia] Halo Saya " +
                 (context.read<UserCubit>().state as UserLoaded).user.name +
                 " ingin memesan " +
                 transaction.product.name +
