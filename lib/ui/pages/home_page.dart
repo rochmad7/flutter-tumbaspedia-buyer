@@ -25,30 +25,38 @@ class HomePage extends StatelessWidget {
               // HEADER
               Container(
                 padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-                color: Colors.white,
-                height: 100,
+                // color: Colors.white,
+                height: 80,
                 width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Tumbaspedia",
-                          style: blackFontStyle1,
-                        ),
-                        Text(
-                          "Marketplace produk UMKM Rowosari",
-                          style: greyFontStyle.copyWith(
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      'assets/images/logo/home_logo.png',
                     ),
-                  ],
+                    fit: BoxFit.cover,
+                  ),
                 ),
+                // child: Row(
+                //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Column(
+                //       // crossAxisAlignment: CrossAxisAlignment.start,
+                //       // mainAxisAlignment: MainAxisAlignment.center,
+                //       children: [
+                //         // Text(
+                //         //   "Tumbaspedia",
+                //         //   style: blackFontStyle1,
+                //         // ),
+                //         // Text(
+                //         //   "Marketplace produk UMKM Rowosari",
+                //         //   style: greyFontStyle.copyWith(
+                //         //     fontWeight: FontWeight.w300,
+                //         //   ),
+                //         // ),
+                //       ],
+                //     ),
+                //   ],
+                // ),
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: defaultMargin),
@@ -64,7 +72,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               // CustomSearchWidget(),
-              BannerHome(),
+              // BannerHome(),
               ProductCategory(),
               Column(
                 children: [

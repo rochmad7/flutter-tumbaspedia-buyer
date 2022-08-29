@@ -41,73 +41,75 @@ class _AllShopsPageState extends State<AllShopsPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(
-        children: [
-          SizedBox(height: 16),
-          TitlePage(
-            title: "Toko UKM",
-            subtitle: "Daftar semua UKM",
-            onBackButtonPressed: () {
-              Get.back();
-            },
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-            child: SearchField(
-              onChanged: _updateSearchTerm,
-              searchController: keywordController,
-              title: "Temukan Toko UKM",
+      child: SafeArea(
+        child: Column(
+          children: [
+            SizedBox(height: 6),
+            TitlePage(
+              title: "Toko UKM",
+              subtitle: "Daftar semua UKM",
+              onBackButtonPressed: () {
+                Get.back();
+              },
             ),
-          ),
-          Expanded(
-            child: RefreshIndicator(
-              onRefresh: () => Future.sync(
-                () => _pagingController.refresh(),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+              child: SearchField(
+                onChanged: _updateSearchTerm,
+                searchController: keywordController,
+                title: "Temukan Toko UKM",
               ),
-              child: PagedListView<int, Shop>(
-                pagingController: _pagingController,
-                builderDelegate: PagedChildBuilderDelegate<Shop>(
-                  itemBuilder: (context, item, index) => Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: defaultMargin / 4),
-                    child: ShopCard(
-                      shop: item,
-                      press: () {
-                        Get.to(
-                          () => ShopDetailsPage(
-                            transaction: Transaction(
-                                shop: item,
-                                user: (context.read<UserCubit>().state
-                                        is UserLoaded)
-                                    ? (context.read<UserCubit>().state
-                                            as UserLoaded)
-                                        .user
-                                    : null),
-                            onBackButtonPressed: () {
-                              Get.back();
-                            },
-                          ),
-                        );
-                      },
+            ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () => Future.sync(
+                      () => _pagingController.refresh(),
+                ),
+                child: PagedListView<int, Shop>(
+                  pagingController: _pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<Shop>(
+                    itemBuilder: (context, item, index) => Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: defaultMargin / 4),
+                      child: ShopCard(
+                        shop: item,
+                        press: () {
+                          Get.to(
+                                () => ShopDetailsPage(
+                              transaction: Transaction(
+                                  shop: item,
+                                  user: (context.read<UserCubit>().state
+                                  is UserLoaded)
+                                      ? (context.read<UserCubit>().state
+                                  as UserLoaded)
+                                      .user
+                                      : null),
+                              onBackButtonPressed: () {
+                                Get.back();
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  firstPageErrorIndicatorBuilder: (context) =>
-                      CustomIllustration(
-                    picturePath: foodWishes,
-                    title: "Maaf",
-                    subtitle: "Toko gagal dimuat",
-                  ),
-                  noItemsFoundIndicatorBuilder: (context) => CustomIllustration(
-                    picturePath: notFound,
-                    title: "Maaf",
-                    subtitle: "Toko tidak ditemukan",
+                    firstPageErrorIndicatorBuilder: (context) =>
+                        CustomIllustration(
+                          picturePath: foodWishes,
+                          title: "Maaf",
+                          subtitle: "Toko gagal dimuat",
+                        ),
+                    noItemsFoundIndicatorBuilder: (context) => CustomIllustration(
+                      picturePath: notFound,
+                      title: "Maaf",
+                      subtitle: "Toko tidak ditemukan",
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+      )
     );
   }
 

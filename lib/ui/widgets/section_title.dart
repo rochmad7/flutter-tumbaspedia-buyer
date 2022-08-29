@@ -40,7 +40,8 @@ class SectionTitle extends StatelessWidget {
                     "Lihat Semua",
                     style: GoogleFonts.poppins().copyWith(
                       fontSize: 13.0,
-                      color: Colors.orange,
+                      color: Colors.orange[800],
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )

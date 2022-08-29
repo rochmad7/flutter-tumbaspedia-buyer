@@ -179,7 +179,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
             ),
             SizedBox(height: 10),
-            Center(child: Text("Versi 2.1.6", style: blackFontStyle)),
+            Center(child: Text("Versi 1.0", style: blackFontStyle)),
           ],
         ),
       ],

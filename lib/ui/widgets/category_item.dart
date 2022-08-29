@@ -24,7 +24,7 @@ class CategoryItem extends StatelessWidget {
               height: 55,
               width: 95,
               decoration: BoxDecoration(
-                color: Color(0xFFFFECDF),
+                color: Colors.orange[100],
                 borderRadius: BorderRadius.circular(10),
               ),
               // child: Image.network(icon),
@@ -42,7 +42,7 @@ class CategoryItem extends StatelessWidget {
             Text(
               text,
               textAlign: TextAlign.center,
-              style: GoogleFonts.poppins().copyWith(fontSize: 11),
+              style: GoogleFonts.poppins().copyWith(fontSize: 13, fontWeight: FontWeight.bold),
             )
           ],
         ),

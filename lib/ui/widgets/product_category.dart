@@ -48,7 +48,7 @@ class CategoryProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: left, right: right),
+      margin: EdgeInsets.only(left: left, right: right, top: 24),
       height: 110,
       child: CategoryItem(
         icon: category.icon,

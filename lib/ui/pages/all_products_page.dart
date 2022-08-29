@@ -54,9 +54,10 @@ class _AllProductsPageState extends State<AllProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
+        child: SafeArea(
       child: Column(
         children: [
-          SizedBox(height: 16),
+          SizedBox(height: 8),
           TitlePage(
             title: "Produk",
             subtitle: (widget.category != null)
@@ -129,7 +130,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
           ),
         ],
       ),
-    );
+    ));
   }
 
   void _updateSearchTerm(String searchTerm) {

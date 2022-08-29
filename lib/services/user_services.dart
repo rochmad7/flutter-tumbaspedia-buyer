@@ -47,25 +47,24 @@ class UserServices {
     try {
       client ??= http.Client();
 
-      String url = baseURLAPI + 'forgotpassword';
+      String url = baseURLAPI + '/auth/send-reset-password';
 
       var response = await client.post(Uri.parse(url),
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Token": tokenAPI
           },
           body: jsonEncode(<String, String>{'email': email}));
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      if (data['errors'] != null) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(),
+            error: data['errors']);
       }
 
       return ApiReturnValue(
-          message: data['data']['message'].toString(), error: null);
+          message: data['message'].toString(), error: null);
     } on SocketException {
       return ApiReturnValue(message: socketException, isException: true);
     } on HttpException {
