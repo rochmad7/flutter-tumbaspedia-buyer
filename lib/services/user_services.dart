@@ -80,29 +80,34 @@ class UserServices {
       String oldPassword, String newPassword, String confPassword,
       {http.Client client}) async {
     try {
+      if (newPassword != confPassword) {
+        return ApiReturnValue(
+            message: 'Password baru dan konfirmasi password tidak sama', isException: true);
+      }
       client ??= http.Client();
+      final _storage = const FlutterSecureStorage();
+      final token = await _storage.read(key: 'token');
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String url = baseURLAPI + 'changepassword';
+      String url = baseURLAPI + '/users/change-password';
 
-      var response = await client.post(Uri.parse(url),
+      var response = await client.patch(Uri.parse(url),
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Token": tokenAPI,
-            "Authorization": "Bearer ${prefs.getString('token')}"
+            "Authorization": "Bearer $token"
           },
           body: jsonEncode(<String, String>{
-            'oldpassword': oldPassword,
-            'newpassword': newPassword,
-            'confpassword': confPassword
+            'old_password': oldPassword,
+            'new_password': newPassword,
           }));
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      print(data);
+      if (data['errors'] != null) {
+        print(data['message']);
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'],
+            error: data['errors'], isException: true);
       }
 
       // User.token = data['data']['access_token'];
@@ -125,33 +130,31 @@ class UserServices {
     try {
       client ??= http.Client();
 
-      String url = baseURLAPI + 'register4';
+      String url = baseURLAPI + '/auth/register';
 
       var response = await client.post(Uri.parse(url),
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Token": tokenAPI
           },
           body: jsonEncode(<String, String>{
             'name': user.name,
             'email': user.email,
             'password': password,
-            'password_confirmation': password,
-            'phoneNumber': user.phoneNumber
+            'phone_number': user.phoneNumber
           }));
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      if (data['errors'] != null) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(),
+            error: data['error']);
       }
 
+      User value = User.fromJson(data['user']);
       // User.token = data['data']['access_token'];
-      User value = User.fromJson(data['data']['user']);
-      removeUserData();
-      // saveUserData(email: user.email, password: password, token: User.token);
+      // removeUserData();
+      saveUserData(email: user.email, password: password);
       return ApiReturnValue(value: value);
     } on SocketException {
       return ApiReturnValue(message: socketException, isException: true);

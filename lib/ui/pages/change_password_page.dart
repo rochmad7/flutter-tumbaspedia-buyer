@@ -67,7 +67,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 isObscureText: _obscureText1,
                 isSuffixIcon: true,
                 hintText: "Password Lama"),
-            TextDanger(error: error, param: "oldpassword"),
+            TextDanger(error: error, param: "old_password"),
             SizedBox(
               height: 26,
             ),
@@ -81,7 +81,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 isObscureText: _obscureText2,
                 isSuffixIcon: true,
                 hintText: "Password Baru"),
-            TextDanger(error: error, param: "newpassword"),
+            TextDanger(error: error, param: "new_password"),
             LabelFormField(
               label: "Konfirmasi Password Baru",
             ),
@@ -92,7 +92,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 isObscureText: _obscureText3,
                 isSuffixIcon: true,
                 hintText: "Konfirmasi Password"),
-            TextDanger(error: error, param: "confpassword"),
+            TextDanger(error: error, param: "confirm_password"),
             SizedBox(height: 15),
             ButtonDefault(
               isLoading: isLoading,

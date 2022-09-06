@@ -35,7 +35,7 @@ class UserCubit extends Cubit<UserState> {
     ApiReturnValue<User> result =
         await UserServices.signUp(user, password, pictureFile: pictureFile);
 
-    if (result.value != null) {
+    if (result.isException == false) {
       emit(UserLoaded(result.value));
     } else {
       emit(UserLoadingFailed(result.message, result.error));
@@ -57,7 +57,7 @@ class UserCubit extends Cubit<UserState> {
     ApiReturnValue<User> result = await UserServices.changePassword(
         oldPassword, newPassword, confPassword);
 
-    if (result.value != null) {
+    if (result.isException == false && result.error == null) {
       emit(UserLoaded(result.value));
     } else {
       emit(UserLoadingFailed(result.message, result.error));
