@@ -18,7 +18,7 @@ class _ProductPageState extends State<ProductPage> {
   var category = <Category>[];
   AnimationController animationController;
 
-  static const _pageSize = 4;
+  static const _pageSize = 8;
 
   final PagingController<int, Product> _pagingController =
       PagingController(firstPageKey: 1);
@@ -47,11 +47,7 @@ class _ProductPageState extends State<ProductPage> {
       if (isLastPage) {
         _pagingController.appendLastPage(newItems.value);
       } else {
-        if (pageKey == 0) {
-          _pagingController.appendPage(newItems.value, pageKey + 2);
-        } else {
-          _pagingController.appendPage(newItems.value, pageKey + 1);
-        }
+        _pagingController.appendPage(newItems.value, pageKey + 1);
       }
     } catch (error) {
       _pagingController.error = error;
