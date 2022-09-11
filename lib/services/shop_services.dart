@@ -26,7 +26,7 @@ class ShopServices {
       });
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      if (data['errors'] != null) {
         return ApiReturnValue(
             message: data['message'].toString(),
             error: data['errors']);
@@ -66,7 +66,7 @@ class ShopServices {
       });
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      if (data['errors'] != null) {
         return ApiReturnValue(
             message: data['data']['message'].toString(),
             error: data['data']['error']);

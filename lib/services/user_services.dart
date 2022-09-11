@@ -1,8 +1,7 @@
 part of 'services.dart';
 
 class UserServices {
-  static Future<ApiReturnValue<User>> signIn(
-      String email, String password,
+  static Future<ApiReturnValue<User>> signIn(String email, String password,
       {http.Client client}) async {
     try {
       client ??= http.Client();
@@ -59,12 +58,10 @@ class UserServices {
       var data = jsonDecode(response.body);
       if (data['errors'] != null) {
         return ApiReturnValue(
-            message: data['message'].toString(),
-            error: data['errors']);
+            message: data['message'].toString(), error: data['errors']);
       }
 
-      return ApiReturnValue(
-          message: data['message'].toString(), error: null);
+      return ApiReturnValue(message: data['message'].toString(), error: null);
     } on SocketException {
       return ApiReturnValue(message: socketException, isException: true);
     } on HttpException {
@@ -82,7 +79,8 @@ class UserServices {
     try {
       if (newPassword != confPassword) {
         return ApiReturnValue(
-            message: 'Password baru dan konfirmasi password tidak sama', isException: true);
+            message: 'Password baru dan konfirmasi password tidak sama',
+            isException: true);
       }
       client ??= http.Client();
       final _storage = const FlutterSecureStorage();
@@ -106,8 +104,7 @@ class UserServices {
       if (data['errors'] != null) {
         print(data['message']);
         return ApiReturnValue(
-            message: data['message'],
-            error: data['errors'], isException: true);
+            message: data['message'], error: data['errors'], isException: true);
       }
 
       // User.token = data['data']['access_token'];
@@ -147,8 +144,7 @@ class UserServices {
       var data = jsonDecode(response.body);
       if (data['errors'] != null) {
         return ApiReturnValue(
-            message: data['message'].toString(),
-            error: data['error']);
+            message: data['message'].toString(), error: data['error']);
       }
 
       User value = User.fromJson(data['user']);
@@ -171,21 +167,21 @@ class UserServices {
     try {
       client ??= http.Client();
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String url = baseURLAPI + 'user';
+      final _storage = const FlutterSecureStorage();
+      final token = await _storage.read(key: 'token');
+
+      String url = baseURLAPI + '/users/me';
 
       var response = await client.get(Uri.parse(url), headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Token": tokenAPI,
-        "Authorization": "Bearer ${prefs.getString('token')}"
+        "Authorization": "Bearer $token"
       });
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      if (data['errors'] != null) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(), error: data['errors']);
       }
 
       User value = User.fromJson(data['data']);
@@ -208,25 +204,24 @@ class UserServices {
       client ??= http.Client();
       user ??= User();
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      String url = baseURLAPI + 'user';
-      var response = await client.post(Uri.parse(url),
+      String url = baseURLAPI + '/users';
+
+      var response = await client.patch(Uri.parse(url),
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Token": tokenAPI,
             "Authorization": "Bearer ${prefs.getString('token')}"
           },
           body: jsonEncode(<String, dynamic>{
             'name': user.name,
             'address': user.address,
-            'phoneNumber': user.phoneNumber
+            'phone_number': user.phoneNumber
           }));
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      if (data['errors'] != null) {
         return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
+            message: data['message'].toString(), error: data['errors']);
       }
 
       User value = User.fromJson(data['data']);
@@ -246,28 +241,28 @@ class UserServices {
   static Future<ApiReturnValue<String>> uploadProfilePicture(File pictureFile,
       {http.MultipartRequest request}) async {
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String url = baseURLAPI + 'user/photo';
+      final _storage = const FlutterSecureStorage();
+      final token = await _storage.read(key: 'token');
+
+      String url = baseURLAPI + '/users/upload-profile-picture';
       var uri = Uri.parse(url);
 
       if (request == null) {
         request = http.MultipartRequest("POST", uri)
           ..headers["Accept"] = "application/json"
           ..headers["Content-Type"] = "application/json"
-          ..headers["Token"] = tokenAPI
-          ..headers["Authorization"] = "Bearer ${prefs.getString('token')}";
+          ..headers["Authorization"] = "Bearer $token";
       }
 
-      var multipartFile =
-          await http.MultipartFile.fromPath('file', pictureFile.path);
+      var multipartFile = await http.MultipartFile.fromPath(
+          'profile_picture', pictureFile.path);
       request.files.add(multipartFile);
 
       var response = await request.send();
+      String responseBody = await response.stream.bytesToString();
+      var data = jsonDecode(responseBody);
 
-      if (response.statusCode == 200) {
-        String responseBody = await response.stream.bytesToString();
-        var data = jsonDecode(responseBody);
-
+      if (data['errors'] == null) {
         String imagePath = data['data'][0];
 
         return ApiReturnValue(value: imagePath);
@@ -288,24 +283,24 @@ class UserServices {
   static Future<ApiReturnValue<User>> logOut({http.Client client}) async {
     try {
       client ??= http.Client();
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String url = baseURLAPI + 'logout';
-
-      var response = await client.post(
-        Uri.parse(url),
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Token": tokenAPI,
-          "Authorization": "Bearer ${prefs.getString('token')}"
-        },
-      );
-      var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
-        return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
-      }
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // String url = baseURLAPI + 'logout';
+      //
+      // var response = await client.post(
+      //   Uri.parse(url),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     "Accept": "application/json",
+      //     "Token": tokenAPI,
+      //     "Authorization": "Bearer ${prefs.getString('token')}"
+      //   },
+      // );
+      // var data = jsonDecode(response.body);
+      // if (response.statusCode != 200) {
+      //   return ApiReturnValue(
+      //       message: data['data']['message'].toString(),
+      //       error: data['data']['error']);
+      // }
 
       removeUserData();
 

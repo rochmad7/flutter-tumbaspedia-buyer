@@ -59,48 +59,48 @@ class ProductServices {
     }
   }
 
-  static Future<void> countProducts(int shopId, int categoryId, String query,
-      {http.Client client}) async {
-    try {
-      client ??= http.Client();
-      String url;
-      url = baseURLAPI + 'product?count=true';
-      if (query != null) {
-        url += '&search=' + query;
-      }
-      if (categoryId != null) {
-        url += '&category_id=' + categoryId.toString();
-      }
-      if (shopId != null) {
-        url += '&shop_id=' + shopId.toString();
-      }
-
-      var response = await client.get(Uri.parse(url), headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Token": tokenAPI
-      });
-
-      var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
-        return ApiReturnValue(
-            message: data['data']['message'].toString(),
-            error: data['data']['error']);
-      }
-
-      int length = data['data'];
-
-      return ApiReturnValue(length: length);
-    } on SocketException {
-      return ApiReturnValue(message: socketException, isException: true);
-    } on HttpException {
-      return ApiReturnValue(message: httpException, isException: true);
-    } on FormatException {
-      return ApiReturnValue(message: formatException, isException: true);
-    } catch (e) {
-      return ApiReturnValue(message: e.toString(), isException: true);
-    }
-  }
+  // static Future<void> countProducts(int shopId, int categoryId, String query,
+  //     {http.Client client}) async {
+  //   try {
+  //     client ??= http.Client();
+  //     String url;
+  //     url = baseURLAPI + 'product?count=true';
+  //     if (query != null) {
+  //       url += '&search=' + query;
+  //     }
+  //     if (categoryId != null) {
+  //       url += '&category_id=' + categoryId.toString();
+  //     }
+  //     if (shopId != null) {
+  //       url += '&shop_id=' + shopId.toString();
+  //     }
+  //
+  //     var response = await client.get(Uri.parse(url), headers: {
+  //       "Content-Type": "application/json",
+  //       "Accept": "application/json",
+  //       "Token": tokenAPI
+  //     });
+  //
+  //     var data = jsonDecode(response.body);
+  //     if (response.statusCode != 200) {
+  //       return ApiReturnValue(
+  //           message: data['data']['message'].toString(),
+  //           error: data['data']['error']);
+  //     }
+  //
+  //     int length = data['data'];
+  //
+  //     return ApiReturnValue(length: length);
+  //   } on SocketException {
+  //     return ApiReturnValue(message: socketException, isException: true);
+  //   } on HttpException {
+  //     return ApiReturnValue(message: httpException, isException: true);
+  //   } on FormatException {
+  //     return ApiReturnValue(message: formatException, isException: true);
+  //   } catch (e) {
+  //     return ApiReturnValue(message: e.toString(), isException: true);
+  //   }
+  // }
 
   static Future<ApiReturnValue<List<Product>>> getProductsByShop(Shop shop,
       {http.Client client}) async {
@@ -115,7 +115,7 @@ class ProductServices {
       });
 
       var data = jsonDecode(response.body);
-      if (response.statusCode != 200) {
+      if (data['errors'] != null) {
         return ApiReturnValue(
             message: data['message'].toString(), error: data['error']);
       }
