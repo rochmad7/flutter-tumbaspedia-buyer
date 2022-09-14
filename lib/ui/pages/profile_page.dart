@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
             isLogin
                 ? Container(
                     padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-                    height: 220,
+                    height: 300,
                     margin: EdgeInsets.only(bottom: defaultMargin),
                     width: double.infinity,
                     color: Colors.white,
@@ -67,7 +67,17 @@ class _ProfilePageState extends State<ProfilePage> {
                           user.email,
                           style: greyFontStyle.copyWith(
                               fontWeight: FontWeight.w300),
-                        )
+                        ),
+                        Text(
+                          user.phoneNumber,
+                          style: greyFontStyle.copyWith(
+                              fontWeight: FontWeight.w300),
+                        ),
+                        Text(
+                          user.address,
+                          style: greyFontStyle.copyWith(
+                              fontWeight: FontWeight.w300),
+                        ),
                       ],
                     ),
                   )

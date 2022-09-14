@@ -25,7 +25,6 @@ String tokenAPI =
     "aqnXBEi7KgPCMOP2qiOslLEd6u8Q2jQVFaYnlYQdtzLEVLtu0fRqTWZiPB1g";
 
 // String baseURLAPI = 'http://10.0.2.2:3000/api';
-// String baseURLAPI = 'http://192.168.1.166:3000/api';
 String baseURLAPI = 'https://dev.tumbaspedia.my.id/api';
 
 Color mainColor = "032339".toColor();

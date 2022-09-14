@@ -100,9 +100,7 @@ class UserServices {
           }));
 
       var data = jsonDecode(response.body);
-      print(data);
       if (data['errors'] != null) {
-        print(data['message']);
         return ApiReturnValue(
             message: data['message'], error: data['errors'], isException: true);
       }
@@ -198,19 +196,22 @@ class UserServices {
     }
   }
 
-  static Future<ApiReturnValue<User>> update(User user,
+  static Future<ApiReturnValue<User>> update(User user, int id,
       {http.Client client}) async {
     try {
       client ??= http.Client();
       user ??= User();
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String url = baseURLAPI + '/users';
+
+      final _storage = const FlutterSecureStorage();
+      final token = await _storage.read(key: 'token');
+
+      String url = baseURLAPI + '/users/$id';
 
       var response = await client.patch(Uri.parse(url),
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "Authorization": "Bearer ${prefs.getString('token')}"
+            "Authorization": "Bearer $token"
           },
           body: jsonEncode(<String, dynamic>{
             'name': user.name,

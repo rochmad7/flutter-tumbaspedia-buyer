@@ -86,7 +86,7 @@ class _FormCompleteProfilePageState extends State<FormCompleteProfilePage> {
                   isLoading = true;
                 });
 
-                await context.read<UserCubit>().update(user);
+                await context.read<UserCubit>().update(user, widget.transaction.user.id);
 
                 UserState state = context.read<UserCubit>().state;
                 if (state is UserLoaded) {

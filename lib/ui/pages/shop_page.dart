@@ -107,35 +107,42 @@ class _ShopPageState extends State<ShopPage> {
                       SliverList(
                         delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
-                          return Column(
+                          return Row(
                             children: [
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: defaultMargin, vertical: 15),
+                              Container(width:
+                              MediaQuery.of(context).size.width - 64,
+                                padding: EdgeInsets.only(
+                                    left: defaultMargin, right: 2, top: 8),
+
                                 child: SearchField(
                                   onChanged: _updateSearchTerm,
                                   searchController: keywordController,
                                   title: "Temukan Toko UKM",
                                 ),
                               ),
+                              RefreshButton(
+                                press: () {
+                                  _pagingController.refresh();
+                                },
+                              ),
                               // getSearchBarUI(),
                             ],
                           );
                         }, childCount: 1),
                       ),
-                      SliverPersistentHeader(
-                        pinned: true,
-                        floating: true,
-                        delegate: ContestTabHeader(
-                          GetRefreshBarUI(
-                            length: length,
-                            refresh: () {
-                              _pagingController.refresh();
-                            },
-                          ),
-                          message,
-                        ),
-                      ),
+                      // SliverPersistentHeader(
+                      //   pinned: true,
+                      //   floating: true,
+                      //   delegate: ContestTabHeader(
+                      //     GetRefreshBarUI(
+                      //       length: length,
+                      //       refresh: () {
+                      //         _pagingController.refresh();
+                      //       },
+                      //     ),
+                      //     message,
+                      //   ),
+                      // ),
                     ];
                   },
                   body: RefreshIndicator(
@@ -238,12 +245,12 @@ class GetRefreshBarUI extends StatelessWidget {
                 const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
             child: Row(
               children: [
-                Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(length.toString() + ' Toko ditemukan',
-                      style: blackFontStyle3),
-                )),
+                // Expanded(
+                //     child: Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: Text(length.toString() + ' Toko ditemukan',
+                //       style: blackFontStyle3),
+                // )),
                 RefreshButton(
                   isLabel: true,
                   press: refresh,

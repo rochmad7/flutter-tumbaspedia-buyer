@@ -2,7 +2,9 @@ part of 'pages.dart';
 
 class SignInPage extends StatefulWidget {
   final bool isRedirect;
+
   SignInPage({this.isRedirect = false});
+
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -11,6 +13,7 @@ class _SignInPageState extends State<SignInPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
+
   // Initially password is obscure
   bool _obscureText = true;
   Map<String, dynamic> error;
@@ -99,8 +102,26 @@ class _SignInPageState extends State<SignInPage> {
                   isLoading = true;
                 });
 
-                await context.read<UserCubit>().signIn(emailController.text,
-                    passwordController.text, false);
+                if (emailController.text.isEmpty ||
+                    passwordController.text.isEmpty) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  snackBar("Login gagal",
+                      "Email dan Password tidak boleh kosong", 'error');
+                  return;
+                } else if (!emailController.text.isEmail ||
+                    passwordController.text.length < 6) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  snackBar("Login gagal", "Email atau Password tidak valid",
+                      "error");
+                  return;
+                }
+
+                await context.read<UserCubit>().signIn(
+                    emailController.text, passwordController.text, false);
                 UserState state = context.read<UserCubit>().state;
 
                 if (state is UserLoaded) {

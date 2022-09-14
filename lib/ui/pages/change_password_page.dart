@@ -2,6 +2,7 @@ part of 'pages.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   final User user;
+
   ChangePasswordPage({this.user});
 
   @override
@@ -101,6 +102,25 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 setState(() {
                   isLoading = true;
                 });
+
+                if (oldPasswordController.text.isEmpty ||
+                    newPasswordController.text.isEmpty ||
+                    confPasswordController.text.isEmpty) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  snackBar('Gagal ubah password', 'Semua field harus diisi',
+                      'error');
+                  return;
+                } else if (newPasswordController.text !=
+                    confPasswordController.text) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  snackBar(
+                      'Gagal ubah password', 'Password tidak sama', 'error');
+                  return;
+                }
 
                 await context.read<UserCubit>().changePassword(
                     oldPasswordController.text,

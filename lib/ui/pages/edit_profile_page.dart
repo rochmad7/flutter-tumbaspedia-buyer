@@ -67,17 +67,27 @@ class _EditProfilePageState extends State<EditProfilePage> {
               isLoading: isLoading,
               title: "Simpan Data",
               press: () async {
+                setState(() {
+                  isLoading = true;
+                });
+
+                if (nameController.text.isEmpty ||
+                    phoneController.text.isEmpty ||
+                    addressController.text.isEmpty) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  snackBar('Gagal ubah data', 'Mohon isi semua data', 'error');
+                  return;
+                }
+
                 User user = User(
                   name: nameController.text,
                   address: addressController.text,
                   phoneNumber: phoneController.text,
                 );
 
-                setState(() {
-                  isLoading = true;
-                });
-
-                await context.read<UserCubit>().update(user);
+                await context.read<UserCubit>().update(user, widget.user.id);
 
                 UserState state = context.read<UserCubit>().state;
 
@@ -87,7 +97,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   Get.to(() => MainPage(
                         initialPage: 4,
                       ));
-                  snackBar("Success", "Profile berhasil diupdate", 'success');
+                  snackBar("Sukses", "Profile berhasil diupdate", 'success');
 
                   setState(() {
                     isLoading = false;

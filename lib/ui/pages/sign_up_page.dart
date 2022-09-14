@@ -66,6 +66,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(height: 15),
             LabelFormField(
               label: "Password",
+              example: "Minimal 8 karakter",
             ),
             TextFieldDefault(
                 suffixIcon: () => _toggle(),
@@ -80,14 +81,35 @@ class _SignUpPageState extends State<SignUpPage> {
               isLoading: isLoading,
               title: "Daftar",
               press: () async {
+                setState(() {
+                  isLoading = true;
+                });
+
+                if (nameController.text.isEmpty ||
+                    emailController.text.isEmpty ||
+                    phoneController.text.isEmpty ||
+                    passwordController.text.isEmpty) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  snackBar("Pendaftaran gagal", "Silahkan lengkapi data Anda",
+                      "error");
+                  return;
+                } else if (!emailController.text.isEmail ||
+                    !phoneController.text.isPhoneNumber ||
+                    passwordController.text.length < 6) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  snackBar("Pendaftaran gagal",
+                      "Data yang Anda masukkan tidak valid", "error");
+                  return;
+                }
+
                 User user = User(
                     name: nameController.text,
                     email: emailController.text,
                     phoneNumber: phoneController.text);
-
-                setState(() {
-                  isLoading = true;
-                });
 
                 await context
                     .read<UserCubit>()
@@ -144,6 +166,7 @@ class TextUnderButton extends StatelessWidget {
   final String subtitle;
   final Function press;
   final TextStyle subtitleStyle;
+
   TextUnderButton({this.title, this.subtitleStyle, this.subtitle, this.press});
 
   @override
