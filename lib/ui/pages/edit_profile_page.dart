@@ -102,6 +102,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   setState(() {
                     isLoading = false;
                   });
+                  FocusManager.instance.primaryFocus?.unfocus();
                 } else {
                   context.read<UserCubit>().getMyProfile(widget.user.id);
 
@@ -109,11 +110,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       (state as UserLoadingFailed).message, 'error');
 
                   setState(() {
-                    error = (state as UserLoadingFailed).error != null
-                        ? (state as UserLoadingFailed).error
-                        : null;
+                    // error = (state as UserLoadingFailed).error != null
+                    //     ? (state as UserLoadingFailed).error
+                    //     : null;
                     isLoading = false;
                   });
+                  FocusManager.instance.primaryFocus?.unfocus();
                 }
               },
             ),

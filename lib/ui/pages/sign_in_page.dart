@@ -134,6 +134,8 @@ class _SignInPageState extends State<SignInPage> {
                       .getProducts(null, null, 10, null, null);
                   context.read<ShopCubit>().getShops(null, null, 10, null);
                   context.read<CategoryCubit>().getCategories(null);
+                  FocusManager.instance.primaryFocus?.unfocus();
+
                   if (widget.isRedirect) {
                     Get.back();
                   } else {
@@ -149,6 +151,7 @@ class _SignInPageState extends State<SignInPage> {
                         : null;
                     isLoading = false;
                   });
+                  FocusManager.instance.primaryFocus?.unfocus();
                 }
               },
             ),

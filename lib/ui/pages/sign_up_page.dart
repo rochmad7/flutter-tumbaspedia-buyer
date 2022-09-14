@@ -133,6 +133,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   setState(() {
                     isLoading = false;
                   });
+                  FocusManager.instance.primaryFocus?.unfocus();
+
                   // context.read<TransactionCubit>().getTransactions(null);
                   // context
                   //     .read<ProductCubit>()
@@ -144,11 +146,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   snackBar("Pendaftaran akun gagal",
                       (state as UserLoadingFailed).message, 'error');
                   setState(() {
-                    error = (state as UserLoadingFailed).error != null
-                        ? (state as UserLoadingFailed).error
-                        : null;
                     isLoading = false;
                   });
+                  FocusManager.instance.primaryFocus?.unfocus();
                 }
               },
             ),
