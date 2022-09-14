@@ -20,7 +20,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return GeneralPage(
       onBackButtonPressed: () async {
-        await context.read<UserCubit>().getMyProfile();
+        // context.read<UserCubit>().getMyProfile(widget.user.id);
         Get.back();
       },
       title: 'Lupa Password',

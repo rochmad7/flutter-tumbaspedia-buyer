@@ -19,7 +19,7 @@ class _ShopPageState extends State<ShopPage> {
   static const _pageSize = 3;
 
   final PagingController<int, Shop> _pagingController =
-      PagingController(firstPageKey: 0);
+      PagingController(firstPageKey: 1);
 
   @override
   void initState() {
@@ -71,14 +71,15 @@ class _ShopPageState extends State<ShopPage> {
 
   Future<void> _fetchPage(int pageKey) async {
     try {
-      newItems = await ShopServices.getShops(null, pageKey, _pageSize, query);
+      newItems = await ShopServices.getShops(pageKey, null, _pageSize, query);
 
       final isLastPage = newItems.value.length < _pageSize;
       if (isLastPage) {
+        print('isLastPage');
         _pagingController.appendLastPage(newItems.value);
       } else {
-        final nextPageKey = pageKey + newItems.value.length;
-        _pagingController.appendPage(newItems.value, nextPageKey);
+        print('isNotLastPage');
+        _pagingController.appendPage(newItems.value, pageKey + 1);
       }
     } catch (error) {
       _pagingController.error = error;

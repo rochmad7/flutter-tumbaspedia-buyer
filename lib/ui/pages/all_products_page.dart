@@ -75,6 +75,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
               title: "Temukan Produk UKM",
               focusNode: widget.focusNode,
             ),
+            padding: EdgeInsets.symmetric(vertical: 15),
           ),
           Expanded(
             child: RefreshIndicator(

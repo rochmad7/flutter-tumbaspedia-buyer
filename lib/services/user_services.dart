@@ -106,8 +106,8 @@ class UserServices {
       }
 
       // User.token = data['data']['access_token'];
-      User user = User.fromJson(data['data']['user']);
-      // saveUserData(email: user.email, password: newPassword, token: User.token);
+      User user = User.fromJson(data['data']);
+      saveUserData(email: user.email, password: newPassword);
       return ApiReturnValue(value: user);
     } on SocketException {
       return ApiReturnValue(message: socketException, isException: true);
@@ -135,6 +135,7 @@ class UserServices {
           body: jsonEncode(<String, String>{
             'name': user.name,
             'email': user.email,
+            'address': user.address,
             'password': password,
             'phone_number': user.phoneNumber
           }));
@@ -142,10 +143,13 @@ class UserServices {
       var data = jsonDecode(response.body);
       if (data['errors'] != null) {
         return ApiReturnValue(
+            message: data['message'].toString(), error: data['errors']);
+      } else if (response.statusCode == 400) {
+        return ApiReturnValue(
             message: data['message'].toString(), error: data['error']);
       }
 
-      User value = User.fromJson(data['user']);
+      User value = User.fromJson(data['data']);
       // User.token = data['data']['access_token'];
       // removeUserData();
       saveUserData(email: user.email, password: password);
@@ -161,14 +165,14 @@ class UserServices {
     }
   }
 
-  static Future<ApiReturnValue<User>> getMyProfile({http.Client client}) async {
+  static Future<ApiReturnValue<User>> getMyProfile(int id, {http.Client client}) async {
     try {
       client ??= http.Client();
 
       final _storage = const FlutterSecureStorage();
       final token = await _storage.read(key: 'token');
 
-      String url = baseURLAPI + '/users/me';
+      String url = baseURLAPI + '/users/$id';
 
       var response = await client.get(Uri.parse(url), headers: {
         "Content-Type": "application/json",

@@ -86,16 +86,22 @@ class _FormCompleteProfilePageState extends State<FormCompleteProfilePage> {
                   isLoading = true;
                 });
 
-                await context.read<UserCubit>().update(user, widget.transaction.user.id);
+                await context
+                    .read<UserCubit>()
+                    .update(user, widget.transaction.user.id);
 
                 UserState state = context.read<UserCubit>().state;
                 if (state is UserLoaded) {
-                  context.read<UserCubit>().getMyProfile();
+                  context
+                      .read<UserCubit>()
+                      .getMyProfile(widget.transaction.user.id);
 
                   Get.to(
                     () => PaymentPage(
-                        transaction:
-                            widget.transaction.copyWith(user: state.user), product: widget.transaction.product,),
+                      transaction:
+                          widget.transaction.copyWith(user: state.user),
+                      product: widget.transaction.product,
+                    ),
                   );
                   snackBar("Success", "Profile berhasil diupdate", 'success');
 
@@ -103,7 +109,10 @@ class _FormCompleteProfilePageState extends State<FormCompleteProfilePage> {
                     isLoading = false;
                   });
                 } else {
-                  context.read<UserCubit>().getMyProfile();
+                  context
+                      .read<UserCubit>()
+                      .getMyProfile(widget.transaction.user.id);
+
                   snackBar("Profile gagal diupdate",
                       (state as UserLoadingFailed).message, 'error');
 

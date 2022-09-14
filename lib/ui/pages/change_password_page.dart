@@ -129,14 +129,20 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 UserState state = context.read<UserCubit>().state;
 
                 if (state is UserLoaded) {
+                  context.read<UserCubit>().getMyProfile(state.user.id);
+
+                  Get.to(() => MainPage(
+                    initialPage: 4,
+                  ));
                   setState(() {
-                    error = null;
                     isLoading = false;
                   });
+
                   snackBar(
                       "Berhasil", "Password Anda berhasil diubah", 'success');
+
                 } else {
-                  context.read<UserCubit>().getMyProfile();
+                  context.read<UserCubit>().getMyProfile(widget.user.id);
                   snackBar(
                       "Gagal", (state as UserLoadingFailed).message, 'error');
                   setState(() {

@@ -47,6 +47,7 @@ part 'form_complete_profile_page.dart';
 part 'forgot_password_page.dart';
 part 'change_password_page.dart';
 part 'all_reviews_page.dart';
+part 'waiting_register_confirmation.dart';
 
 part 'tumbaspedia/payment_instructions_page.dart';
 part 'tumbaspedia/help_page.dart';

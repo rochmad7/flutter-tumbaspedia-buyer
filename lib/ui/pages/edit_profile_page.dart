@@ -92,7 +92,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 UserState state = context.read<UserCubit>().state;
 
                 if (state is UserLoaded) {
-                  context.read<UserCubit>().getMyProfile();
+                  context.read<UserCubit>().getMyProfile(state.user.id);
 
                   Get.to(() => MainPage(
                         initialPage: 4,
@@ -103,7 +103,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     isLoading = false;
                   });
                 } else {
-                  context.read<UserCubit>().getMyProfile();
+                  context.read<UserCubit>().getMyProfile(widget.user.id);
 
                   snackBar("Profile gagal diupdate",
                       (state as UserLoadingFailed).message, 'error');

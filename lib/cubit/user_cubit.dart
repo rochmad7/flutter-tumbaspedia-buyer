@@ -35,7 +35,7 @@ class UserCubit extends Cubit<UserState> {
     ApiReturnValue<User> result =
         await UserServices.signUp(user, password, pictureFile: pictureFile);
 
-    if (result.isException == false) {
+    if (result.error == null) {
       emit(UserLoaded(result.value));
     } else {
       emit(UserLoadingFailed(result.message, result.error));
@@ -45,7 +45,7 @@ class UserCubit extends Cubit<UserState> {
   Future<void> forgotPassword(String email) async {
     ApiReturnValue<bool> result = await UserServices.forgotPassword(email);
 
-    if (result.error == null && !result.isException) {
+    if (result.error == null) {
       emit(UserForgotPassword(result.message, email));
     } else {
       emit(UserForgotPasswordFailed(result.message, result.error));
@@ -57,15 +57,15 @@ class UserCubit extends Cubit<UserState> {
     ApiReturnValue<User> result = await UserServices.changePassword(
         oldPassword, newPassword, confPassword);
 
-    if (result.isException == false && result.error == null) {
+    if (result.error == null) {
       emit(UserLoaded(result.value));
     } else {
       emit(UserLoadingFailed(result.message, result.error));
     }
   }
 
-  Future<void> getMyProfile() async {
-    ApiReturnValue<User> result = await UserServices.getMyProfile();
+  Future<void> getMyProfile(int id) async {
+    ApiReturnValue<User> result = await UserServices.getMyProfile(id);
 
     if (result.value != null) {
       emit(UserLoaded(result.value));

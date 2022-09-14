@@ -12,8 +12,6 @@ class ShopServices {
       url = baseURLAPI +
           '/shops?page=' +
           page.toString() +
-          '&start=' +
-          start.toString() +
           '&search=' +
           query;
       if (limit != null) {

@@ -9,6 +9,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
 
@@ -65,6 +66,16 @@ class _SignUpPageState extends State<SignUpPage> {
             TextDanger(error: error, param: "phoneNumber"),
             SizedBox(height: 15),
             LabelFormField(
+              label: "Alamat",
+            ),
+            TextFieldDefault(
+                icon: MdiIcons.selectPlace,
+                controller: addressController,
+                isMaxLines: true,
+                maxLines: 4),
+            TextDanger(error: error, param: "address"),
+            SizedBox(height: 15),
+            LabelFormField(
               label: "Password",
               example: "Minimal 8 karakter",
             ),
@@ -109,6 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 User user = User(
                     name: nameController.text,
                     email: emailController.text,
+                    address: addressController.text,
                     phoneNumber: phoneController.text);
 
                 await context
@@ -121,13 +133,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   setState(() {
                     isLoading = false;
                   });
-                  context.read<TransactionCubit>().getTransactions(null);
-                  context
-                      .read<ProductCubit>()
-                      .getProducts(null, null, 10, null, null);
-                  context.read<ShopCubit>().getShops(null, null, 10, null);
-                  context.read<CategoryCubit>().getCategories(null);
-                  Get.off(() => MainPage());
+                  // context.read<TransactionCubit>().getTransactions(null);
+                  // context
+                  //     .read<ProductCubit>()
+                  //     .getProducts(null, null, 10, null, null);
+                  // context.read<ShopCubit>().getShops(null, null, 10, null);
+                  // context.read<CategoryCubit>().getCategories(null);
+                  Get.offAll(() => WaitingRegisterConfirmation());
                 } else {
                   snackBar("Pendaftaran akun gagal",
                       (state as UserLoadingFailed).message, 'error');
