@@ -113,7 +113,8 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                           145, // 32 + 102
                                       child: Text(
                                         widget.transaction.shop.name,
-                                        style: blackFontStyle2,
+                                        style: blackFontStyle2.copyWith(
+                                            fontSize: 18, fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                     SizedBox(
@@ -149,14 +150,27 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                       horizontal: 6, vertical: 2),
                                   decoration: BoxDecoration(
                                       shape: BoxShape.rectangle,
-                                      color: widget.transaction.shop.isOpen
+                                      color: DateTime.now().hour >=
+                                          int.parse(widget.transaction.shop
+                                              .openedAt.split(":")[0]) &&
+                                          DateTime.now().hour <
+                                              int.parse(widget.transaction.shop
+                                                  .closedAt.split(":")[0])
                                           ? Colors.green
                                           : Colors.red),
                                   alignment: Alignment.center,
                                   child: Text(
-                                      widget.transaction.shop.isOpen
-                                          ? "Buka"
-                                          : "Tutup",
+                                    DateTime.now().hour >=
+                                        int.parse(widget.transaction.shop
+                                            .openedAt.split(":")[0]) &&
+                                        DateTime.now().hour <
+                                            int.parse(widget.transaction.shop
+                                                .closedAt.split(":")[0])
+                                        ? "Buka"
+                                        : "Tutup",
+                                      // widget.transaction.shop.isOpen
+                                      //     ? "Buka"
+                                      //     : "Tutup",
                                       style:
                                       whiteFontStyle3.copyWith(fontSize: 12)),
                                 ),

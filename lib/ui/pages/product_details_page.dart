@@ -18,7 +18,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   List<Product> products1;
   List<Product> products2;
   List<Photo> photos;
-  List<Rating> listRatings;
+  // List<Rating> listRatings;
   var rating = Rating();
   var listPhotos = <Photo>[];
   var items1 = <Product>[];
@@ -35,9 +35,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     fetchPhotoByProduct();
     fetchDataByShop();
     fetchDataByCategory();
-    if (widget.transaction.product.totalReview > 0) {
-      fetchRatingsByProduct();
-    }
+    // if (widget.transaction.product.totalReview > 0) {
+    //   fetchRatingsByProduct();
+    // }
   }
 
   void fetchPhotoByProduct() async {
@@ -69,30 +69,30 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     }
   }
 
-  void fetchRatingsByProduct() async {
-    isLoadingRating = true;
-    String url = baseURLAPI +
-        'product/rating?product_id=' +
-        widget.transaction.product.id.toString() +
-        '&limit=1';
-    final response = await http.get(Uri.parse(url), headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Token": tokenAPI
-    });
-    if (response.statusCode == 200) {
-      if (mounted) {
-        setState(() {
-          var data = jsonDecode(response.body);
-          listRatings = (data['data']['data'] as Iterable)
-              .map((e) => Rating.fromJson(e))
-              .toList();
-          rating = listRatings[0];
-          isLoadingRating = false;
-        });
-      }
-    }
-  }
+  // void fetchRatingsByProduct() async {
+  //   isLoadingRating = true;
+  //   String url = baseURLAPI +
+  //       'product/rating?product_id=' +
+  //       widget.transaction.product.id.toString() +
+  //       '&limit=1';
+  //   final response = await http.get(Uri.parse(url), headers: {
+  //     "Content-Type": "application/json",
+  //     "Accept": "application/json",
+  //     "Token": tokenAPI
+  //   });
+  //   if (response.statusCode == 200) {
+  //     if (mounted) {
+  //       setState(() {
+  //         var data = jsonDecode(response.body);
+  //         listRatings = (data['data']['data'] as Iterable)
+  //             .map((e) => Rating.fromJson(e))
+  //             .toList();
+  //         rating = listRatings[0];
+  //         isLoadingRating = false;
+  //       });
+  //     }
+  //   }
+  // }
 
   void fetchDataByShop() async {
     isLoading1 = true;
@@ -208,24 +208,24 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    iconText(
-                                        MdiIcons.star,
-                                        widget.transaction.product.rating
-                                                .toStringAsFixed(1) +
-                                            (widget.transaction.product
-                                                        .totalReview ==
-                                                    0
-                                                ? ""
-                                                : " (" +
-                                                    formatNumber(widget
-                                                        .transaction
-                                                        .product
-                                                        .totalReview) +
-                                                    " review)"),
-                                        null,
-                                        null,
-                                        null,
-                                        false),
+                                    // iconText(
+                                    //     MdiIcons.star,
+                                    //     widget.transaction.product.rating
+                                    //             .toStringAsFixed(1) +
+                                    //         (widget.transaction.product
+                                    //                     .totalReview ==
+                                    //                 0
+                                    //             ? ""
+                                    //             : " (" +
+                                    //                 formatNumber(widget
+                                    //                     .transaction
+                                    //                     .product
+                                    //                     .totalReview) +
+                                    //                 " review)"),
+                                    //     null,
+                                    //     null,
+                                    //     null,
+                                    //     false),
                                     const SizedBox(width: 8),
                                     iconText(
                                         MdiIcons.cart,
