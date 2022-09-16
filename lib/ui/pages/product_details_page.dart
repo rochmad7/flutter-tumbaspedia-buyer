@@ -201,7 +201,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                       140, // 32 + 102
                                   child: Text(
                                     widget.transaction.product.name,
-                                    style: blackFontStyle2,
+                                    style: blackFontStyle2.copyWith(
+                                        fontSize: 18, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Row(

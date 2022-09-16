@@ -30,10 +30,11 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
       "Content-Type": "application/json",
       "Accept": "application/json",
     });
-    if (response.statusCode == 200) {
+    var data = jsonDecode(response.body);
+
+    if (data['errors'] == null) {
       if (mounted) {
         setState(() {
-          var data = jsonDecode(response.body);
           products = (data['data'] as Iterable)
               .map((e) => Product.fromJson(e))
               .toList();
