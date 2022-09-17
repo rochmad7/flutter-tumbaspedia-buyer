@@ -22,8 +22,7 @@ class TransactionServices {
       var data = jsonDecode(response.body);
       if (data['errors'] != null) {
         return ApiReturnValue(
-            message: data['message'].toString(),
-            error: data['error']);
+            message: data['message'].toString(), error: data['error']);
       }
 
       List<Transaction> transactions = (data['data'] as Iterable)
@@ -65,9 +64,13 @@ class TransactionServices {
 
       var data = jsonDecode(response.body);
       if (data['errors'] != null) {
+        if (data['errors']['status'] == 401) {
+          return ApiReturnValue(
+              message: data['errors']['message'].toString(),
+              error: data['errors']);
+        }
         return ApiReturnValue(
-            message: data['message'].toString(),
-            error: data['errors']);
+            message: data['message'].toString(), error: data['errors']);
       }
 
       Transaction value = Transaction.fromJson(data['data']);
@@ -88,33 +91,33 @@ class TransactionServices {
       Transaction transaction,
       {http.Client client}) async {
     try {
-    client ??= http.Client();
+      client ??= http.Client();
 
-    final _storage = const FlutterSecureStorage();
-    final token = await _storage.read(key: 'token');
+      final _storage = const FlutterSecureStorage();
+      final token = await _storage.read(key: 'token');
 
-    String url = baseURLAPI + '/transactions/' + transaction.id.toString();
+      String url = baseURLAPI + '/transactions/' + transaction.id.toString();
 
-    var response = await client.patch(Uri.parse(url),
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer $token"
-        },
-        body: jsonEncode(<String, dynamic>{
-          'confirmed_at': DateTime.now().toIso8601String(),
-        }));
+      var response = await client.patch(Uri.parse(url),
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer $token"
+          },
+          body: jsonEncode(<String, dynamic>{
+            'status': 'delivered',
+          }));
 
-    var data = jsonDecode(response.body);
-    if (data['errors'] != null) {
-      return ApiReturnValue(
-          message: data['data']['message'].toString(),
-          error: data['data']['errors']['message']);
-    }
+      var data = jsonDecode(response.body);
+      if (data['errors'] != null) {
+        return ApiReturnValue(
+            message: data['message'].toString(),
+            error: data['errors']['message']);
+      }
 
-    Transaction value = Transaction.fromJson(data['data']);
+      Transaction value = Transaction.fromJson(data['data']);
 
-    return ApiReturnValue(value: value);
+      return ApiReturnValue(value: value);
     } on SocketException {
       return ApiReturnValue(message: socketException, isException: true);
     } on HttpException {

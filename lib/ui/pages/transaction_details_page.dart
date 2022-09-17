@@ -144,7 +144,8 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                               ),
                               Text(
                                 getFormatRupiah(
-                                    (widget.transaction.product.price).round(), true),
+                                    (widget.transaction.product.price).round(),
+                                    true),
                                 style: textListStyle.copyWith(fontSize: 13),
                               )
                             ],
@@ -227,7 +228,8 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                             defaultMargin -
                             5,
                         child: Text(
-                          getFormatRupiah(widget.transaction.product.price, true),
+                          getFormatRupiah(
+                              widget.transaction.product.price, true),
                           style: blackFontStyle3,
                           textAlign: TextAlign.right,
                         ))
@@ -339,28 +341,6 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                       : url),
               icon: MdiIcons.whatsapp),
           SizedBox(height: 8),
-          isLoadingRating
-              ? ShimmerRow(
-                  height: 50,
-                  itemCount: 3,
-                  isNoMargin: false,
-                  isSymmetric: false)
-              : (widget.transaction.status == TransactionStatus.delivered)
-                  ? ButtonIconDefault(
-                      title: (rating == null)
-                          ? "Beri Penilaian"
-                          : "Lihat Penilaian Anda",
-                      color: mainColor,
-                      press: () => displayBottomSheet(
-                          context,
-                          SubmitRatingReview(
-                              initialRating: rating,
-                              transaction: widget.transaction,
-                              product: widget.transaction.product),
-                          0.6,
-                          false),
-                      icon: MdiIcons.starCheck)
-                  : SizedBox(),
           (widget.transaction.status == TransactionStatus.on_delivery &&
                   !isConfirmed)
               ? ButtonIconDefault(
@@ -462,7 +442,9 @@ class SubmitRatingReview extends StatefulWidget {
   final Rating initialRating;
   final Transaction transaction;
   final Product product;
+
   SubmitRatingReview({this.initialRating, this.transaction, this.product});
+
   @override
   _SubmitRatingReviewState createState() => _SubmitRatingReviewState();
 }
@@ -643,6 +625,7 @@ class _SubmitRatingReviewState extends State<SubmitRatingReview> {
 
 class TitleList extends StatelessWidget {
   final String title;
+
   TitleList({this.title});
 
   @override
@@ -661,6 +644,7 @@ class ItemList extends StatelessWidget {
   final String title;
   final String subtitle;
   final Widget customSubtitle;
+
   ItemList({this.title, this.subtitle, this.customSubtitle});
 
   @override
