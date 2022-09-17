@@ -13,12 +13,14 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
   Widget build(BuildContext context) {
     bool isLogin = (context.watch<UserCubit>().state is UserLoaded);
     status = selectedIndex == 0
-        ? 'Pesanan Baru'
+        ? 'Semua'
         : selectedIndex == 1
-            ? 'Pesanan Diantar'
-            : selectedIndex == 2
-                ? 'Pesanan Dibatalkan'
-                : 'Pesanan Selesai';
+            ? 'Baru'
+            : selectedIndex == 1
+                ? 'Diantar'
+                : selectedIndex == 2
+                    ? 'Dibatalkan'
+                    : 'Selesai';
     if (context.watch<UserCubit>().state is UserLoadingFailed)
       return IllustrationPage(
         title: 'Gagal memuat!',
@@ -61,10 +63,11 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                 .toList();
             int count = onDelivery.length;
             List<Category> categoryStatus = [
-              Category(id: 0, name: 'Pesanan Baru'),
-              Category(id: 1, name: 'Diantar'),
-              Category(id: 2, name: 'Dibatalkan'),
-              Category(id: 3, name: 'Pesanan Selesai'),
+              Category(id: 0, name: 'Semua'),
+              Category(id: 1, name: 'Baru'),
+              Category(id: 2, name: 'Diantar'),
+              Category(id: 3, name: 'Dibatalkan'),
+              Category(id: 4, name: 'Selesai'),
             ];
             return RefreshIndicator(
               onRefresh: () async {
@@ -119,11 +122,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                               Builder(builder: (_) {
                                 List<Transaction> transactions =
                                     (selectedIndex == 0)
-                                        ? state.transactions
-                                            .where((element) =>
-                                                element.status ==
-                                                TransactionStatus.pending)
-                                            .toList()
+                                        ? state.transactions.toList()
                                         : (selectedIndex == 1)
                                             ? state.transactions
                                                 .where((element) =>
@@ -136,14 +135,21 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                                                     .where((element) =>
                                                         element.status ==
                                                         TransactionStatus
-                                                            .cancelled)
-                                                    .toList()
-                                                : state.transactions
-                                                    .where((element) =>
-                                                        element.status ==
-                                                        TransactionStatus
                                                             .delivered)
-                                                    .toList();
+                                                    .toList()
+                                                : (selectedIndex == 3)
+                                                    ? state.transactions
+                                                        .where((element) =>
+                                                            element.status ==
+                                                            TransactionStatus
+                                                                .cancelled)
+                                                        .toList()
+                                                    : state.transactions
+                                                        .where((element) =>
+                                                            element.status ==
+                                                            TransactionStatus
+                                                                .pending)
+                                                        .toList();
                                 if (transactions.length != 0) {
                                   return Column(
                                     children: transactions
