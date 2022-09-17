@@ -19,37 +19,37 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
   @override
   void initState() {
     super.initState();
-    fetchRatingsByTransaction();
+    // fetchRatingsByTransaction();
   }
 
-  void fetchRatingsByTransaction() async {
-    isLoadingRating = true;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String url = baseURLAPI + 'transaction/checkrating';
-    final response = await http.post(Uri.parse(url),
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Token": tokenAPI,
-          "Authorization": "Bearer ${prefs.getString('token')}"
-        },
-        body: jsonEncode(<String, dynamic>{
-          'transaction_id': widget.transaction.id,
-        }));
-    if (response.statusCode == 200) {
-      if (mounted) {
-        setState(() {
-          var data = jsonDecode(response.body);
-          rating = Rating.fromJson(data['data']['rating']);
-          isLoadingRating = false;
-        });
-      }
-    } else {
-      setState(() {
-        isLoadingRating = false;
-      });
-    }
-  }
+  // void fetchRatingsByTransaction() async {
+  //   isLoadingRating = true;
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String url = baseURLAPI + 'transaction/checkrating';
+  //   final response = await http.post(Uri.parse(url),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "Accept": "application/json",
+  //         "Token": tokenAPI,
+  //         "Authorization": "Bearer ${prefs.getString('token')}"
+  //       },
+  //       body: jsonEncode(<String, dynamic>{
+  //         'transaction_id': widget.transaction.id,
+  //       }));
+  //   if (response.statusCode == 200) {
+  //     if (mounted) {
+  //       setState(() {
+  //         var data = jsonDecode(response.body);
+  //         rating = Rating.fromJson(data['data']['rating']);
+  //         isLoadingRating = false;
+  //       });
+  //     }
+  //   } else {
+  //     setState(() {
+  //       isLoadingRating = false;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
