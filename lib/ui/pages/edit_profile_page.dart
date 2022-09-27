@@ -79,13 +79,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   });
                   snackBar('Gagal ubah data', 'Mohon isi semua data', 'error');
                   return;
+                } else if (phoneController.text.isPhoneNumber) {
+                  setState(() {
+                    isLoading = false;
+                  });
+                  snackBar('Gagal ubah data', 'No HP tidak valid', 'error');
+                  return;
                 }
-
-                User user = User(
-                  name: nameController.text,
-                  address: addressController.text,
-                  phoneNumber: phoneController.text,
-                );
+                  User user = User(
+                    name: nameController.text,
+                    address: addressController.text,
+                    phoneNumber: phoneController.text,
+                  );
 
                 await context.read<UserCubit>().update(user, widget.user.id);
 

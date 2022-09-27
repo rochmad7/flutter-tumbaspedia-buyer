@@ -410,15 +410,15 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
           context.read<TransactionCubit>().getTransactions(null);
           new Future.delayed(new Duration(seconds: 3), () {
             Get.off(() => MainPage(initialPage: 3));
-            new Future.delayed(new Duration(seconds: 2), () {
-              displayBottomSheet(
-                  context,
-                  SubmitRatingReview(
-                      transaction: widget.transaction,
-                      product: widget.transaction.product),
-                  0.6,
-                  false);
-            });
+            // new Future.delayed(new Duration(seconds: 2), () {
+            //   displayBottomSheet(
+            //       context,
+            //       SubmitRatingReview(
+            //           transaction: widget.transaction,
+            //           product: widget.transaction.product),
+            //       0.6,
+            //       false);
+            // });
           });
           return false;
         } else {

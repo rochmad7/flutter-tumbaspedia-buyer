@@ -128,14 +128,14 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                                                 .where((element) =>
                                                     element.status ==
                                                     TransactionStatus
-                                                        .on_delivery)
+                                                        .pending)
                                                 .toList()
                                             : (selectedIndex == 2)
                                                 ? state.transactions
                                                     .where((element) =>
                                                         element.status ==
                                                         TransactionStatus
-                                                            .delivered)
+                                                            .on_delivery)
                                                     .toList()
                                                 : (selectedIndex == 3)
                                                     ? state.transactions
@@ -148,7 +148,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                                                         .where((element) =>
                                                             element.status ==
                                                             TransactionStatus
-                                                                .pending)
+                                                                .delivered)
                                                         .toList();
                                 if (transactions.length != 0) {
                                   return Column(
