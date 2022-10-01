@@ -92,44 +92,38 @@ class _ProfilePageState extends State<ProfilePage> {
               child: isLogin
                   ? Column(
                       children: [
-                        CustomTabBar(
-                          titles: ["Akun", "Tumbaspedia"],
-                          selectedIndex: selectedIndex,
-                          onTap: (index) {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                        ),
+                        // CustomTabBar(
+                        //   titles: ["Akun", "Tumbaspedia"],
+                        //   selectedIndex: selectedIndex,
+                        //   onTap: (index) {
+                        //     setState(() {
+                        //       selectedIndex = index;
+                        //     });
+                        //   },
+                        // ),
                         SizedBox(
                           height: 16,
                         ),
                         Column(
-                          children: ((selectedIndex == 0)
-                                  ? [
-                                      {
-                                        'name': 'Edit Profile',
-                                        'press': EditProfilePage(user: user)
-                                      },
-                                      {
-                                        'name': 'Ubah Password',
-                                        'press': ChangePasswordPage(user: user)
-                                      },
-                                    ]
-                                  : [
-                                      {
-                                        'name': 'Tentang Kami',
-                                        'press': AboutPage()
-                                      },
-                                      {
-                                        'name': 'Bantuan',
-                                        'press': HelpPage(),
-                                      },
-                                      {
-                                        'name': 'Kebijakan Privasi',
-                                        'press': PrivacyPage(),
-                                      },
-                                    ])
+                          children: [
+                            {
+                              'name': 'Edit Profil',
+                              'press': EditProfilePage(user: user)
+                            },
+                            {
+                              'name': 'Ubah Kata Sandi',
+                              'press': ChangePasswordPage(user: user)
+                            },
+                            {'name': 'Tentang Kami', 'press': AboutPage()},
+                            {
+                              'name': 'Bantuan',
+                              'press': HelpPage(),
+                            },
+                            {
+                              'name': 'Kebijakan Privasi',
+                              'press': PrivacyPage(),
+                            },
+                          ]
                               .map((e) => GestureDetector(
                                     onTap: () => Get.to(e['press']),
                                     child: SettingTitle(title: e['name']),
@@ -148,7 +142,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Column(
                             children: [
                               SettingTitle(
-                                title: "Log Out",
+                                title: "Keluar",
                                 isCustomStyle: true,
                                 style: GoogleFonts.poppins(
                                   color: Colors.red,
