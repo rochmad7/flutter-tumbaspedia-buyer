@@ -79,7 +79,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   });
                   snackBar('Gagal ubah data', 'Mohon isi semua data', 'error');
                   return;
-                } else if (phoneController.text.isPhoneNumber) {
+                } else if (!phoneController.text.isPhoneNumber) {
                   setState(() {
                     isLoading = false;
                   });
