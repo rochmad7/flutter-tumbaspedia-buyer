@@ -16,16 +16,16 @@ class CategoryItem extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: SizedBox(
-        width: 95,
+        width: 75,
         child: Column(
           children: [
             Container(
               padding: EdgeInsets.all(15),
-              height: 55,
-              width: 95,
+              height: 65,
+              width: 65,
               decoration: BoxDecoration(
-                color: Colors.orange[100],
-                borderRadius: BorderRadius.circular(10),
+                color: Colors.orange[300],
+                borderRadius: BorderRadius.circular(100),
               ),
               // child: Image.network(icon),
               child: CachedNetworkImage(
