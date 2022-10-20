@@ -271,7 +271,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SectionTitle(
+                                SectionBottom(
                                   all: true,
                                   isColor: true,
                                   title: "Produk UKM",

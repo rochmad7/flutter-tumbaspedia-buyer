@@ -54,7 +54,7 @@ class CardAccordion extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     child: Text(
                       title,
-                      style: sectionTitleStyle.copyWith(fontSize: 15),
+                      style: sectionTitleStyle.copyWith(fontSize: 18),
                     )),
                 collapsed: maxLines != 0
                     ? Text(

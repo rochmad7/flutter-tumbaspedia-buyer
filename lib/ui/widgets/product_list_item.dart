@@ -68,7 +68,7 @@ class ProductListItem extends StatelessWidget {
           ),
           Text(
             getFormatRupiah(product.price, true),
-            style: GoogleFonts.poppins().copyWith(
+            style: GoogleFonts.roboto().copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: mainColor,

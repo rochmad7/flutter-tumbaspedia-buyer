@@ -30,7 +30,7 @@ class TitlePage extends StatelessWidget {
               ? EdgeInsets.only(right: defaultMargin)
               : EdgeInsets.symmetric(horizontal: defaultMargin),
           color: Colors.white,
-          height: 100,
+          height: 90,
           width: double.infinity,
           child: Row(
             mainAxisAlignment: isContainerRight && count != 0

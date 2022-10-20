@@ -133,10 +133,10 @@ Container welcome(BuildContext context, bool isLogin) {
                           .name +
                       "\n"
                   : "Selamat datang di aplikasi\n",
-              style: GoogleFonts.poppins()),
+              style: GoogleFonts.roboto()),
           TextSpan(
             text: isLogin ? "Selamat datang" : "Tumbaspedia Rowosari",
-            style: GoogleFonts.poppins().copyWith(
+            style: GoogleFonts.roboto().copyWith(
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),

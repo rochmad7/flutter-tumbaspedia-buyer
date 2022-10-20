@@ -77,7 +77,7 @@ class ShopCard extends StatelessWidget {
                                       Text(
                                         shop.name,
                                         textAlign: TextAlign.left,
-                                        style: GoogleFonts.poppins().copyWith(
+                                        style: GoogleFonts.roboto().copyWith(
                                           fontSize: 19,
                                           fontWeight: FontWeight.w600,
                                           color: mainColor,

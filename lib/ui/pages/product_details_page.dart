@@ -491,16 +491,30 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const Divider(
+            height: 30,
+            thickness: 2,
+            indent: 0,
+            endIndent: 0,
+            color: Colors.orange,
+          ),
           SectionTitle(
+            all: true,
+            title: title,
+            isColor: true,
+            sizeTitle: 15,
+            defaultMargin: 0,
+          ),
+          SizedBox(height: 10),
+          isLoading ? ShimmerRow() : ProductsShop(products: products),
+          SizedBox(height: 30),
+          SectionBottom(
             all: true,
             press: press,
             isColor: true,
             title: title,
             defaultMargin: 16,
           ),
-          SizedBox(height: 10),
-          isLoading ? ShimmerRow() : ProductsShop(products: products),
-          SizedBox(height: 30),
         ],
       ),
     );

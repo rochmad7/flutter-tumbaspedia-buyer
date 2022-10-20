@@ -74,29 +74,50 @@ class HomePage extends StatelessWidget {
               // CustomSearchWidget(),
               // BannerHome(),
               ProductCategory(),
+              const Divider(
+                height: 30,
+                thickness: 2,
+                indent: 0,
+                endIndent: 0,
+                color: Colors.orange,
+              ),
               Column(
                 children: [
-                  SectionTitle(
-                      all: true,
-                      title: "Toko",
-                      press: () {
-                        Get.to(() => AllShopsPage());
-                      }),
+                  SectionTitle(title: "Toko"),
                   SizedBox(height: 10),
                   ShopHome(),
+                  SectionBottom(
+                    all: true,
+                    title: "Lihat Semua",
+                    press: () {
+                      Get.to(() => AllShopsPage());
+                    },
+                  ),
                 ],
               ),
               SizedBox(height: 20.0),
+              const Divider(
+                height: 30,
+                thickness: 2,
+                indent: 0,
+                endIndent: 0,
+                color: Colors.orange,
+              ),
               Column(
                 children: [
                   SectionTitle(
+                    all: true,
+                    title: "Produk",
+                  ),
+                  SizedBox(height: 10),
+                  ProductHome(),
+                  SizedBox(height: 20.0),
+                  SectionBottom(
                       all: true,
                       title: "Produk",
                       press: () {
                         Get.to(() => AllProductsPage());
                       }),
-                  SizedBox(height: 10),
-                  ProductHome(),
                 ],
               ),
               SizedBox(height: 80),

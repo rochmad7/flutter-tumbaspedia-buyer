@@ -25,6 +25,7 @@ part 'shop_item.dart';
 part 'product_home.dart';
 part 'product_item.dart';
 part 'section_title.dart';
+part 'section_bottom.dart';
 part 'custom_tab_bar.dart';
 part 'single_product.dart';
 part 'rating_stars.dart';

@@ -42,7 +42,7 @@ class CategoryItem extends StatelessWidget {
             Text(
               text,
               textAlign: TextAlign.center,
-              style: GoogleFonts.poppins().copyWith(fontSize: 13, fontWeight: FontWeight.bold),
+              style: GoogleFonts.roboto().copyWith(fontSize: 13, fontWeight: FontWeight.bold),
             )
           ],
         ),

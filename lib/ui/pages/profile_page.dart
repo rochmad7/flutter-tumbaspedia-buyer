@@ -60,18 +60,27 @@ class _ProfilePageState extends State<ProfilePage> {
                           (context.watch<UserCubit>().state as UserLoaded)
                               .user
                               .name,
-                          style: GoogleFonts.poppins(
+                          style: GoogleFonts.roboto(
                               fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          height: 5,
                         ),
                         Text(
                           user.email,
                           style: greyFontStyle.copyWith(
                               fontWeight: FontWeight.w300),
                         ),
+                        SizedBox(
+                          height: 5,
+                        ),
                         Text(
                           user.phoneNumber,
                           style: greyFontStyle.copyWith(
                               fontWeight: FontWeight.w300),
+                        ),
+                        SizedBox(
+                          height: 5,
                         ),
                         Text(
                           user.address,
@@ -144,7 +153,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               SettingTitle(
                                 title: "Keluar",
                                 isCustomStyle: true,
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.roboto(
                                   color: Colors.red,
                                 ),
                               ),
@@ -163,7 +172,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             {'name': 'Login', 'press': SignInPage()},
                             {'name': 'Daftar Akun Baru', 'press': SignUpPage()},
                             {
-                              'name': 'Lupa Password',
+                              'name': 'Lupa Kata Sandi',
                               'press': ForgotPasswordPage()
                             },
                             {'name': 'Tentang Kami', 'press': AboutPage()},
@@ -182,8 +191,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       ],
                     ),
             ),
-            SizedBox(height: 10),
-            Center(child: Text("Versi 1.0", style: blackFontStyle)),
+            // SizedBox(height: 10),
+            // Center(child: Text("Versi 1.0", style: blackFontStyle)),
           ],
         ),
       ],

@@ -74,26 +74,26 @@ class OrderListItem extends StatelessWidget {
                       (transaction.status == TransactionStatus.cancelled)
                           ? Text(
                               'Dibatalkan',
-                              style: GoogleFonts.poppins(
+                              style: GoogleFonts.roboto(
                                   color: 'D9435E'.toColor(), fontSize: 10),
                             )
                           : (transaction.status == TransactionStatus.pending)
                               ? Text(
                                   'Pesanan Baru',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.roboto(
                                       color: 'D9435E'.toColor(), fontSize: 10),
                                 )
                               : (transaction.status ==
                                       TransactionStatus.on_delivery)
                                   ? Text(
                                       'Diantar',
-                                      style: GoogleFonts.poppins(
+                                      style: GoogleFonts.roboto(
                                           color: '1ABC9C'.toColor(),
                                           fontSize: 10),
                                     )
                                   : Text(
                                       'Selesai',
-                                      style: GoogleFonts.poppins(
+                                      style: GoogleFonts.roboto(
                                           color: '1ABC9C'.toColor(),
                                           fontSize: 10),
                                     )

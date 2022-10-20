@@ -23,8 +23,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         // context.read<UserCubit>().getMyProfile(widget.user.id);
         Get.back();
       },
-      title: 'Lupa Password',
-      subtitle: 'Reset Password Anda Melalui Email',
+      title: 'Lupa Kata Sandi',
+      subtitle: 'Reset Kata Sandi Anda Melalui Email',
       child: Container(
         margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 6),
         child: Column(
@@ -52,12 +52,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      LabelFormField(
-                        label: "Anda Lupa Password?",
-                      ),
                       Text(
-                        "Anda lupa password akun Tumbaspedia? Tidak masalah. Anda hanya butuh mengisi email akun Tumbaspedia yang telah terdaftar, di kolom bawah ini dan kami akan mengirimkan link reset password ke email Anda. Selanjutnya Anda bisa me-reset passwordmu",
-                        style: blackFontStyle3.copyWith(fontSize: 12),
+                        "Silakan masukkan email akun Anda. Kami akan mengirimkan tautan untuk mereset kata sandi Anda.",
+                        style: blackFontStyle3.copyWith(fontSize: 14),
                       ),
                       SizedBox(
                         height: 15,
@@ -75,7 +72,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       ),
                       ButtonDefault(
                         isLoading: isLoading,
-                        title: "Reset Password",
+                        title: "Reset Kata Sandi",
                         press: () async {
                           setState(() {
                             isLoading = true;
