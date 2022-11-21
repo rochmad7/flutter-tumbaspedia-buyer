@@ -284,8 +284,8 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                           ? Text(
                               'Pesanan Baru',
                               textAlign: TextAlign.right,
-                              style: GoogleFonts.roboto(
-                                  color: 'D9435E'.toColor()),
+                              style:
+                                  GoogleFonts.roboto(color: 'D9435E'.toColor()),
                             )
                           : (widget.transaction.status ==
                                   TransactionStatus.on_delivery)
@@ -340,6 +340,23 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                       ? message
                       : url),
               icon: MdiIcons.whatsapp),
+          SizedBox(height: 8),
+          (widget.transaction.status == TransactionStatus.pending)
+              ? ButtonIconDefault(
+                  title: "Batalkan Pesanan",
+                  color: "D9435E".toColor(),
+                  press: () {
+                    SweetAlert.show(context,
+                        title: "Batalkan Pesanan?",
+                        subtitle: "Pesanan akan dibatalkan",
+                        style: SweetAlertStyle.confirm,
+                        showCancelButton: true,
+                        onPress: cancelTransaction);
+                  },
+                  icon: MdiIcons.close)
+              : SizedBox(
+                  height: 8,
+                ),
           SizedBox(height: 8),
           (widget.transaction.status == TransactionStatus.on_delivery &&
                   !isConfirmed)
@@ -404,7 +421,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                   "Terimakasih, konfirmasi terima\npesanan berhasil dikirim",
               style: SweetAlertStyle.success);
           snackBar(
-              "Success",
+              "Sukses",
               "Terimakasih, konfirmasi terima pesanan Anda berhasil dikirim",
               'success');
           context.read<TransactionCubit>().getTransactions(null);
@@ -432,6 +449,41 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
     } else {
       SweetAlert.show(context,
           subtitle: "Konfirmasi terima pesanan\ntelah berhasil dibatalkan",
+          style: SweetAlertStyle.error);
+    }
+    return false;
+  }
+
+  bool cancelTransaction(bool isConfirm) {
+    if (isConfirm) {
+      SweetAlert.show(context,
+          subtitle: "Sedang memproses...", style: SweetAlertStyle.loading);
+      new Future.delayed(new Duration(seconds: 0), () async {
+        await context
+            .read<TransactionCubit>()
+            .cancelTransaction(widget.transaction);
+        TransactionState state = context.read<TransactionCubit>().state;
+        if (state is TransactionCanceled) {
+          SweetAlert.show(context,
+              subtitle: "Pesanan berhasil dibatalkan",
+              style: SweetAlertStyle.success);
+          snackBar("Sukses", "Pesanan Anda berhasil dibatalkan", 'success');
+          context.read<TransactionCubit>().getTransactions(null);
+          new Future.delayed(new Duration(seconds: 3), () {
+            Get.off(() => MainPage(initialPage: 3));
+          });
+          return false;
+        } else {
+          SweetAlert.show(context,
+              subtitle: (state as TransactionCancelFailed).message,
+              style: SweetAlertStyle.error);
+          context.read<TransactionCubit>().getTransactions(null);
+          return false;
+        }
+      });
+    } else {
+      SweetAlert.show(context,
+          subtitle: "Pembatalan pesanan\ntelah berhasil dibatalkan",
           style: SweetAlertStyle.error);
     }
     return false;

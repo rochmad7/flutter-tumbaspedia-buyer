@@ -45,4 +45,17 @@ class TransactionCubit extends Cubit<TransactionState> {
       return null;
     }
   }
+
+  Future<Transaction> cancelTransaction(Transaction transaction) async {
+    ApiReturnValue<Transaction> result =
+        await TransactionServices.cancelTransaction(transaction);
+
+    if (result.value != null) {
+      emit(TransactionCanceled(result.value));
+      return result.value;
+    } else {
+      emit(TransactionCancelFailed(result.message));
+      return null;
+    }
+  }
 }

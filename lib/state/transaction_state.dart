@@ -61,3 +61,21 @@ class TransactionConfirmFailed extends TransactionState {
   @override
   List<Object> get props => [message];
 }
+
+class TransactionCanceled extends TransactionState {
+  final Transaction transaction;
+
+  TransactionCanceled(this.transaction);
+
+  @override
+  List<Object> get props => [transaction];
+}
+
+class TransactionCancelFailed extends TransactionState {
+  final String message;
+
+  TransactionCancelFailed(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
