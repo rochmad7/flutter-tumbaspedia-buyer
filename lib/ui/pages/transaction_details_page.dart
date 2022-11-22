@@ -285,7 +285,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                               'Pesanan Baru',
                               textAlign: TextAlign.right,
                               style:
-                                  GoogleFonts.roboto(color: 'D9435E'.toColor()),
+                                  GoogleFonts.roboto(color: Colors.blueAccent),
                             )
                           : (widget.transaction.status ==
                                   TransactionStatus.on_delivery)
@@ -299,7 +299,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                                   'Pesanan Selesai',
                                   textAlign: TextAlign.right,
                                   style: GoogleFonts.roboto(
-                                      color: "#128C7E".toColor()),
+                                      color: mainColor, fontWeight: FontWeight.w500),
                                 ),
                 ),
                 SizedBox(height: 6),

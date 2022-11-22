@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
             .getProducts(null, null, 10, null, null);
         await context.read<ShopCubit>().getShops(null, null, 10, null);
         await context.read<CategoryCubit>().getCategories(null);
-        await context.read<SliderCubit>().getSliders(0, 8);
         if (context.read<UserCubit>().state is UserLoaded) {
           return await context.read<TransactionCubit>().getTransactions(null);
         }

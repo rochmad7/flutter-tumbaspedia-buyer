@@ -9,7 +9,7 @@ const tandamerah =
 const help =
     "Jika Anda mengalami masalah saat mengakses aplikasi, mendaftar akun, maupun toko, Anda dapat menghubungi email Tumbaspedia di sini atau hubungi Tumbaspediaid@gmail.com";
 const tumbaspedia =
-    "Tumbaspedia merupakan sebuah aplikasi jual beli bagi UMKM anggota Gerai Kopimi Kelurahan Rowosari, Kecamatan Tembalang Kota Semarang sebagai hasil dari program penelitian skripsi dari Rochmad Wahyu Aji, salah satu mahasiswa Universitas Diponegoro. Sistem jual beli online ini meliputi dua aplikasi yaitu Tumbaspedia Seller untuk penjual dan Tumbaspedia untuk pembeli. Dengan adanya aplikasi Tumbaspedia, diharapkan dapat memudahkan proses jual-beli produk UMKM Gerai Kopimi Rowosari.";
+    "Tumbaspedia merupakan sebuah aplikasi jual beli bagi UMKM anggota Gerai Kopimi Kelurahan Rowosari, Kecamatan Tembalang Kota Semarang sebagai hasil dari program penelitian skripsi dari Rochmad Wahyu Aji, salah satu mahasiswa Universitas Diponegoro. \n \n Sistem jual beli online ini meliputi dua aplikasi yaitu Tumbaspedia Seller untuk penjual dan Tumbaspedia untuk pembeli. Dengan adanya aplikasi Tumbaspedia, diharapkan dapat memudahkan proses jual-beli produk UMKM Gerai Kopimi Rowosari.";
 const kopimi =
     "Gerai Kopimi sendiri merupakan singkatan dari Gerakan Terintegrasi Koperasi dan Usaha Mikro, Kecil dan Menengah yang merupakan forum bagi usaha mikro, kecil dan menengah di Kota Semarang yang dibentuk berdasarkan SK Walikota No 518/1255 Tahun 2019. Forum ini mempunyai kepengurusan mulai dari tingkat Kota, Kecamatan hingga Kelurahan.";
 const buatakun =

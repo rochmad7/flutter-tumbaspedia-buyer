@@ -5,4 +5,3 @@ export 'shop_cubit.dart';
 export 'category_cubit.dart';
 export 'photo_cubit.dart';
 export 'rating_cubit.dart';
-export 'slider_cubit.dart';

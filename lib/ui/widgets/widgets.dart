@@ -17,7 +17,6 @@ import 'package:timeago/timeago.dart' as timeago;
 
 part 'custom_bottom_navbar.dart';
 part 'search_field.dart';
-part 'banner_home.dart';
 part 'product_category.dart';
 part 'category_item.dart';
 part 'shop_home.dart';
