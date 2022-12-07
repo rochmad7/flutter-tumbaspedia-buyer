@@ -24,8 +24,8 @@ String capitalize(String string) {
 String tokenAPI =
     "aqnXBEi7KgPCMOP2qiOslLEd6u8Q2jQVFaYnlYQdtzLEVLtu0fRqTWZiPB1g";
 
-String baseURLAPI = 'http://10.0.2.2:3000/api';
-// String baseURLAPI = 'https://dev.tumbaspedia.my.id/api';
+// String baseURLAPI = 'http://10.0.2.2:3000/api';
+String baseURLAPI = 'https://dev.tumbaspedia.my.id/api';
 
 Color mainColor = "032339".toColor();
 Color greyColor = "8D92A3".toColor();
@@ -129,7 +129,7 @@ String convertDate(DateTime dateTime, bool isFull) {
 }
 
 String convertTime(DateTime dateTime) {
-  String date = DateFormat('HH:mm', 'id_ID').format(dateTime);
+  String date = DateFormat('HH:mm', 'id_ID').format(dateTime.toLocal());
 
   return date + ' WIB';
 }
