@@ -148,7 +148,7 @@ Widget forgotPassword() {
             () => ForgotPasswordPage(),
           );
         },
-        child: Text("Lupa password?", style: blackFontStyle)),
+        child: Text("Lupa kata sandi?", style: blackFontStyle)),
   );
 }
 

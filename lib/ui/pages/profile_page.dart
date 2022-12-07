@@ -169,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         Column(
                           children: [
-                            {'name': 'Login', 'press': SignInPage()},
+                            {'name': 'Masuk', 'press': SignInPage()},
                             {'name': 'Daftar Akun Baru', 'press': SignUpPage()},
                             {
                               'name': 'Lupa Kata Sandi',

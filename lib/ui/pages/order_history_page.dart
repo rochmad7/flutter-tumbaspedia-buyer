@@ -37,7 +37,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
         buttonTap1: () {
           Get.to(() => SignInPage());
         },
-        buttonTitle1: 'Login',
+        buttonTitle1: 'Masuk',
       );
     else if (isLogin)
       return BlocBuilder<TransactionCubit, TransactionState>(

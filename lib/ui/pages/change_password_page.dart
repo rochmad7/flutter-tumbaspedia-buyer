@@ -48,8 +48,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       onBackButtonPressed: () {
         Get.back();
       },
-      title: 'Ubah Password',
-      subtitle: 'Ubah Password Akun Anda',
+      title: 'Ubah Kata Sandi',
+      subtitle: 'Ubah Kata Sandi Akun Anda',
       child: Container(
         margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 6),
         child: Column(
@@ -59,7 +59,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               height: 26,
             ),
             LabelFormField(
-              label: "Password Lama Anda",
+              label: "Kata Sandi Lama Anda",
             ),
             TextFieldDefault(
                 suffixIcon: () => _toggle1(),
@@ -67,13 +67,13 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 controller: oldPasswordController,
                 isObscureText: _obscureText1,
                 isSuffixIcon: true,
-                hintText: "Password Lama"),
+                hintText: "Kata Sandi Lama"),
             TextDanger(error: error, param: "old_password"),
             SizedBox(
               height: 26,
             ),
             LabelFormField(
-              label: "Password Baru",
+              label: "Kata Sandi Baru",
             ),
             TextFieldDefault(
                 suffixIcon: () => _toggle2(),
@@ -81,10 +81,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 controller: newPasswordController,
                 isObscureText: _obscureText2,
                 isSuffixIcon: true,
-                hintText: "Password Baru"),
+                hintText: "Kata Sandi Baru"),
             TextDanger(error: error, param: "new_password"),
             LabelFormField(
-              label: "Konfirmasi Password Baru",
+              label: "Konfirmasi Kata Sandi Baru",
             ),
             TextFieldDefault(
                 suffixIcon: () => _toggle3(),
@@ -92,12 +92,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 controller: confPasswordController,
                 isObscureText: _obscureText3,
                 isSuffixIcon: true,
-                hintText: "Konfirmasi Password"),
+                hintText: "Konfirmasi Kata Sandi"),
             TextDanger(error: error, param: "confirm_password"),
             SizedBox(height: 15),
             ButtonDefault(
               isLoading: isLoading,
-              title: "Ubah Password",
+              title: "Ubah Kata Sandi",
               press: () async {
                 setState(() {
                   isLoading = true;
@@ -109,7 +109,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   setState(() {
                     isLoading = false;
                   });
-                  snackBar('Gagal ubah password', 'Semua field harus diisi',
+                  snackBar('Gagal ubah kata sandi', 'Semua kolom harus diisi',
                       'error');
                   return;
                 } else if (newPasswordController.text !=
@@ -118,7 +118,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     isLoading = false;
                   });
                   snackBar(
-                      'Gagal ubah password', 'Password tidak sama', 'error');
+                      'Gagal ubah kata sandi', 'Kata sandi tidak sama', 'error');
                   return;
                 }
 
@@ -139,7 +139,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   });
 
                   snackBar(
-                      "Berhasil", "Password Anda berhasil diubah", 'success');
+                      "Berhasil", "Kata sandi Anda berhasil diubah", 'success');
 
                 } else {
                   context.read<UserCubit>().getMyProfile(widget.user.id);

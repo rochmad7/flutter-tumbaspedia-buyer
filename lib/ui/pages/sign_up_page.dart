@@ -76,7 +76,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextDanger(error: error, param: "address"),
             SizedBox(height: 15),
             LabelFormField(
-              label: "Password",
+              label: "Kata Sandi",
               example: "Minimal 8 karakter",
             ),
             TextFieldDefault(
@@ -85,7 +85,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 controller: passwordController,
                 isObscureText: _obscureText,
                 isSuffixIcon: true,
-                hintText: "Password"),
+                hintText: "Kata Sandi"),
             TextDanger(error: error, param: "password"),
             SizedBox(height: 15),
             ButtonDefault(
