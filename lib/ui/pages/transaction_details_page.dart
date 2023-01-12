@@ -274,7 +274,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                 ItemList(
                   title: "Status",
                   customSubtitle: (widget.transaction.status ==
-                          TransactionStatus.cancelled)
+                          TransactionStatus.canceled)
                       ? Text(
                           'Dibatalkan',
                           textAlign: TextAlign.right,
