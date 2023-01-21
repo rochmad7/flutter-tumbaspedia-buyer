@@ -177,10 +177,6 @@ class _ProfilePageState extends State<ProfilePage> {
                             },
                             {'name': 'Tentang Kami', 'press': AboutPage()},
                             {'name': 'Bantuan', 'press': HelpPage()},
-                            {
-                              'name': 'Kebijakan Privasi',
-                              'press': PrivacyPage()
-                            },
                           ]
                               .map((e) => GestureDetector(
                                     onTap: () => Get.to(e['press']),
