@@ -30,7 +30,7 @@ class CategoryItem extends StatelessWidget {
               // child: Image.network(icon),
               child: CachedNetworkImage(
                 imageUrl: icon,
-                color: mainColor,
+                color: mainAccentColor,
                 // placeholder: (context, url) => Center(
                 //   child: CircularProgressIndicator(),
                 // ),
@@ -42,7 +42,7 @@ class CategoryItem extends StatelessWidget {
             Text(
               text,
               textAlign: TextAlign.center,
-              style: GoogleFonts.roboto().copyWith(fontSize: 13, fontWeight: FontWeight.bold),
+              style: GoogleFonts.roboto().copyWith(fontSize: 13, fontWeight: FontWeight.bold, color: mainAccentColor),
             )
           ],
         ),

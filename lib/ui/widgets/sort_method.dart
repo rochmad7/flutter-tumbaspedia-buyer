@@ -61,7 +61,7 @@ class _OptionList extends StatelessWidget {
                     onOptionTap != null ? (_) => onOptionTap(option) : null,
                 selected: isItemSelected,
                 backgroundColor: "eeeeee".toColor(),
-                selectedColor: Colors.green,
+                selectedColor: mainAccentColor,
               );
             },
           ).toList(),

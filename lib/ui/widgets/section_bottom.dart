@@ -48,7 +48,7 @@ class SectionBottom extends StatelessWidget {
               ? ElevatedButton(
                   onPressed: press,
               style: ElevatedButton.styleFrom(
-                primary: Colors.orange[800],
+                primary: mainAccentColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

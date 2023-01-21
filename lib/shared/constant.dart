@@ -25,11 +25,13 @@ String tokenAPI =
     "aqnXBEi7KgPCMOP2qiOslLEd6u8Q2jQVFaYnlYQdtzLEVLtu0fRqTWZiPB1g";
 
 // String baseURLAPI = 'http://10.0.2.2:3000/api';
-String baseURLAPI = 'https://dev.tumbaspedia.my.id/api';
+// String baseURLAPI = 'https://dev.tumbaspedia.my.id/api';
+String baseURLAPI = 'https://prod.tumbaspedia.my.id/api';
 
 Color mainColor = "032339".toColor();
 Color greyColor = "8D92A3".toColor();
 Color secondaryColor = "FFC700".toColor();
+Color mainAccentColor = Color(0xff541690);
 const kSecondaryColor = Color(0xFF979797);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 
