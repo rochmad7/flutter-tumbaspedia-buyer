@@ -10,7 +10,7 @@ class _ProductPageState extends State<ProductPage> {
   final ScrollController _scrollController = ScrollController();
 
   bool isLoading = false;
-  int selectedIndex = 0;
+  int selectedIndex = -1;
   SortMethod _selectedSortMethod = SortMethod.acak;
   String message;
   String query;
@@ -142,6 +142,7 @@ class _ProductPageState extends State<ProductPage> {
                                   // getSearchBarUI(),
                                 ],
                               ),
+                              SizedBox(height: 10),
                               SortMethodGroup(
                                   selectedItem: _selectedSortMethod,
                                   onOptionTap: (option) {
@@ -150,6 +151,7 @@ class _ProductPageState extends State<ProductPage> {
                                     );
                                     _pagingController.refresh();
                                   }),
+                              SizedBox(height: 10),
                             ],
                           );
                         }, childCount: 1),
@@ -179,7 +181,7 @@ class _ProductPageState extends State<ProductPage> {
                               ),
                               Container(
                                   width: double.infinity,
-                                  color: Colors.white,
+                                  color: Colors.grey[100],
                                   child: message != null
                                       // ? Text(message)
                                       ? Row(
@@ -216,7 +218,7 @@ class _ProductPageState extends State<ProductPage> {
                                                   Container(
                                                     margin: EdgeInsets.only(
                                                         left: defaultMargin,
-                                                        right: 0),
+                                                        bottom: 10,),
                                                     child: Column(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment.end,
@@ -230,43 +232,64 @@ class _ProductPageState extends State<ProductPage> {
                                                             _pagingController
                                                                 .refresh();
                                                           },
-                                                          child: Text(
-                                                            "Semua",
-                                                            style: (selectedIndex ==
-                                                                    -1)
-                                                                ? blackFontStyle3
-                                                                    .copyWith(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  )
-                                                                : greyFontStyle,
+                                                          child: Container(
+                                                            width: 60,
+                                                            height: 30,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8),
+                                                              color: (selectedIndex ==
+                                                                      -1)
+                                                                  ? mainAccentColor
+                                                                  : Colors
+                                                                      .transparent,
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                "Semua",
+                                                                style: (selectedIndex ==
+                                                                        -1)
+                                                                    ? whiteFontStyle
+                                                                        .copyWith(
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      )
+                                                                    : greyFontStyle,
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                        Container(
-                                                          width: 40,
-                                                          height: 3,
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  top: 13),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        1.5),
-                                                            color:
-                                                                (selectedIndex ==
-                                                                        -1)
-                                                                    ? "020202"
-                                                                        .toColor()
-                                                                    : Colors
-                                                                        .transparent,
-                                                          ),
-                                                        )
                                                       ],
                                                     ),
                                                   ),
+                                                  // Container(
+                                                  //   margin: EdgeInsets.only(
+                                                  //       left: defaultMargin,
+                                                  //       right: 0),
+                                                  //   child: Container(
+                                                  //     width: 60,
+                                                  //     height: 30,
+                                                  //     decoration: BoxDecoration(
+                                                  //       borderRadius: BorderRadius.circular(8),
+                                                  //       color: (selectedIndex == -1)
+                                                  //           ? mainAccentColor
+                                                  //           : Colors.transparent,
+                                                  //     ),
+                                                  //     child: Center(
+                                                  //       child: Text(
+                                                  //         "Semua",
+                                                  //         style: (selectedIndex == -1)
+                                                  //             ? whiteFontStyle.copyWith(
+                                                  //                 fontWeight: FontWeight.w500,
+                                                  //               )
+                                                  //             : greyFontStyle,
+                                                  //       ),
+                                                  //     ),
+                                                  //   ),
+                                                  // ),
                                                   for (var i = 0;
                                                       i < category.length;
                                                       i++)
@@ -274,7 +297,7 @@ class _ProductPageState extends State<ProductPage> {
                                                       left: defaultMargin,
                                                       right: (category[i] ==
                                                               category.last)
-                                                          ? defaultMargin
+                                                          ? 10
                                                           : 0,
                                                       category: category[i],
                                                       selectedIndex:
@@ -289,6 +312,7 @@ class _ProductPageState extends State<ProductPage> {
                                                     ),
                                                 ],
                                               ),
+
                                             )),
                               const Positioned(
                                 top: 0,

@@ -80,7 +80,8 @@ class ItemTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: left, right: right),
+      // margin: EdgeInsets.only(left: left, right: right),
+      margin: EdgeInsets.only(bottom: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -90,26 +91,46 @@ class ItemTabBar extends StatelessWidget {
                 onTap(category.id);
               }
             },
-            child: Text(
-              category.name,
-              style: (category.id == selectedIndex)
-                  ? blackFontStyle3.copyWith(
-                      fontWeight: FontWeight.w500,
-                    )
-                  : greyFontStyle,
+            // child: Text(
+            //   category.name,
+            //   style: (category.id == selectedIndex)
+            //       ? blackFontStyle3.copyWith(
+            //           fontWeight: FontWeight.w500,
+            //         )
+            //       : greyFontStyle,
+            // ),
+            child: Container(
+              width: 75,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: (category.id == selectedIndex)
+                    ? mainAccentColor
+                    : Colors.transparent,
+              ),
+              child: Center(
+                child: Text(
+                  category.name,
+                  style: (category.id == selectedIndex)
+                      ? whiteFontStyle.copyWith(
+                          fontWeight: FontWeight.w500,
+                        )
+                      : greyFontStyle,
+                ),
+              ),
             ),
           ),
-          Container(
-            width: 40,
-            height: 3,
-            margin: EdgeInsets.only(top: 13),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(1.5),
-              color: (category.id == selectedIndex)
-                  ? "020202".toColor()
-                  : Colors.transparent,
-            ),
-          )
+          // Container(
+          //   width: 40,
+          //   height: 3,
+          //   margin: EdgeInsets.only(top: 13),
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(1.5),
+          //     color: (category.id == selectedIndex)
+          //         ? "020202".toColor()
+          //         : Colors.transparent,
+          //   ),
+          // )
         ],
       ),
     );

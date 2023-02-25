@@ -15,7 +15,7 @@ class ButtonFlexible extends StatelessWidget {
       flex: 1,
       child: Container(
         margin: EdgeInsets.only(top: marginTop),
-        width: 300,
+        width: double.infinity,
         height: 45,
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
