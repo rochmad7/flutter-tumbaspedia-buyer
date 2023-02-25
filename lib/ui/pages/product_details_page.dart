@@ -381,7 +381,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                           Get.to(() =>
                                               SignInPage(isRedirect: true));
                                         },
-                                        title: "Login untuk memesan",
+                                        title: "Masuk akun untuk memesan",
                                         color: mainColor,
                                       ),
                                     ]),
@@ -466,7 +466,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
 
-                  getProduct("Produk UKM Lain", () {
+                  getProduct("Produk UMKM Lain", () {
                     Get.to(() =>
                         AllProductsPage(shop: widget.transaction.product.shop));
                   }, isLoading1, items1),

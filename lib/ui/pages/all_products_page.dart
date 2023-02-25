@@ -59,10 +59,12 @@ class _AllProductsPageState extends State<AllProductsPage> {
         children: [
           SizedBox(height: 8),
           TitlePage(
-            title: "Produk",
+            title: "Produk UMKM",
             subtitle: (widget.category != null)
                 ? "Kategori Produk " + widget.category.name
-                : "Semua Produk",
+                : "Semua Produk" + ((widget.shop != null)
+                    ? " dari " + widget.shop.name
+                    : ""),
             onBackButtonPressed: () {
               Get.back();
             },
@@ -72,7 +74,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
             child: SearchField(
               onChanged: _updateSearchTerm,
               searchController: keywordController,
-              title: "Temukan Produk UKM",
+              title: "Cari Produk UMKM",
               focusNode: widget.focusNode,
             ),
             padding: EdgeInsets.symmetric(vertical: 15),

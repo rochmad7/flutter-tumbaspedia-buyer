@@ -16,23 +16,22 @@ class ShopCard extends StatelessWidget {
       onTap: press,
       child: Padding(
         padding: const EdgeInsets.only(
-            left: defaultMargin, right: defaultMargin, top: 8, bottom: 16),
+            left: defaultMargin, right: defaultMargin, top: 10, bottom: 10),
         child: InkWell(
           splashColor: Colors.transparent,
           onTap: press,
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
               boxShadow: <BoxShadow>[
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.6),
-                  offset: const Offset(4, 4),
-                  blurRadius: 16,
-                ),
+                    color: Colors.grey.withOpacity(0.8),
+                    offset: const Offset(2, 3),
+                    blurRadius: 2.0),
               ],
             ),
             child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
               child: Stack(
                 children: [
                   Column(
@@ -58,14 +57,14 @@ class ShopCard extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        color: Colors.white,
+                        color: mainAccentColor,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Expanded(
                               child: Container(
-                                color: Colors.white,
+                                color: mainAccentColor,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 16, right: 16, top: 8, bottom: 14),
@@ -80,18 +79,15 @@ class ShopCard extends StatelessWidget {
                                         style: GoogleFonts.roboto().copyWith(
                                           fontSize: 19,
                                           fontWeight: FontWeight.w600,
-                                          color: mainColor,
+                                          color: secondaryColor,
                                         ),
                                       ),
+                                      SizedBox(height: 6),
+                                      iconText(MdiIcons.cart, shop.totalProducts.toString() + " Produk",
+                                          null, null, whiteFontStyle, true),
                                       SizedBox(height: 4),
                                       iconText(MdiIcons.mapMarker, shop.address,
-                                          null, null, greyFontStyle, true),
-                                      // Padding(
-                                      //   padding: const EdgeInsets.only(top: 4),
-                                      //   child: Row(
-                                      //     children: [RatingStars(shop.rating)],
-                                      //   ),
-                                      // ),
+                                          null, null, whiteFontStyle, true),
                                     ],
                                   ),
                                 ),

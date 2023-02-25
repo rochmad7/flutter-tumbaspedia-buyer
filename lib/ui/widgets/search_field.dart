@@ -30,7 +30,7 @@ class SearchField extends StatelessWidget {
                 EdgeInsets.symmetric(horizontal: 18.0, vertical: 12),
             hintText: title,
             hintStyle: hintStyle,
-            suffixIcon: Icon(
+            prefixIcon: Icon(
               Icons.search,
               color: Colors.black,
             ),

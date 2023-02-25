@@ -18,25 +18,28 @@ class UserInfo extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Text(
               "Informasi Penjual",
-              style: sectionTitleStyle,
+              style: sectionTitleStyle.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
               textAlign: TextAlign.left,
             ),
           ),
           Card(
             child: Container(
               alignment: Alignment.topLeft,
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.all(10),
               child: Column(
                 children: [
                   Column(
                     children: [
                       ...ListTile.divideTiles(
-                        color: Colors.grey,
+                        color: Colors.black,
                         tiles: [
                           ListTile(
                             contentPadding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 4),
-                            leading: Icon(Icons.person),
+                                horizontal: 12, vertical: 10),
+                            leading: Icon(Icons.person, size: 30, color: Colors.black),
                             title: Text("Nama", style: titleListStyle),
                             subtitle: Text(
                               shopuser.name,
@@ -46,8 +49,8 @@ class UserInfo extends StatelessWidget {
                           ListTile(
                             contentPadding:
                                 EdgeInsets.only(left: 12, right: 12, top: 10),
-                            leading: Icon(Icons.phone),
-                            title: Text("Kontak WA", style: titleListStyle),
+                            leading: Icon(Icons.phone, size: 30, color: Colors.black),
+                            title: Text("Nomor Telepon", style: titleListStyle),
                             subtitle: pressContact != null ? ButtonIconDefault(
                                 title: "Hubungi Penjual",
                                 margin: EdgeInsets.symmetric(

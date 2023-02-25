@@ -15,14 +15,14 @@ class ButtonFlexible extends StatelessWidget {
       flex: 1,
       child: Container(
         margin: EdgeInsets.only(top: marginTop),
-        width: double.infinity,
+        width: 300,
         height: 45,
         child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
             elevation: 0,
             primary: color,
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           ),
           icon: Icon(
             icon,

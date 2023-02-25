@@ -46,8 +46,8 @@ class _AllShopsPageState extends State<AllShopsPage> {
           children: [
             SizedBox(height: 6),
             TitlePage(
-              title: "Toko UKM",
-              subtitle: "Daftar semua UKM",
+              title: "Toko UMKM",
+              subtitle: "Daftar semua UMKM",
               onBackButtonPressed: () {
                 Get.back();
               },
@@ -57,7 +57,7 @@ class _AllShopsPageState extends State<AllShopsPage> {
               child: SearchField(
                 onChanged: _updateSearchTerm,
                 searchController: keywordController,
-                title: "Temukan Toko UKM",
+                title: "Cari toko",
               ),
             ),
             Expanded(
