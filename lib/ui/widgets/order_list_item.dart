@@ -20,12 +20,13 @@ class OrderListItem extends StatelessWidget {
         children: [
           Container(
             width: 60,
-            height: 60,
-            margin: EdgeInsets.only(right: 12),
+            height: 75,
+            margin: EdgeInsets.only(right: 14),
             child: CachedNetworkImage(
               imageBuilder: (context, imageProvider) => Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(0),
                   image: DecorationImage(
                     image: imageProvider,
                     fit: BoxFit.cover,
@@ -39,20 +40,28 @@ class OrderListItem extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: itemWidth - 182, // (60 + 12 + 110)
+            width: itemWidth - 184, // (60 + 12 + 110)
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   transaction.product.name,
-                  style: blackFontStyle2.copyWith(fontSize: 14),
+                  style: blackFontStyle2.copyWith(
+                      fontSize: 16, fontWeight: FontWeight.w500),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
+                SizedBox(height: 2),
                 Text(
-                  "${transaction.quantity} item(s) • " +
-                      getFormatRupiah(transaction.product.price, true),
-                  style: greyFontStyle.copyWith(fontSize: 13),
+                  "${transaction.quantity} produk",
+                  style: greyFontStyle.copyWith(
+                      fontSize: 13, fontWeight: FontWeight.w500),
+                ),
+                SizedBox(height: 2),
+                Text(
+                  "Total: " + getFormatRupiah(transaction.total, true),
+                  style: blackFontStyle2.copyWith(
+                      fontSize: 13, fontWeight: FontWeight.w500),
                 )
               ],
             ),
@@ -65,42 +74,43 @@ class OrderListItem extends StatelessWidget {
                     children: [
                       Text(
                         convertDate(transaction.dateTime, false),
-                        style: greyFontStyle.copyWith(fontSize: 12),
+                        style: blackFontStyle2.copyWith(
+                            fontSize: 12, fontWeight: FontWeight.w500),
                       ),
+                      SizedBox(height: 2),
                       Text(
                         convertTime(transaction.dateTime),
-                        style: greyFontStyle.copyWith(fontSize: 12),
+                        style: blackFontStyle2.copyWith(
+                            fontSize: 12, fontWeight: FontWeight.w500),
                       ),
-                      (transaction.status == TransactionStatus.canceled)
-                          ? Text(
-                              'Dibatalkan',
-                              style: GoogleFonts.roboto(
-                                  color: 'D9435E'.toColor(), fontSize: 10),
-                            )
-                          : (transaction.status == TransactionStatus.pending)
-                              ? Text(
-                                  'Pesanan Baru',
-                                  style: GoogleFonts.roboto(
-                                      color: Colors.blueAccent, fontSize: 10),
-                                )
-                              : (transaction.status ==
-                                      TransactionStatus.on_delivery)
-                                  ? Text(
-                                      'Diantar',
-                                      style: GoogleFonts.roboto(
-                                          color: '1ABC9C'.toColor(),
-                                          fontSize: 10),
-                                    )
-                                  : Text(
-                                      'Selesai',
-                                      style: GoogleFonts.roboto(
-                                          color: mainColor,
-                                          fontSize: 10),
-                                    )
+                      SizedBox(height: 2),
+                      Container(
+                        width: 110,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(color: mainAccentColor),
+                        ),
+                        child: Center(
+                          child: Text(
+                            transaction.status == TransactionStatus.canceled
+                                ? "Dibatalkan"
+                                : transaction.status ==
+                                        TransactionStatus.pending
+                                    ? "Pesanan Baru"
+                                    : transaction.status ==
+                                            TransactionStatus.on_delivery
+                                        ? "Diantar"
+                                        : "Selesai",
+                            style: blackFontStyle2.copyWith(
+                                fontSize: 12, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 )
-              : SizedBox()
+              : SizedBox(),
         ],
       ),
     );

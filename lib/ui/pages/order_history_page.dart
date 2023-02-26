@@ -76,9 +76,9 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
               child: ListView(
                 children: [
                   TitlePage(
-                      title: "Pesanan Anda",
+                      title: "Pesanan Saya",
                       subtitle:
-                          'Produk yang pernah Anda pesan,\nklik untuk melihat detailnya',
+                          'Lihat pesanan yang sedang berlangsung dan pesanan \nyang sudah selesai',
                       isContainerRight: true,
                       isContainer: true,
                       press: () async {
@@ -150,7 +150,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                                                             TransactionStatus
                                                                 .delivered)
                                                         .toList();
-                                if (transactions.length != 0) {
+                                if (transactions.length > 0) {
                                   return Column(
                                     children: transactions
                                         .map((e) => Padding(

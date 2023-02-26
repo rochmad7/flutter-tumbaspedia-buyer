@@ -69,8 +69,8 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
         " dan total harga " +
         getFormatRupiah(widget.transaction.total, true);
     return GeneralPage(
-      title: 'Pesanan',
-      subtitle: 'Detail pesanan Anda',
+      title: 'Pesanan ID: ' + widget.transaction.id.toString(),
+      subtitle: 'Detail pesanan',
       onBackButtonPressed: widget.press,
       backColor: 'FAFAFC'.toColor(),
       child: Column(
@@ -84,10 +84,6 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Pesanan [ID: ' + widget.transaction.id.toString() + "]",
-                  style: titleListStyle,
-                ),
                 SizedBox(height: 12),
                 InkWell(
                   onTap: () async {
@@ -111,7 +107,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                           CachedNetworkImage(
                             imageBuilder: (context, imageProvider) => Container(
                               width: 60,
-                              height: 60,
+                              height: 75,
                               margin: EdgeInsets.only(right: 12),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
@@ -153,7 +149,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                         ],
                       ),
                       Text(
-                        '${widget.transaction.quantity} item(s)',
+                        '${widget.transaction.quantity} produk',
                         style: textListStyle.copyWith(fontSize: 13),
                       )
                     ],
@@ -163,7 +159,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                   padding: EdgeInsets.only(top: 16, bottom: 5),
                   child: Text(
                     'Detail Toko',
-                    style: titleListStyle,
+                    style: titleListStyle.copyWith(fontSize: 16),
                   ),
                 ),
                 InkWell(
@@ -210,7 +206,13 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                   ),
                 ),
                 SizedBox(height: 6),
-                TitleList(title: "Detail Pesanan"),
+                Padding(
+                  padding: EdgeInsets.only(top: 16, bottom: 5),
+                  child: Text(
+                    'Detail Pesanan',
+                    style: titleListStyle.copyWith(fontSize: 16),
+                  ),
+                ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -220,7 +222,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                             defaultMargin -
                             5,
                         child: Text(
-                          widget.transaction.product.name,
+                          'Harga Satuan',
                           style: textListStyle.copyWith(fontSize: 14),
                         )),
                     SizedBox(
@@ -260,7 +262,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                         ))
                   ],
                 ),
-                TitleList(title: "Status Pesanan"),
+                TitleList(title: "Dipesan Pada"),
                 ItemList(
                     title: "Tanggal",
                     subtitle: convertDate(widget.transaction.dateTime, true)),
