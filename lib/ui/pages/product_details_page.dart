@@ -18,6 +18,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   List<Product> products1;
   List<Product> products2;
   List<Photo> photos;
+
   // List<Rating> listRatings;
   var rating = Rating();
   var listPhotos = <Photo>[];
@@ -190,98 +191,22 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width -
-                                      140, // 32 + 102
-                                  child: Text(
-                                    widget.transaction.product.name,
-                                    style: blackFontStyle2.copyWith(
-                                        fontSize: 18, fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    // iconText(
-                                    //     MdiIcons.star,
-                                    //     widget.transaction.product.rating
-                                    //             .toStringAsFixed(1) +
-                                    //         (widget.transaction.product
-                                    //                     .totalReview ==
-                                    //                 0
-                                    //             ? ""
-                                    //             : " (" +
-                                    //                 formatNumber(widget
-                                    //                     .transaction
-                                    //                     .product
-                                    //                     .totalReview) +
-                                    //                 " review)"),
-                                    //     null,
-                                    //     null,
-                                    //     null,
-                                    //     false),
-                                    const SizedBox(width: 8),
-                                    iconText(
-                                        MdiIcons.cart,
-                                        "Terjual " +
-                                            formatNumber(widget
-                                                .transaction.product.sold),
-                                        15,
-                                        null,
-                                        null,
-                                        false)
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  getFormatRupiah(
-                                      widget.transaction.product.price, true),
-                                  style: blackFontStyle2.copyWith(fontSize: 17),
-                                ),
-                                Text(
-                                  "Stok " +
-                                      (widget.transaction.product.stock == 0
-                                          ? "habis"
-                                          : ": " +
-                                              widget.transaction.product.stock
-                                                  .toString()),
-                                  style: widget.transaction.product.stock == 0
-                                      ? redFontStyle.copyWith(fontSize: 12)
-                                      : blackFontStyle3.copyWith(fontSize: 12),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             (listPhotos.length == 1)
                                 ? _productImages(selectedIndex, selectedIndex,
                                     widget.transaction.product.images)
                                 : Container(
                                     width:
-                                        MediaQuery.of(context).size.width - 160,
+                                        MediaQuery.of(context).size.width - 64,
                                     child: SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       child: (isLoadingPhoto)
                                           ? ShimmerRow(
                                               height: 30,
-                                              itemCount: 9,
+                                              itemCount: 5,
                                               isNoMargin: true,
-                                              isSymmetric: false)
+                                              isSymmetric: true)
                                           : ProductImages(
                                               photos: listPhotos,
                                               selectedIndex: selectedIndex,
@@ -295,36 +220,131 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                             ),
                                     ),
                                   ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Flexible(
-                              child: Chip(
-                                avatar: (listPhotos.length < 2 &&
-                                        (widget.transaction.product.category
-                                                    .name)
-                                                .length <
-                                            10)
-                                    ? CircleAvatar(
-                                        backgroundColor: Colors.grey.shade800,
-                                        child: Icon(MdiIcons.tag),
-                                      )
-                                    : null,
-                                label: Text(
-                                    widget.transaction.product.category.name,
-                                    overflow: TextOverflow.ellipsis,
-                                    style:
-                                        blackFontStyle3.copyWith(fontSize: 11)),
-                              ),
-                            ),
                           ],
                         ),
+                        SizedBox(height: 16),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width -
+                              140, // 32 + 102
+                          child: Text(
+                            widget.transaction.product.name,
+                            style: blackFontStyle2.copyWith(
+                                fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(width: 8),
+                                    Image.network(
+                                        widget
+                                            .transaction.product.category.icon,
+                                        width: 18,
+                                        height: 18,
+                                        color: mainAccentColor,
+                                        fit: BoxFit.cover),
+                                    SizedBox(width: 4),
+                                    Text(
+                                      'Kategori ' +
+                                          widget.transaction.product.category
+                                              .name,
+                                      style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(width: 8),
+                                    iconText(
+                                        MdiIcons.cart,
+                                        "Terjual " +
+                                            formatNumber(widget
+                                                .transaction.product.sold),
+                                        18,
+                                        null,
+                                        TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500),
+                                        false),
+                                    SizedBox(width: 8),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  getFormatRupiah(
+                                      widget.transaction.product.price, true),
+                                  style: blackFontStyle2.copyWith(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 10),
+                                Text(
+                                  "Stok " +
+                                      (widget.transaction.product.stock == 0
+                                          ? "habis"
+                                          : ": " +
+                                              widget.transaction.product.stock
+                                                  .toString()),
+                                  style: widget.transaction.product.stock == 0
+                                      ? redFontStyle.copyWith(fontSize: 14)
+                                      : blackFontStyle3.copyWith(fontSize: 14),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.start,
+                        //   children: [
+                        //     SizedBox(
+                        //       width: 5,
+                        //     ),
+                        //     Flexible(
+                        //       child: Chip(
+                        //         avatar: CircleAvatar(
+                        //           backgroundColor: mainAccentColor,
+                        //           child: Image.network(
+                        //               widget.transaction.product.category.icon,
+                        //               width: 18,
+                        //               height: 18,
+                        //               fit: BoxFit.cover),
+                        //         ),
+                        //         label: Text(
+                        //             widget.transaction.product.category.name,
+                        //             overflow: TextOverflow.fade,
+                        //             style:
+                        //                 blackFontStyle3.copyWith(fontSize: 13)),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         SizedBox(height: 15),
-                        ExpandableText(
-                            header: Text('Deskripsi:',
-                                style: titleListStyle.copyWith(fontSize: 14)),
-                            text: widget.transaction.product.description,
-                            maxLines: 4),
+                        Text("Deskripsi : ",
+                            style: titleListStyle.copyWith(fontSize: 16)),
+                        SizedBox(height: 10),
+                        Text(
+                          widget.transaction.product.description,
+                          style: blackFontStyle.copyWith(fontSize: 15),
+                        ),
                         BlocBuilder<UserCubit, UserState>(builder: (_, state) {
                           if (state is UserLoaded) {
                             if (state.user.id ==
@@ -362,7 +382,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                                     null,
                                                     true),
                                     title: "Beli Sekarang",
-                                    color: mainColor,
+                                    color: mainAccentColor,
                                   ),
                                 ],
                               );
@@ -392,43 +412,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       ],
                     ),
                   ),
-                  // Container(
-                  //   color: Colors.white,
-                  //   padding: EdgeInsets.symmetric(horizontal: 16),
-                  //   child: Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       SectionTitle(
-                  //         all: widget.transaction.product.totalReview > 1
-                  //             ? true
-                  //             : false,
-                  //         press: () {
-                  //           Get.to(() => AllReviewsPage(
-                  //               productId: widget.transaction.product.id));
-                  //         },
-                  //         isColor: true,
-                  //         sizeTitle: 15,
-                  //         title: "Penilaian Produk",
-                  //         defaultMargin: 0,
-                  //       ),
-                  //       SizedBox(height: 10),
-                  //       widget.transaction.product.totalReview < 1
-                  //           ? CustomAlert(
-                  //               icon: MdiIcons.alert,
-                  //               type: 'warning',
-                  //               isDistance: false,
-                  //               title: 'Belum ada penilaian produk')
-                  //           : isLoadingRating
-                  //               ? ShimmerRow(
-                  //                   height: 80,
-                  //                   itemCount: 2,
-                  //                   isNoMargin: true,
-                  //                   isSymmetric: false)
-                  //               : CommentRating(rating: rating),
-                  //       SizedBox(height: 30),
-                  //     ],
-                  //   ),
-                  // ),
                   UserInfo(
                       shopuser: widget.transaction.shop.user,
                       pressContact: () async {
@@ -466,12 +449,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
 
-                  getProduct("Produk UMKM Lain", () {
+                  getProduct("Produk Lain Toko" + " " + widget.transaction.shop.name, () {
                     Get.to(() =>
                         AllProductsPage(shop: widget.transaction.product.shop));
                   }, isLoading1, items1),
 
-                  getProduct("Kategori Sama", () {
+                  getProduct("Produk Lain Kategori" + " " + widget.transaction.product.category.name, () {
                     Get.to(() => AllProductsPage(
                         category: widget.transaction.product.category));
                   }, isLoading2, items2)
@@ -515,6 +498,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             title: title,
             defaultMargin: 16,
           ),
+          SizedBox(height: 10),
         ],
       ),
     );
@@ -612,7 +596,8 @@ class _ModalOrderState extends State<ModalOrder> {
         press: () {
           Navigator.pop(context);
           (widget.user.address != null)
-              ? Get.to(() => PaymentPage(transaction: transaction, product: product))
+              ? Get.to(
+                  () => PaymentPage(transaction: transaction, product: product))
               : Get.to(() => CompleteProfilePage(transaction: transaction));
         },
         title: "Lanjutkan",
@@ -655,13 +640,13 @@ class ProductImages extends StatelessWidget {
 Widget _productImages(int selectedIndex, int index, String imageUrl) {
   return CachedNetworkImage(
     imageBuilder: (context, imageProvider) => Container(
-      height: 35,
-      width: 45,
+      height: 50,
+      width: 50,
       decoration: BoxDecoration(
         border: (index == selectedIndex)
-            ? Border.all(color: Colors.orange, width: 3)
+            ? Border.all(color: mainAccentColor, width: 2)
             : null,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(Radius.circular(6)),
         image: DecorationImage(
           image: imageProvider,
           fit: BoxFit.cover,

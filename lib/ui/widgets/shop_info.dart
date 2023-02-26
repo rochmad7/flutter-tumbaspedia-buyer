@@ -23,6 +23,7 @@ class ShopInfo extends StatelessWidget {
           ),
           Card(
             child: Container(
+              color: Colors.grey[100],
               alignment: Alignment.topLeft,
               padding: EdgeInsets.all(15),
               child: Column(
@@ -30,12 +31,12 @@ class ShopInfo extends StatelessWidget {
                   Column(
                     children: [
                       ...ListTile.divideTiles(
-                        color: Colors.grey,
+                        color: Colors.black,
                         tiles: [
                           ListTile(
                             contentPadding: EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 8),
-                            leading: Icon(Icons.shop),
+                            leading: Icon(Icons.shop, size: 30, color: Colors.red),
                             title: Text(
                               "Nama Toko",
                               style: titleListStyle,
@@ -48,7 +49,7 @@ class ShopInfo extends StatelessWidget {
                           ListTile(
                             contentPadding: EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 4),
-                            leading: Icon(MdiIcons.mapMarker),
+                            leading: Icon(MdiIcons.mapMarker, size: 30, color: Colors.red),
                             title: Text("Alamat", style: titleListStyle),
                             subtitle: Text(shop.address, style: textListStyle),
                           ),
