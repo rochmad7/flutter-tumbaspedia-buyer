@@ -23,16 +23,16 @@ class HomePage extends StatelessWidget {
             children: [
               // HEADER
               Container(
-                padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+                // padding: EdgeInsets.symmetric(horizontal: defaultMargin),
                 // color: Colors.white,
-                height: 80,
-                width: double.infinity,
+                height: 70,
+                width: 270,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
                       'assets/images/logo/home_logo.png',
                     ),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fitWidth,
                   ),
                 ),
                 // child: Row(

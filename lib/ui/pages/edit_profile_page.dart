@@ -30,8 +30,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return GeneralPage(
-      title: 'Edit Profile',
-      subtitle: "Pastikan data yang diisi valid",
+      title: 'Edit Profil',
+      subtitle: "Lengkapi data diri Anda",
       onBackButtonPressed: () {
         Get.back();
       },

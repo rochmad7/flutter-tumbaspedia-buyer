@@ -28,7 +28,8 @@ String tokenAPI =
 String baseURLAPI = 'https://dev.tumbaspedia.my.id/api';
 // String baseURLAPI = 'https://prod.tumbaspedia.my.id/api';
 
-Color mainColor = "032339".toColor();
+// Color mainColor = "032339".toColor();
+Color mainColor =Color(0xff541690);
 Color greyColor = "8D92A3".toColor();
 Color secondaryColor = "FFC700".toColor();
 Color mainAccentColor = Color(0xff541690);

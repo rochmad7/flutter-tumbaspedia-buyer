@@ -127,8 +127,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                                             ? state.transactions
                                                 .where((element) =>
                                                     element.status ==
-                                                    TransactionStatus
-                                                        .pending)
+                                                    TransactionStatus.pending)
                                                 .toList()
                                             : (selectedIndex == 2)
                                                 ? state.transactions
@@ -266,25 +265,46 @@ class NotificationDialog extends StatelessWidget {
             SizedBox(height: 15),
             transactions != null
                 ? Container(
-                    height: MediaQuery.of(context).size.height - 210,
+                    height: MediaQuery.of(context).size.height - 200,
                     child: SingleChildScrollView(
-                      child: Column(
-                        children: transactions
-                            .map((e) => Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: defaultMargin,
-                                      left: defaultMargin,
-                                      bottom: 16),
-                                  child: OrderListItem(
-                                      isDate: false,
-                                      transaction: e,
-                                      itemWidth: listItemWidth,
-                                      press: () {
-                                        Get.off(() => TransactionDetailsPage(
-                                            transaction: e));
-                                      }),
-                                ))
-                            .toList(),
+                      child: Row(
+                        children: [
+                          SizedBox(width: defaultMargin),
+                          Column(
+                            children: transactions
+                                .map((e) => Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: defaultMargin,
+                                          left: defaultMargin,
+                                          bottom: 16),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: listItemWidth,
+                                            child: OrderListItem(
+                                                transaction: e,
+                                                itemWidth: listItemWidth,
+                                                press: () {
+                                                  Get.to(() =>
+                                                      TransactionDetailsPage(
+                                                          transaction: e,
+                                                          press: () {
+                                                            Get.back();
+                                                          }));
+                                                }),
+                                          ),
+                                          SizedBox(width: 10),
+                                          Divider(
+                                            color: Colors.grey,
+                                            thickness: 1,
+                                          ),
+                                        ],
+                                      ),
+                                    ))
+                                .toList(),
+                          ),
+                          SizedBox(width: defaultMargin),
+                        ],
                       ),
                     ))
                 : SizedBox()

@@ -103,7 +103,7 @@ class ItemTabBar extends StatelessWidget {
               width: 75,
               height: 30,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(10),
                 color: (category.id == selectedIndex)
                     ? mainAccentColor
                     : Colors.transparent,

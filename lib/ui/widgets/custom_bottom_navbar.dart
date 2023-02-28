@@ -13,9 +13,13 @@ class CustomBottomNavbar extends StatelessWidget {
       height: 65,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: mainColor,
+        color: mainAccentColor,
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+          // topLeft: Radius.circular(20),
+          // topRight: Radius.circular(20),
+          // bottomLeft: Radius.circular(20),
+          // bottomRight: Radius.circular(20),
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
@@ -45,13 +49,13 @@ class CustomBottomNavbar extends StatelessWidget {
           IconBottomNavbar(
               selectedIndex: selectedIndex,
               index: 2,
-              icon: MdiIcons.cart,
+              icon: MdiIcons.shopping,
               title: "Produk",
               onTap: onTap),
           IconBottomNavbar(
               selectedIndex: selectedIndex,
               index: 3,
-              icon: MdiIcons.creditCard,
+              icon: MdiIcons.cart,
               title: "Transaksi",
               marginHorizontal: 10,
               onTap: onTap),
@@ -74,6 +78,7 @@ class IconBottomNavbar extends StatelessWidget {
   final Function(int index) onTap;
   final int index;
   final IconData icon;
+
   IconBottomNavbar(
       {this.title,
       this.marginHorizontal = 0,
@@ -101,15 +106,16 @@ class IconBottomNavbar extends StatelessWidget {
               children: [
                 Icon(icon,
                     size: 26,
-                    color:
-                        (selectedIndex == index) ? Colors.white : Colors.grey),
+                    color: (selectedIndex == index)
+                        ? Colors.orange
+                        : Colors.white),
                 Text(
                   title,
                   style: blackFontStyle2.copyWith(
-                      fontSize: 12,
+                      fontSize: 13,
                       color: (selectedIndex == index)
-                          ? Colors.white
-                          : Colors.grey),
+                          ? Colors.orange
+                          : Colors.white),
                 ),
               ],
             ),

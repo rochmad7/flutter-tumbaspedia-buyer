@@ -240,7 +240,7 @@ class _ProductPageState extends State<ProductPage> {
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          8),
+                                                                          10),
                                                               color: (selectedIndex ==
                                                                       -1)
                                                                   ? mainAccentColor

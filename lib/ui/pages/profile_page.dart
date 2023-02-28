@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
             isLogin
                 ? Container(
                     padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-                    height: 300,
+                    height: 250,
                     margin: EdgeInsets.only(bottom: defaultMargin),
                     width: double.infinity,
                     color: Colors.white,
@@ -34,10 +34,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: 110,
                           margin: EdgeInsets.only(bottom: 16),
                           padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/user/photo_border.png'))),
+                          // decoration: BoxDecoration(
+                          //     image: DecorationImage(
+                          //         image: AssetImage(
+                          //             'assets/images/user/photo_border.png'))),
                           child: CachedNetworkImage(
                             imageBuilder: (context, imageProvider) => Container(
                               decoration: BoxDecoration(
@@ -49,8 +49,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             imageUrl: user.profilePicture,
                             fit: BoxFit.cover,
-                            // placeholder: (context, url) =>
-                            //     CircularProgressIndicator(),
+                            color: Colors.black12,
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
                             errorWidget: (context, url, error) =>
                                 Icon(Icons.error),
                             repeat: ImageRepeat.repeat,
@@ -191,53 +192,63 @@ class _ProfilePageState extends State<ProfilePage> {
             // Center(child: Text("Versi 1.0", style: blackFontStyle)),
 
             SizedBox(
-              height: 50,
+              height: 10,
             ),
             Container(
               height: 150,
               width: double.infinity,
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    child: TextButton(
-                      onPressed: () {
-                        launch("https://www.facebook.com/profile.php?id=100069886188294&mibextid=ZbWKwL");
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.squareFacebook,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        child: TextButton(
+                          onPressed: () {
+                            launch("https://www.facebook.com/profile.php?id=100069886188294&mibextid=ZbWKwL");
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.squareFacebook,
+                              ),
+                              Text(
+                                " Gerai Kopimi Rowosari",
+                                style: GoogleFonts.roboto(
+                                    fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
-                          Text(
-                            " Gerai Kopimi Rowosari",
-                            style: GoogleFonts.roboto(
-                                fontSize: 14, fontWeight: FontWeight.w500),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  Container(
-                    child: TextButton(
-                      onPressed: () {
-                        launch("https://instagram.com/paguyubanumkmrowosari_semarang");
-                      },
-                      child: Row(
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.instagram,
-                            color: Colors.pink,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        child: TextButton(
+                          onPressed: () {
+                            launch("https://instagram.com/paguyubanumkmrowosari_semarang");
+                          },
+                          child: Row(
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.instagram,
+                                color: Colors.pink,
+                              ),
+                              Text(
+                                " paguyubanumkmrowosari_semarang",
+                                style: GoogleFonts.roboto(
+                                    fontSize: 14, fontWeight: FontWeight.w500, color: Colors.pink),
+                              ),
+                            ],
                           ),
-                          Text(
-                            " gerai_kopimi.rowosari",
-                            style: GoogleFonts.roboto(
-                                fontSize: 14, fontWeight: FontWeight.w500, color: Colors.pink),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
+                    ]
+                  )
                 ],
               ),
             ),
@@ -259,22 +270,30 @@ class SettingTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-          bottom: 16, left: defaultMargin, right: defaultMargin),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          bottom: 8, left: defaultMargin, right: defaultMargin),
+      child: Column(
         children: [
-          Text(
-            title,
-            style: isCustomStyle ? style : blackFontStyle3,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: isCustomStyle ? style : blackFontStyle3.copyWith(
+                    fontWeight: FontWeight.w500
+                ),
+              ),
+              SizedBox(
+                child: Icon(Icons.arrow_forward_ios, size: 12
+                ),
+              )
+            ],
           ),
           SizedBox(
-            height: defaultMargin,
-            width: defaultMargin,
-            child: Image.asset(
-              'assets/icons/right_arrow.png',
-              fit: BoxFit.contain,
-            ),
-          )
+            height: 8,
+          ),
+          Divider(
+            thickness: 1,
+          ),
         ],
       ),
     );
