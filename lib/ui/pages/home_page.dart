@@ -35,27 +35,6 @@ class HomePage extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                   ),
                 ),
-                // child: Row(
-                //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Column(
-                //       // crossAxisAlignment: CrossAxisAlignment.start,
-                //       // mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         // Text(
-                //         //   "Tumbaspedia",
-                //         //   style: blackFontStyle1,
-                //         // ),
-                //         // Text(
-                //         //   "Marketplace produk UMKM Rowosari",
-                //         //   style: greyFontStyle.copyWith(
-                //         //     fontWeight: FontWeight.w300,
-                //         //   ),
-                //         // ),
-                //       ],
-                //     ),
-                //   ],
-                // ),
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: defaultMargin),

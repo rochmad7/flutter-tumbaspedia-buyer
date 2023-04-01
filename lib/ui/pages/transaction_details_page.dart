@@ -75,7 +75,6 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
       backColor: 'FAFAFC'.toColor(),
       child: Column(
         children: [
-          //// Bagian atas
           Container(
             margin: EdgeInsets.only(bottom: defaultMargin),
             padding:
@@ -375,31 +374,6 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                   },
                   icon: MdiIcons.check)
               : SizedBox(),
-          // (widget.transaction.status == TransactionStatus.pending)
-          //     ?
-          //     //// Cancel Button
-          //     (isLoading)
-          //         ? Center(
-          //             child: loadingIndicator,
-          //           )
-          //         : Container(
-          //             margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-          //             height: 50,
-          //             width: double.infinity,
-          //             child: RaisedButton(
-          //               onPressed: () {},
-          //               elevation: 0,
-          //               color: "D9435E".toColor(),
-          //               shape: RoundedRectangleBorder(
-          //                   borderRadius: BorderRadius.circular(8)),
-          //               child: Text(
-          //                 "Batalkan Pesanan",
-          //                 style: whiteFontStyle3.copyWith(
-          //                     fontWeight: FontWeight.w500, fontSize: 16),
-          //               ),
-          //             ),
-          //           )
-          //     : SizedBox(),
           SizedBox(
             height: 30,
           ),

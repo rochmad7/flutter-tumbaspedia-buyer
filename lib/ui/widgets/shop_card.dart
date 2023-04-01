@@ -14,109 +14,109 @@ class ShopCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: Padding(
-        padding: const EdgeInsets.only(
-            left: defaultMargin, right: defaultMargin, top: 10, bottom: 10),
-        child: InkWell(
-          splashColor: Colors.transparent,
-          onTap: press,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.8),
-                    offset: const Offset(2, 3),
-                    blurRadius: 2.0),
-              ],
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 1,
+              blurRadius: 10,
+              offset: Offset(0, 3),
             ),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-              child: Stack(
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AspectRatio(
+              aspectRatio: 2,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl: shop.shopPicture ?? '',
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => CardShimmer(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  repeat: ImageRepeat.repeat,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
+                  Text(
+                    shop.name ?? '',
+                    style: GoogleFonts.roboto().copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: secondaryColor,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Row(
                     children: [
-                      AspectRatio(
-                        aspectRatio: 2,
-                        // child: Container(
-                        //   decoration: BoxDecoration(
-                        //     image: DecorationImage(
-                        //       image: NetworkImage(shop.images),
-                        //       fit: BoxFit.cover,
-                        //       repeat: ImageRepeat.repeat,
-                        //     ),
-                        //   ),
-                        // ),
-                        child: CachedNetworkImage(
-                          imageUrl: shop.shopPicture,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => CardShimmer(),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                          repeat: ImageRepeat.repeat,
+                      Icon(
+                        MdiIcons.shopping,
+                        size: 18,
+                        color: Colors.grey.withOpacity(0.7),
+                      ),
+                      SizedBox(width: 5),
+                      Text(
+                        shop.totalProducts?.toString() ?? '' + ' Produk',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.withOpacity(0.7),
                         ),
                       ),
-                      Container(
-                        color: mainAccentColor,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                color: mainAccentColor,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 16, right: 16, top: 8, bottom: 14),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        shop.name,
-                                        textAlign: TextAlign.left,
-                                        style: GoogleFonts.roboto().copyWith(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w600,
-                                          color: secondaryColor,
-                                        ),
-                                      ),
-                                      SizedBox(height: 6),
-                                      iconText(MdiIcons.cart, shop.totalProducts.toString() + " Produk",
-                                          null, null, whiteFontStyle, true),
-                                      SizedBox(height: 4),
-                                      iconText(MdiIcons.mapMarker, shop.address,
-                                          null, null, whiteFontStyle, true),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                      SizedBox(width: 15),
+                      Icon(
+                        MdiIcons.mapMarker,
+                        size: 18,
+                        color: Colors.grey.withOpacity(0.7),
+                      ),
+                      SizedBox(width: 5),
+                      Expanded(
+                        child: Text(
+                          shop.address ?? '',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.withOpacity(0.7),
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
                   ),
-                  shop.isOpen
-                      ? SizedBox()
-                      : Positioned(
-                          top: 15,
-                          left: 15,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 2),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.rectangle, color: Colors.red),
-                            alignment: Alignment.center,
-                            child: Text("Tutup",
-                                style: whiteFontStyle3.copyWith(fontSize: 10)),
-                          ),
-                        )
                 ],
               ),
             ),
-          ),
+            if (!shop.isOpen)
+              Padding(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle, color: Colors.red),
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Tutup',
+                    style: whiteFontStyle3.copyWith(fontSize: 12),
+                  ),
+                ),
+              )
+          ],
         ),
       ),
     );

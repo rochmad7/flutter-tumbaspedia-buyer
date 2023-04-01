@@ -130,7 +130,7 @@ class _ProductPageState extends State<ProductPage> {
                                     child: SearchField(
                                       onChanged: _updateSearchTerm,
                                       searchController: keywordController,
-                                      title: "Temukan Produk UKM",
+                                      title: "Cari Produk",
                                     ),
                                   ),
                                   RefreshButton(
@@ -217,8 +217,9 @@ class _ProductPageState extends State<ProductPage> {
                                                 children: [
                                                   Container(
                                                     margin: EdgeInsets.only(
-                                                        left: defaultMargin,
-                                                        bottom: 10,),
+                                                      left: defaultMargin,
+                                                      bottom: 10,
+                                                    ),
                                                     child: Column(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment.end,
@@ -312,7 +313,6 @@ class _ProductPageState extends State<ProductPage> {
                                                     ),
                                                 ],
                                               ),
-
                                             )),
                               const Positioned(
                                 top: 0,

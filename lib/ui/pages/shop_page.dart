@@ -118,7 +118,7 @@ class _ShopPageState extends State<ShopPage> {
                                 child: SearchField(
                                   onChanged: _updateSearchTerm,
                                   searchController: keywordController,
-                                  title: "Cari toko",
+                                  title: "Cari Toko",
                                 ),
                               ),
                               RefreshButton(

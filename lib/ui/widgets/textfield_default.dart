@@ -11,6 +11,7 @@ class TextFieldDefault extends StatelessWidget {
   final bool isSuffixIcon;
   final Function suffixIcon;
   final int maxLength;
+
   TextFieldDefault(
       {this.icon,
       this.isPrefixIcon = true,
@@ -32,8 +33,10 @@ class TextFieldDefault extends StatelessWidget {
       style: blackFontStyle3,
       controller: controller,
       showCursor: true,
+      // cursorHeight: 20,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(15),
+        contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 15.0),
+        // Adjust top padding
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           borderSide: BorderSide(color: Colors.blue, width: 1.0),

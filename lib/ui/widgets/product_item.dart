@@ -61,17 +61,18 @@ class ProductItem extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 product.name,
-                style: GoogleFonts.roboto().copyWith(color: Colors.black),
+                style: GoogleFonts.roboto().copyWith(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
                 maxLines: 2,
               ),
+              SizedBox(height: 5),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Icon(
-                    MdiIcons.shopping,
-                    size: defaultIconSize,
-                    color: secondaryColor,
+                    MdiIcons.store,
+                    size: 20,
+                    color: Colors.grey,
                   ),
                   const SizedBox(
                     width: 4,
@@ -86,6 +87,7 @@ class ProductItem extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
