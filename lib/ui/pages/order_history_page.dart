@@ -79,14 +79,14 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
                       title: "Pesanan Saya",
                       subtitle:
                           'Lihat pesanan yang sedang berlangsung dan pesanan \nyang sudah selesai',
-                      isContainerRight: true,
-                      isContainer: true,
-                      press: () async {
-                        await showDialog(
-                            context: context,
-                            builder: (_) =>
-                                NotificationDialog(transactions: onDelivery));
-                      },
+                      // isContainerRight: true,
+                      // isContainer: true,
+                      // press: () async {
+                      //   await showDialog(
+                      //       context: context,
+                      //       builder: (_) =>
+                      //           NotificationDialog(transactions: onDelivery));
+                      // },
                       count: count,
                       child: Container(
                           width: double.infinity,

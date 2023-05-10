@@ -25,8 +25,9 @@ String tokenAPI =
     "aqnXBEi7KgPCMOP2qiOslLEd6u8Q2jQVFaYnlYQdtzLEVLtu0fRqTWZiPB1g";
 
 // String baseURLAPI = 'http://10.0.2.2:3000/api';
-String baseURLAPI = 'https://dev.tumbaspedia.my.id/api';
-// String baseURLAPI = 'https://prod.tumbaspedia.my.id/api';
+// String baseURLAPI = 'https://dev.tumbaspedia.my.id/api';
+String baseURLAPI = 'https://tumbaspedia-dev.fly.dev/api';
+// String baseURLAPI = 'https://tumbaspedia.fly.dev/api';
 
 // Color mainColor = "032339".toColor();
 Color mainColor =Color(0xff541690);

@@ -1,4 +1,4 @@
-package com.tumbaspedia.tumbaspedia
+package com.tumbaspedia.tumbaspediabeta
 
 import io.flutter.embedding.android.FlutterActivity
 
