@@ -48,7 +48,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
               title: 'Ouch!',
               subtitle:
                   'Transaksi masih kosong\nkelihatannya Anda \nbelum memesan sesuatu',
-              picturePath: loveBurger,
+              picturePath: shoppingAgain,
               buttonTap1: () {
                 Get.to(() => AllProductsPage());
               },

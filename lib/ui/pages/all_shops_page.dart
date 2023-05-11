@@ -94,7 +94,7 @@ class _AllShopsPageState extends State<AllShopsPage> {
                     ),
                     firstPageErrorIndicatorBuilder: (context) =>
                         CustomIllustration(
-                          picturePath: foodWishes,
+                          picturePath: unexpectedError,
                           title: "Maaf",
                           subtitle: "Toko gagal dimuat",
                         ),

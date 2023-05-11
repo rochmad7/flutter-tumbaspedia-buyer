@@ -24,50 +24,50 @@ class _ShopPageState extends State<ShopPage> {
   @override
   void initState() {
     isLoading = true;
-    countShops(null);
+    // countShops(null);
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
     super.initState();
   }
 
-  void countShops(String query) async {
-    isLoading = true;
-    try {
-      query ??= '';
-      String url = baseURLAPI + 'shop?count=true&query=' + query;
-      final response = await http.get(Uri.parse(url), headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Token": tokenAPI
-      });
-      if (response.statusCode == 200) {
-        if (mounted) {
-          setState(() {
-            var data = jsonDecode(response.body);
-            length = data['data'];
-            isLoading = false;
-          });
-        }
-      }
-    } on SocketException {
-      setState(() {
-        message = socketException;
-      });
-    } on HttpException {
-      setState(() {
-        message = httpException;
-      });
-    } on FormatException {
-      setState(() {
-        message = formatException;
-      });
-    } catch (e) {
-      setState(() {
-        message = e.toString();
-      });
-    }
-  }
+  // void countShops(String query) async {
+  //   isLoading = true;
+  //   try {
+  //     query ??= '';
+  //     String url = baseURLAPI + 'shop?count=true&query=' + query;
+  //     final response = await http.get(Uri.parse(url), headers: {
+  //       "Content-Type": "application/json",
+  //       "Accept": "application/json",
+  //       "Token": tokenAPI
+  //     });
+  //     if (response.statusCode == 200) {
+  //       if (mounted) {
+  //         setState(() {
+  //           var data = jsonDecode(response.body);
+  //           length = data['data'];
+  //           isLoading = false;
+  //         });
+  //       }
+  //     }
+  //   } on SocketException {
+  //     setState(() {
+  //       message = socketException;
+  //     });
+  //   } on HttpException {
+  //     setState(() {
+  //       message = httpException;
+  //     });
+  //   } on FormatException {
+  //     setState(() {
+  //       message = formatException;
+  //     });
+  //   } catch (e) {
+  //     setState(() {
+  //       message = e.toString();
+  //     });
+  //   }
+  // }
 
   Future<void> _fetchPage(int pageKey) async {
     try {
@@ -75,10 +75,8 @@ class _ShopPageState extends State<ShopPage> {
 
       final isLastPage = newItems.value.length < _pageSize;
       if (isLastPage) {
-        print('isLastPage');
         _pagingController.appendLastPage(newItems.value);
       } else {
-        print('isNotLastPage');
         _pagingController.appendPage(newItems.value, pageKey + 1);
       }
     } catch (error) {
@@ -178,7 +176,7 @@ class _ShopPageState extends State<ShopPage> {
                         ),
                         firstPageErrorIndicatorBuilder: (context) =>
                             CustomIllustration(
-                          picturePath: foodWishes,
+                          picturePath: unexpectedError,
                           title: "Maaf",
                           subtitle: "Toko gagal dimuat",
                         ),
