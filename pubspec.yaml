@@ -1,5 +1,5 @@
 name: tumbaspedia
-description: Sebuah aplikasi sistem informasi penjualan untuk UMKM berbasis android
+description: Sebuah aplikasi jual beli online yang memudahkan pengguna untuk membeli produk UMKM yang diinginkan.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.

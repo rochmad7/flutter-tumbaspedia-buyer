@@ -379,7 +379,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                                       transaction,
                                                       user,
                                                     ),
-                                                    null,
+                                                    0.32,
                                                     true),
                                     title: "Beli Sekarang",
                                     color: mainAccentColor,
@@ -534,7 +534,7 @@ class _ModalOrderState extends State<ModalOrder> {
           widget.transaction.product.images,
           widget.transaction.product.name,
           getFormatRupiah((widget.transaction.product.price), true),
-          quantity.toString() + ' item(s)'),
+          quantity.toString() + ' produk'),
       SizedBox(height: 20),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -543,7 +543,7 @@ class _ModalOrderState extends State<ModalOrder> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Stock : " + widget.transaction.product.stock.toString(),
+                "Stok : " + widget.transaction.product.stock.toString(),
                 style: blackFontStyle3,
               ),
               SizedBox(height: 5),
@@ -590,7 +590,7 @@ class _ModalOrderState extends State<ModalOrder> {
           ),
         ],
       ),
-      SizedBox(height: 20),
+      SizedBox(height: 30),
       ButtonFlexible(
         icon: MdiIcons.cart,
         press: () {
