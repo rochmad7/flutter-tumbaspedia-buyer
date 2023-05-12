@@ -347,12 +347,36 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                   title: "Batalkan Pesanan",
                   color: "D9435E".toColor(),
                   press: () {
-                    SweetAlert.show(context,
-                        title: "Batalkan Pesanan?",
-                        subtitle: "Pesanan akan dibatalkan",
-                        style: SweetAlertStyle.confirm,
-                        showCancelButton: true,
-                        onPress: cancelTransaction);
+                    // SweetAlert.show(context,
+                    //     title: "Batalkan Pesanan?",
+                    //     subtitle: "Pesanan akan dibatalkan",
+                    //     style: SweetAlertStyle.confirm,
+                    //     showCancelButton: true,
+                    //     onPress: cancelTransaction);
+                    Alert(
+                      context: context,
+                      type: AlertType.warning,
+                      title: "Batalkan Pesanan?",
+                      desc: "Pesanan akan dibatalkan",
+                      buttons: [
+                        DialogButton(
+                          child: Text(
+                            "Batal",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                          color: Colors.grey,
+                        ),
+                        DialogButton(
+                          child: Text(
+                            "Ya",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          onPressed: cancelTransaction,
+                          color: Colors.red,
+                        ),
+                      ],
+                    ).show();
                   },
                   icon: MdiIcons.close)
               : SizedBox(
@@ -365,12 +389,36 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                   title: "Konfirmasi Terima Pesanan",
                   color: mainColor,
                   press: () {
-                    SweetAlert.show(context,
-                        subtitle:
-                            "Apakah Anda yakin telah\nmenerima pesanan ini?",
-                        style: SweetAlertStyle.confirm,
-                        showCancelButton: true,
-                        onPress: confirm);
+                    // SweetAlert.show(context,
+                    //     subtitle:
+                    //         "Apakah Anda yakin telah\nmenerima pesanan ini?",
+                    //     style: SweetAlertStyle.confirm,
+                    //     showCancelButton: true,
+                    //     onPress: confirm);
+                    Alert(
+                      context: context,
+                      type: AlertType.warning,
+                      title: "Konfirmasi Terima Pesanan?",
+                      desc: "Apakah Anda yakin telah menerima pesanan ini?",
+                      buttons: [
+                        DialogButton(
+                          child: Text(
+                            "Batal",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                          color: Colors.grey,
+                        ),
+                        DialogButton(
+                          child: Text(
+                            "Ya",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          onPressed: () => confirm(true),
+                          color: Colors.green,
+                        ),
+                      ],
+                    ).show();
                   },
                   icon: MdiIcons.check)
               : SizedBox(),
@@ -384,18 +432,32 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
 
   bool confirm(bool isConfirm) {
     if (isConfirm) {
-      SweetAlert.show(context,
-          subtitle: "Sedang memproses...", style: SweetAlertStyle.loading);
+      // SweetAlert.show(context,
+      //     subtitle: "Sedang memproses...", style: SweetAlertStyle.loading);
+      Alert(
+        context: context,
+        type: AlertType.warning,
+        title: "Sedang memproses...",
+        desc: "Mohon tunggu sebentar",
+        buttons: [],
+      ).show();
       new Future.delayed(new Duration(seconds: 0), () async {
         await context
             .read<TransactionCubit>()
             .confirmDelivered(widget.transaction);
         TransactionState state = context.read<TransactionCubit>().state;
         if (state is TransactionConfirmed) {
-          SweetAlert.show(context,
-              subtitle:
-                  "Terimakasih, konfirmasi terima\npesanan berhasil dikirim",
-              style: SweetAlertStyle.success);
+          // SweetAlert.show(context,
+          //     subtitle:
+          //         "Terimakasih, konfirmasi terima\npesanan berhasil dikirim",
+          //     style: SweetAlertStyle.success);
+          Alert(
+            context: context,
+            type: AlertType.success,
+            title: "Sukses",
+            desc: "Terimakasih, konfirmasi terima pesanan berhasil dikirim",
+            buttons: [],
+          ).show();
           snackBar(
               "Sukses",
               "Terimakasih, konfirmasi terima pesanan Anda berhasil dikirim",
@@ -415,54 +477,122 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
           });
           return false;
         } else {
-          SweetAlert.show(context,
-              subtitle: (state as TransactionConfirmFailed).message,
-              style: SweetAlertStyle.error);
+          // SweetAlert.show(context,
+          //     subtitle: (state as TransactionConfirmFailed).message,
+          //     style: SweetAlertStyle.error);
+          Alert(
+            context: context,
+            type: AlertType.error,
+            title: "Gagal",
+            desc: (state as TransactionConfirmFailed).message,
+            buttons: [],
+          ).show();
           context.read<TransactionCubit>().getTransactions(null);
           return false;
         }
       });
     } else {
-      SweetAlert.show(context,
-          subtitle: "Konfirmasi terima pesanan\ntelah berhasil dibatalkan",
-          style: SweetAlertStyle.error);
+      // SweetAlert.show(context,
+      //     subtitle: "Konfirmasi terima pesanan\ntelah berhasil dibatalkan",
+      //     style: SweetAlertStyle.error);
+      Alert(
+        context: context,
+        type: AlertType.error,
+        title: "Gagal",
+        desc: "Konfirmasi terima pesanan telah berhasil dibatalkan",
+        buttons: [],
+      ).show();
     }
     return false;
   }
 
-  bool cancelTransaction(bool isConfirm) {
-    if (isConfirm) {
-      SweetAlert.show(context,
-          subtitle: "Sedang memproses...", style: SweetAlertStyle.loading);
-      new Future.delayed(new Duration(seconds: 0), () async {
-        await context
-            .read<TransactionCubit>()
-            .cancelTransaction(widget.transaction);
-        TransactionState state = context.read<TransactionCubit>().state;
-        if (state is TransactionCanceled) {
-          SweetAlert.show(context,
-              subtitle: "Pesanan berhasil dibatalkan",
-              style: SweetAlertStyle.success);
-          snackBar("Sukses", "Pesanan Anda berhasil dibatalkan", 'success');
-          context.read<TransactionCubit>().getTransactions(null);
-          new Future.delayed(new Duration(seconds: 3), () {
-            Get.off(() => MainPage(initialPage: 3));
-          });
-          return false;
-        } else {
-          SweetAlert.show(context,
-              subtitle: (state as TransactionCancelFailed).message,
-              style: SweetAlertStyle.error);
-          context.read<TransactionCubit>().getTransactions(null);
-          return false;
-        }
+  // bool cancelTransaction(bool isConfirm) {
+  //   if (isConfirm) {
+  //     SweetAlert.show(context,
+  //         subtitle: "Sedang memproses...", style: SweetAlertStyle.loading);
+  //     new Future.delayed(new Duration(seconds: 0), () async {
+  //       await context
+  //           .read<TransactionCubit>()
+  //           .cancelTransaction(widget.transaction);
+  //       TransactionState state = context.read<TransactionCubit>().state;
+  //       if (state is TransactionCanceled) {
+  //         SweetAlert.show(context,
+  //             subtitle: "Pesanan berhasil dibatalkan",
+  //             style: SweetAlertStyle.success);
+  //         snackBar("Sukses", "Pesanan Anda berhasil dibatalkan", 'success');
+  //         context.read<TransactionCubit>().getTransactions(null);
+  //         new Future.delayed(new Duration(seconds: 3), () {
+  //           Get.off(() => MainPage(initialPage: 3));
+  //         });
+  //         return false;
+  //       } else {
+  //         SweetAlert.show(context,
+  //             subtitle: (state as TransactionCancelFailed).message,
+  //             style: SweetAlertStyle.error);
+  //         context.read<TransactionCubit>().getTransactions(null);
+  //         // return false;
+  //       }
+  //     });
+  //   } else {
+  //     SweetAlert.show(context,
+  //         subtitle: "Pembatalan pesanan\ntelah berhasil dibatalkan",
+  //         style: SweetAlertStyle.error);
+  //   }
+  //   return false;
+  // }
+
+  void cancelTransaction() async {
+    setState(() {
+      isLoading = true;
+    });
+    await context
+        .read<TransactionCubit>()
+        .cancelTransaction(widget.transaction);
+    TransactionState state = context.read<TransactionCubit>().state;
+    if (state is TransactionCanceled) {
+      Alert(
+        context: context,
+        type: AlertType.success,
+        title: "Pesanan berhasil dibatalkan",
+        desc: "Pesanan Anda berhasil dibatalkan",
+        buttons: [
+          DialogButton(
+            child: Text(
+              "Oke",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Get.off(() => MainPage(initialPage: 3)),
+            color: mainColor,
+          ),
+        ],
+      ).show();
+      snackBar("Sukses", "Pesanan Anda berhasil dibatalkan", 'success');
+      context.read<TransactionCubit>().getTransactions(null);
+      new Future.delayed(new Duration(seconds: 3), () {
+        Get.off(() => MainPage(initialPage: 3));
       });
     } else {
-      SweetAlert.show(context,
-          subtitle: "Pembatalan pesanan\ntelah berhasil dibatalkan",
-          style: SweetAlertStyle.error);
+      Alert(
+        context: context,
+        type: AlertType.error,
+        title: "Pembatalan pesanan gagal",
+        desc: (state as TransactionCancelFailed).message,
+        buttons: [
+          DialogButton(
+            child: Text(
+              "Oke",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Get.back(),
+            color: mainColor,
+          ),
+        ],
+      ).show();
+      context.read<TransactionCubit>().getTransactions(null);
     }
-    return false;
+    setState(() {
+      isLoading = false;
+    });
   }
 }
 

@@ -67,10 +67,10 @@ dependencies:
   infinite_scroll_pagination: ^2.2.3
   timeago: ^2.0.30
   flutter_rating_bar: ^4.0.0
-  sweetalert: ^0.0.1
   carousel_slider: ^3.0.0
   flutter_secure_storage: ^4.2.1
   font_awesome_flutter: ^10.3.0
+  rflutter_alert: ^2.0.4
 
 flutter_icons:
   image_path: "assets/images/logo/logo.png"
