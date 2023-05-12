@@ -143,8 +143,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   // context.read<CategoryCubit>().getCategories(null);
                   Get.offAll(() => WaitingRegisterConfirmation());
                 } else {
-                  snackBar("Pendaftaran akun gagal",
-                      (state as UserLoadingFailed).message, 'error');
+                  snackBar((state as UserLoadingFailed).message,
+                      (state as UserLoadingFailed).error["message"], 'error');
                   setState(() {
                     isLoading = false;
                   });
