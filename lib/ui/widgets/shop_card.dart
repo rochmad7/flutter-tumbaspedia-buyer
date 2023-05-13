@@ -52,13 +52,44 @@ class ShopCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    shop.name ?? '',
-                    style: GoogleFonts.roboto().copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: secondaryColor,
-                    ),
+                  // Text(
+                  //   shop.name ?? '',
+                  //   style: GoogleFonts.roboto().copyWith(
+                  //     fontSize: 20,
+                  //     fontWeight: FontWeight.w600,
+                  //     color: secondaryColor,
+                  //   ),
+                  // ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          shop.name ?? '',
+                          style: GoogleFonts.roboto().copyWith(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: secondaryColor,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(width: 5),
+                      // Icon(
+                      //   MdiIcons.face,
+                      //   size: 18,
+                      //   color: Colors.yellow[700],
+                      // ),
+                      // SizedBox(width: 5),
+                      // Text(
+                      //   shop.user.name ?? '',
+                      //   style: TextStyle(
+                      //     fontSize: 16,
+                      //     fontWeight: FontWeight.w500,
+                      //     color: Colors.grey.withOpacity(0.7),
+                      //   ),
+                      // ),
+                    ],
                   ),
                   SizedBox(height: 8),
                   Row(

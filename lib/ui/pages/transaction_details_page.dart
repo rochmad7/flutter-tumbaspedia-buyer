@@ -300,7 +300,8 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                                   'Pesanan Selesai',
                                   textAlign: TextAlign.right,
                                   style: GoogleFonts.roboto(
-                                      color: mainColor, fontWeight: FontWeight.w500),
+                                      color: mainColor,
+                                      fontWeight: FontWeight.w500),
                                 ),
                 ),
                 SizedBox(height: 6),
@@ -398,7 +399,7 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
                     Alert(
                       context: context,
                       type: AlertType.warning,
-                      title: "Konfirmasi Terima Pesanan?",
+                      title: "Konfirmasi Terima Pesanan",
                       desc: "Apakah Anda yakin telah menerima pesanan ini?",
                       buttons: [
                         DialogButton(
@@ -545,6 +546,13 @@ class _TransactionDetailsPageState extends State<TransactionDetailsPage> {
     setState(() {
       isLoading = true;
     });
+    Alert(
+      context: context,
+      type: AlertType.warning,
+      title: "Sedang memproses...",
+      desc: "Mohon tunggu sebentar",
+      buttons: [],
+    ).show();
     await context
         .read<TransactionCubit>()
         .cancelTransaction(widget.transaction);

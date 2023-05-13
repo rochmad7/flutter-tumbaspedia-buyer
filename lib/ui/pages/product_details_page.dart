@@ -449,12 +449,17 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
 
-                  getProduct("Produk Lain Toko" + " " + widget.transaction.shop.name, () {
+                  getProduct(
+                      "Produk Lain Toko" + " " + widget.transaction.shop.name,
+                      () {
                     Get.to(() =>
                         AllProductsPage(shop: widget.transaction.product.shop));
                   }, isLoading1, items1),
 
-                  getProduct("Produk Lain Kategori" + " " + widget.transaction.product.category.name, () {
+                  getProduct(
+                      "Produk Lain Kategori" +
+                          " " +
+                          widget.transaction.product.category.name, () {
                     Get.to(() => AllProductsPage(
                         category: widget.transaction.product.category));
                   }, isLoading2, items2)
@@ -572,6 +577,30 @@ class _ModalOrderState extends State<ModalOrder> {
                               ? 1
                               : min(widget.transaction.product.stock,
                                   quantity + 1);
+                          if (quantity >= widget.transaction.product.stock) {
+                            Get.snackbar(
+                              "",
+                              "",
+                              backgroundColor: "D9435E".toColor(),
+                              icon: Icon(
+                                MdiIcons.closeCircleOutline,
+                                color: Colors.white,
+                              ),
+                              titleText: Text(
+                                "Stok tidak mencukupi",
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              messageText: Text(
+                                "Stok tersisa ${widget.transaction.product.stock.toString()}",
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          }
                         });
                       }),
                 ],
