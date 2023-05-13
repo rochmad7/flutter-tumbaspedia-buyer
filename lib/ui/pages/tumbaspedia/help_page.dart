@@ -5,18 +5,18 @@ class HelpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GeneralPage(
       title: 'Bantuan',
-      subtitle: 'Bantuan untuk pengguna',
+      subtitle: 'Panduan penggunaan aplikasi',
       onBackButtonPressed: () {
         Get.back();
       },
       child: Column(
         children: [
-          CardAccordion(title: "Cara Memesan Produk/Jasa", text: caramemesan),
-          CardAccordion(title: "Status Pesanan Saat Ini", text: statuspesanan),
+          CardAccordion(title: "Cara Memesan Produk UMKM", text: caraMemesan),
+          CardAccordion(title: "Informasi tentang Status Pesanan", text: statusPesanan),
           CardAccordion(
-              title: "Apa itu Tanda Notifikasi Berwarna Merah di Transaksi?",
-              text: tandamerah),
-          CardAccordion(title: "Cara Membuat Akun", text: buatakun),
+              title: "Fungsi Tanda Notifikasi Merah",
+              text: tandaMerah),
+          CardAccordion(title: "Cara Membuat Akun", text: buatAkun),
           CardAccordion(title: "Bantuan Permasalahan", text: help),
         ],
       ),

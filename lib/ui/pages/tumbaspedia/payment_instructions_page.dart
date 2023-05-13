@@ -11,7 +11,7 @@ class PaymentInstructionsPage extends StatelessWidget {
         Get.back();
       },
       child: CardAccordion(
-          title: "Tata Cara Memesan Produk/Jasa", text: caramemesan),
+          title: "Tata Cara Memesan Produk UMKM", text: caraMemesan),
     );
   }
 }
