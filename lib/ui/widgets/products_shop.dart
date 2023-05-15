@@ -12,43 +12,55 @@ class ProductsShop extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         (products.length != 0)
-            ? SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: products
-                          .take(10)
-                          .map(
-                            (e) => ProductItem(
-                              product: e,
-                              press: () {
-                                Navigator.of(_context).pop();
-                                Get.to(
-                                  () => ProductDetailsPage(
-                                    transaction: Transaction(
-                                        shop: e.shop,
-                                        product: e,
-                                        user: (context.read<UserCubit>().state
-                                                is UserLoaded)
-                                            ? (context.read<UserCubit>().state
-                                                    as UserLoaded)
-                                                .user
-                                            : null),
-                                    onBackButtonPressed: () {
-                                      Get.to(() => MainPage(initialPage: 0));
-                                    },
-                                  ),
-                                );
+            ? SizedBox(
+                height: 260,
+                child: ListView.separated(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: products.length,
+                  itemBuilder: (_, index) {
+                    final product = products[index];
+
+                    return ProductItem(
+                      product: product,
+                      press: () {
+                        Navigator.push(
+                          _context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductDetailsPage(
+                              transaction: Transaction(
+                                  shop: product.shop,
+                                  product: product,
+                                  user: (context.read<UserCubit>().state
+                                          is UserLoaded)
+                                      ? (context.read<UserCubit>().state
+                                              as UserLoaded)
+                                          .user
+                                      : null),
+                              onBackButtonPressed: () {
+                                Navigator.pop(context);
                               },
                             ),
-                          )
-                          .toList(),
-                    ),
-                    SizedBox(width: 20),
-                  ],
+                          ),
+                        );
+                        // Get.to(() => ProductDetailsPage(
+                        //       transaction: Transaction(
+                        //           shop: product.shop,
+                        //           product: product,
+                        //           user: (context.read<UserCubit>().state
+                        //                   is UserLoaded)
+                        //               ? (context.read<UserCubit>().state
+                        //                       as UserLoaded)
+                        //                   .user
+                        //               : null),
+                        //       onBackButtonPressed: () {
+                        //         Get.to(() => MainPage(initialPage: 0));
+                        //       },
+                        //     ));
+                      },
+                    );
+                  },
+                  separatorBuilder: (_, __) => SizedBox(width: 16),
                 ),
               )
             : CustomAlert(

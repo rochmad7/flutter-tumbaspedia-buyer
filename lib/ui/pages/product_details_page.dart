@@ -475,35 +475,51 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   Container getProduct(
       String title, Function press, bool isLoading, List<Product> products) {
     return Container(
+      // margin: EdgeInsets.symmetric(vertical: 10),
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Divider(
-            height: 30,
-            thickness: 2,
-            indent: 0,
-            endIndent: 0,
-            color: Colors.orange,
+          SizedBox(height: 20),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            // child: Divider(
+            //   height: 30,
+            //   thickness: 2,
+            //   indent: 0,
+            //   endIndent: 0,
+            //   color: Colors.orange,
+            // ),
           ),
+          SizedBox(height: 20),
           SectionTitle(
             all: true,
             title: title,
             isColor: true,
-            sizeTitle: 15,
-            defaultMargin: 0,
+            sizeTitle: 18,
+            defaultMargin: 15,
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           isLoading ? ShimmerRow() : ProductsShop(products: products),
-          SizedBox(height: 30),
+          SizedBox(height: 20),
           SectionBottom(
             all: true,
             press: press,
             isColor: true,
             title: title,
-            defaultMargin: 16,
+            defaultMargin: 15,
           ),
-          SizedBox(height: 10),
+          // SizedBox(height: 10),
         ],
       ),
     );

@@ -14,7 +14,7 @@ class ShopHome extends StatelessWidget {
             if (state is ShopLoaded) {
               if (state.shops.isNotEmpty) {
                 return SizedBox(
-                  height: 230,
+                  height: 250,
                   child: ListView.builder(
                     padding: EdgeInsets.only(left: defaultMargin),
                     scrollDirection: Axis.horizontal,

@@ -31,19 +31,22 @@ class ShopCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            AspectRatio(
-              aspectRatio: 2,
+            Card(
+              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              elevation: 5,
               child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
-                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
                 child: CachedNetworkImage(
-                  imageUrl: shop.shopPicture ?? '',
+                  imageUrl: shop.shopPicture,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => CardShimmer(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                   repeat: ImageRepeat.repeat,
+                  height: 220,
+                  width: double.infinity,
                 ),
               ),
             ),
@@ -101,7 +104,7 @@ class ShopCard extends StatelessWidget {
                       ),
                       SizedBox(width: 5),
                       Text(
-                        shop.totalProducts?.toString() ?? '' + ' Produk',
+                        shop.totalProducts.toString()  + ' produk',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -132,19 +135,29 @@ class ShopCard extends StatelessWidget {
                 ],
               ),
             ),
-            if (!shop.isOpen)
-              Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle, color: Colors.red),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Tutup',
-                    style: whiteFontStyle3.copyWith(fontSize: 12),
-                  ),
+            if (!isShopOpen(DateTime.now(), shop.openedAt, shop.closedAt))
+              // Padding(
+              //   padding:
+              //   const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              //   child: Container(
+              //     padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              //     decoration: BoxDecoration(
+              //         shape: BoxShape.rectangle, color: Colors.red),
+              //     alignment: Alignment.center,
+              //     child: Text(
+              //       'Tutup',
+              //       style: whiteFontStyle3.copyWith(fontSize: 12),
+              //     ),
+              //   ),
+              // )
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle, color: Colors.red),
+                alignment: Alignment.center,
+                child: Text(
+                  'Tutup',
+                  style: whiteFontStyle3.copyWith(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
               )
           ],

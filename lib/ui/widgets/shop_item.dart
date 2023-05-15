@@ -23,15 +23,16 @@ class ShopItem extends StatelessWidget {
         padding: EdgeInsets.only(bottom: defaultMargin, left: defaultMargin),
         child: Container(
           width: 200,
-          height: 210,
+          height: 220,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(8),
             boxShadow: [
               BoxShadow(
-                spreadRadius: 3,
-                blurRadius: 15,
-                color: Colors.black12,
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 2), // changes position of shadow
               ),
             ],
           ),
@@ -39,25 +40,24 @@ class ShopItem extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  CachedNetworkImage(
-                    imageBuilder: (context, imageProvider) => Container(
-                      height: 140,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8),
-                          topRight: Radius.circular(8),
-                        ),
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
+                  Card(
+                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    elevation: 5,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+                      child: CachedNetworkImage(
+                        imageUrl: shop.shopPicture,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => CardShimmer(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        repeat: ImageRepeat.repeat,
+                        height: 140,
+                        width: double.infinity,
                       ),
                     ),
-                    imageUrl: shop.shopPicture,
-                    placeholder: (context, url) => CardShimmer(
-                        isSymmetric: false, height: 140, isCircular: true),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                    repeat: ImageRepeat.repeat,
                   ),
                   Container(
                     margin: EdgeInsets.fromLTRB(12, 12, 12, 6),

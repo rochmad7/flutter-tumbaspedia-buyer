@@ -270,32 +270,54 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                         SizedBox(
                           height: 20,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 10),
-                            SectionTitle(title: "Produk Toko"),
-                            SizedBox(height: 10),
-                            isLoading
-                                ? ShimmerRow()
-                                : ProductsShop(products: items),
-                            SizedBox(height: 30),
-                            SectionBottom(
-                              all: true,
-                              isColor: true,
-                              title: "Produk UMKM",
-                              press: () {
-                                Get.to(() => AllProductsPage(
-                                    shop: widget.transaction.shop));
-                              },
-                              defaultMargin: 16,
-                            ),
-                            SizedBox(height: 10),
-                          ],
-                        ),
                       ],
                     ),
                   ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    // child: Divider(
+                    //   height: 30,
+                    //   thickness: 2,
+                    //   indent: 0,
+                    //   endIndent: 0,
+                    //   color: Colors.orange,
+                    // ),
+                  ),
+                  Container(
+                    height: 400,
+                    margin: EdgeInsets.symmetric(vertical: defaultMargin),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10),
+                        SectionTitle(title: "Produk Toko"),
+                        SizedBox(height: 10),
+                        isLoading
+                            ? ShimmerRow()
+                            : ProductsShop(products: items),
+                        SizedBox(height: 20),
+                        SectionBottom(
+                          all: true,
+                          isColor: true,
+                          title: "Produk UMKM",
+                          press: () {
+                            Get.to(() =>
+                                AllProductsPage(shop: widget.transaction.shop));
+                          },
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               )
             ],

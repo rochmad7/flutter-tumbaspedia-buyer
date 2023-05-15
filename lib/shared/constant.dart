@@ -143,6 +143,32 @@ bool containsIgnoreCase(String firstString, String secondString) {
   return firstString.contains(secondString) ? true : false;
 }
 
+// convert string time value to TimeOfDay object
+TimeOfDay parseTime(String timeString) {
+  DateFormat dateFormat = DateFormat("HH:mm:ss");
+  DateTime dateTime = dateFormat.parse(timeString);
+  return TimeOfDay.fromDateTime(dateTime);
+}
+
+// check if shop is open
+bool isShopOpen(DateTime currentTime, String openedAt, String closedAt) {
+  TimeOfDay openTime = parseTime(openedAt);
+  TimeOfDay closeTime = parseTime(closedAt);
+  TimeOfDay currentTimeOfDay = TimeOfDay.fromDateTime(currentTime);
+
+  // compare current time with opening and closing times
+  int currentMinutes =
+      currentTimeOfDay.hour * 60 + currentTimeOfDay.minute;
+  int openMinutes = openTime.hour * 60 + openTime.minute;
+  int closeMinutes = closeTime.hour * 60 + closeTime.minute;
+
+  if (currentMinutes >= openMinutes && currentMinutes <= closeMinutes) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 Widget forgotPassword() {
   return Align(
     alignment: Alignment.centerRight,

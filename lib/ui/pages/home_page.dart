@@ -52,13 +52,27 @@ class HomePage extends StatelessWidget {
               // CustomSearchWidget(),
               // BannerHome(),
               ProductCategory(),
-              const Divider(
-                height: 30,
-                thickness: 2,
-                indent: 0,
-                endIndent: 0,
-                color: Colors.orange,
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                // child: Divider(
+                //   height: 30,
+                //   thickness: 2,
+                //   indent: 0,
+                //   endIndent: 0,
+                //   color: Colors.orange,
+                // ),
               ),
+              SizedBox(height: 20.0),
               Column(
                 children: [
                   SectionTitle(title: "Toko"),
@@ -74,13 +88,27 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20.0),
-               Divider(
-                height: 30,
-                thickness: 2,
-                indent: 0,
-                endIndent: 0,
-                color: Colors.orange,
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                // child: Divider(
+                //   height: 30,
+                //   thickness: 2,
+                //   indent: 0,
+                //   endIndent: 0,
+                //   color: Colors.orange,
+                // ),
               ),
+              SizedBox(height: 20.0),
               Column(
                 children: [
                   SectionTitle(

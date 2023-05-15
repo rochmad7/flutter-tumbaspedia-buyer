@@ -2,9 +2,10 @@ part of 'widgets.dart';
 
 class ProductItem extends StatelessWidget {
   final Function press;
+
   const ProductItem(
       {Key key,
-      this.width = 140,
+      this.width = 180,
       this.aspectRetio = 1.02,
       @required this.product,
       this.press})
@@ -12,99 +13,146 @@ class ProductItem extends StatelessWidget {
 
   final double width, aspectRetio;
   final Product product;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: press,
-      child: Padding(
-        padding: EdgeInsets.only(left: 20),
-        child: SizedBox(
-          width: (width),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                children: [
-                  AspectRatio(
-                    aspectRatio: 1.02,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Container(
-                        child: CachedNetworkImage(
-                          imageUrl: product.images,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => CardShimmer(),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                          repeat: ImageRepeat.repeat,
-                        ),
-                      ),
-                    ),
-                  ),
-                  product.sold > 0
-                      ? Positioned(
-                          bottom: 0,
-                          left: 0,
-                          child: Container(
-                            color: Colors.black87,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 2),
-                            // decoration: BoxDecoration(shape: BoxShape.rectangle),
-                            alignment: Alignment.center,
-                            child: Text("Terjual " + formatNumber(product.sold),
-                                style: whiteFontStyle.copyWith(fontSize: 11)),
-                          ),
-                        )
-                      : SizedBox()
-                ],
-              ),
-              const SizedBox(height: 10),
-              Text(
-                product.name,
-                style: GoogleFonts.roboto().copyWith(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
-                maxLines: 2,
-              ),
-              SizedBox(height: 5),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(
-                    MdiIcons.store,
-                    size: 20,
-                    color: Colors.grey,
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  Container(
-                    width: 110,
-                    child: Text(
-                      product.shop.name,
-                      style: greyFontStyle,
-                      maxLines: 1,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 5),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    getFormatRupiah(product.price, false),
-                    style: GoogleFonts.roboto().copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: mainColor,
-                    ),
-                  ),
-                ],
+      child: Container(
+          width: width,
+          margin: EdgeInsets.only(bottom: defaultMargin, left: defaultMargin),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 2), // changes position of shadow
               ),
             ],
           ),
-        ),
-      ),
+          child: Stack(children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: ClipRRect(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(15)),
+                          child: CachedNetworkImage(
+                            imageUrl: product.images,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => CardShimmer(),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                            repeat: ImageRepeat.repeat,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+                Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          product.name,
+                          style: GoogleFonts.roboto().copyWith(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: 5),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              MdiIcons.store,
+                              size: 20,
+                              color: Colors.grey,
+                            ),
+                            const SizedBox(width: 4),
+                            Container(
+                              width: 110,
+                              child: Text(
+                                product.shop.name,
+                                style: greyFontStyle,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              getFormatRupiah(product.price, false),
+                              style: GoogleFonts.roboto().copyWith(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: mainColor,
+                              ),
+                            ),
+                            // product.sold > 0
+                            //     ? Container(
+                            //   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            //   decoration: BoxDecoration(
+                            //     color: Colors.orange,
+                            //     borderRadius: BorderRadius.circular(15),
+                            //   ),
+                            //   child: Text(
+                            //     "Terjual " + formatNumber(product.sold),
+                            //     style: whiteFontStyle.copyWith(fontSize: 12),
+                            //   ),
+                            // )
+                            //     : SizedBox(),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Positioned(
+              top: 10,
+              left: 10,
+              child: product.sold > 0
+                  ? Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        "Terjual " + formatNumber(product.sold),
+                        style: whiteFontStyle.copyWith(fontSize: 13),
+                      ),
+                    )
+                  : SizedBox(),
+            ),
+          ])),
     );
   }
 }

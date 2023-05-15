@@ -15,7 +15,7 @@ class ProductHome extends StatelessWidget {
 
               if (products.isNotEmpty) {
                 return SizedBox(
-                  height: 220,
+                  height: 260,
                   child: ListView.separated(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     scrollDirection: Axis.horizontal,
