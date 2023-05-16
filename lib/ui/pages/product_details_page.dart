@@ -97,8 +97,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   void fetchDataByShop() async {
     isLoading1 = true;
-    String url1 =
-        baseURLAPI + '/products?shop=' + widget.transaction.shop.id.toString();
+    String url1 = baseURLAPI +
+        '/products?shop=' +
+        widget.transaction.shop.id.toString() +
+        '&excludeIds=' +
+        widget.transaction.product.id.toString();
     final response1 = await http.get(Uri.parse(url1), headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -122,7 +125,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     isLoading2 = true;
     String url2 = baseURLAPI +
         '/products?category=' +
-        widget.transaction.product.category.id.toString();
+        widget.transaction.product.category.id.toString() +
+        '&excludeIds=' + widget.transaction.product.id.toString();
     final response2 = await http.get(Uri.parse(url2), headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -510,7 +514,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             defaultMargin: 15,
           ),
           SizedBox(height: 20),
-          isLoading ? ShimmerRow() : ProductsShop(products: products),
+          isLoading ? ShimmerRow() : ProductsShop(products: products, emptyText: 'Tidak ada produk lain di kategori ini',),
           SizedBox(height: 20),
           SectionBottom(
             all: true,

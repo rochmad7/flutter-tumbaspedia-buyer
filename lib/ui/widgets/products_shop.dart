@@ -2,8 +2,10 @@ part of 'widgets.dart';
 
 class ProductsShop extends StatelessWidget {
   final List<Product> products;
+  final String emptyText;
 
-  ProductsShop({Key key, this.products}) : super(key: key);
+  // ProductsShop({Key key, this.products}) : super(key: key);
+  ProductsShop({Key key, this.products, this.emptyText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,7 @@ class ProductsShop extends StatelessWidget {
             : CustomAlert(
                 icon: MdiIcons.alert,
                 type: 'warning',
-                title: 'Produk masih kosong'),
+                title: emptyText),
       ],
     );
   }

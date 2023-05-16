@@ -162,14 +162,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                       : Colors.red),
                               alignment: Alignment.center,
                               child: Text(
-                                  DateTime.now().hour >=
-                                              int.parse(widget
-                                                  .transaction.shop.openedAt
-                                                  .split(":")[0]) &&
-                                          DateTime.now().hour <
-                                              int.parse(widget
-                                                  .transaction.shop.closedAt
-                                                  .split(":")[0])
+                              (isShopOpen(DateTime.now(), widget.transaction.shop.openedAt, widget.transaction.shop.closedAt))
                                       ? "Buka"
                                       : "Tutup",
                                   // widget.transaction.shop.isOpen
@@ -304,7 +297,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                         SizedBox(height: 10),
                         isLoading
                             ? ShimmerRow()
-                            : ProductsShop(products: items),
+                            : ProductsShop(products: items, emptyText: 'Tidak ada produk di toko ini',),
                         SizedBox(height: 20),
                         SectionBottom(
                           all: true,
