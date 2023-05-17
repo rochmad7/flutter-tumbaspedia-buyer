@@ -52,7 +52,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
               buttonTap1: () {
                 Get.to(() => AllProductsPage());
               },
-              buttonTitle1: 'Cari produk UKM',
+              buttonTitle1: 'Cari Produk',
             );
           } else {
             double listItemWidth =
@@ -76,9 +76,9 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
               child: ListView(
                 children: [
                   TitlePage(
-                      title: "Pesanan Saya",
+                      title: "Riwayat Pesanan",
                       subtitle:
-                          'Lihat pesanan yang sedang berlangsung dan pesanan \nyang sudah selesai',
+                          'Riwayat pesanan yang telah Anda lakukan di aplikasi',
                       // isContainerRight: true,
                       // isContainer: true,
                       // press: () async {

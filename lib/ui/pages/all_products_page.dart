@@ -61,7 +61,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
           TitlePage(
             title: "Produk UMKM",
             subtitle: (widget.category != null)
-                ? "Kategori Produk " + widget.category.name
+                ? "Kategori " + widget.category.name
                 : "Semua Produk" + ((widget.shop != null)
                     ? " dari " + widget.shop.name
                     : ""),
@@ -74,7 +74,7 @@ class _AllProductsPageState extends State<AllProductsPage> {
             child: SearchField(
               onChanged: _updateSearchTerm,
               searchController: keywordController,
-              title: "Cari Produk UMKM",
+              title: "Cari Produk",
               focusNode: widget.focusNode,
             ),
             padding: EdgeInsets.symmetric(vertical: 15),

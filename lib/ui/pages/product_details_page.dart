@@ -126,7 +126,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     String url2 = baseURLAPI +
         '/products?category=' +
         widget.transaction.product.category.id.toString() +
-        '&excludeIds=' + widget.transaction.product.id.toString();
+        '&excludeIds=' +
+        widget.transaction.product.id.toString();
     final response2 = await http.get(Uri.parse(url2), headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
@@ -157,320 +158,332 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           Container(color: mainColor),
           SafeArea(child: Container(color: Colors.white)),
           SafeArea(
-            child: CachedNetworkImage(
-              imageBuilder: (context, imageProvider) => Container(
-                height: 300,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              imageUrl: image,
-              placeholder: (context, url) => CardShimmer(
-                  isSymmetric: false, height: 300, isCircular: true),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-              repeat: ImageRepeat.repeat,
-            ),
-          ),
-          SafeArea(
-              child: ListView(
-            children: [
-              Column(
-                children: [
-                  //// Back Button
-                  IconDetailsPage(press: widget.onBackButtonPressed),
-                  SizedBox(height: 185),
-                  //// Body
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 26, horizontal: 16),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20)),
-                        color: Colors.white),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            (listPhotos.length == 1)
-                                ? _productImages(selectedIndex, selectedIndex,
-                                    widget.transaction.product.images)
-                                : Container(
-                                    width:
-                                        MediaQuery.of(context).size.width - 64,
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: (isLoadingPhoto)
-                                          ? ShimmerRow(
-                                              height: 30,
-                                              itemCount: 5,
-                                              isNoMargin: true,
-                                              isSymmetric: true)
-                                          : ProductImages(
-                                              photos: listPhotos,
-                                              selectedIndex: selectedIndex,
-                                              onTap: (index) {
-                                                setState(() {
-                                                  selectedIndex = index;
-                                                  image =
-                                                      listPhotos[index].images;
-                                                });
-                                              },
-                                            ),
-                                    ),
-                                  ),
-                          ],
-                        ),
-                        SizedBox(height: 16),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width -
-                              140, // 32 + 102
-                          child: Text(
-                            widget.transaction.product.name,
-                            style: blackFontStyle2.copyWith(
-                                fontSize: 24, fontWeight: FontWeight.bold),
+              child: Stack(children: [
+            ListView(
+              children: [
+                Column(
+                  children: [
+                    CachedNetworkImage(
+                      imageBuilder: (context, imageProvider) => Container(
+                        height: 300,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    SizedBox(width: 8),
-                                    Image.network(
-                                        widget
-                                            .transaction.product.category.icon,
-                                        width: 18,
-                                        height: 18,
-                                        color: mainAccentColor,
-                                        fit: BoxFit.cover),
-                                    SizedBox(width: 4),
-                                    Text(
-                                      'Kategori ' +
-                                          widget.transaction.product.category
-                                              .name,
-                                      style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
+                      ),
+                      imageUrl: image,
+                      placeholder: (context, url) => CardShimmer(
+                          isSymmetric: false, height: 300, isCircular: true),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      repeat: ImageRepeat.repeat,
+                    ),
+                    //// Body
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 26, horizontal: 16),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20)),
+                          color: Colors.white),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              (listPhotos.length == 1)
+                                  ? _productImages(selectedIndex, selectedIndex,
+                                      widget.transaction.product.images)
+                                  : Container(
+                                      width: MediaQuery.of(context).size.width -
+                                          64,
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: (isLoadingPhoto)
+                                            ? ShimmerRow(
+                                                height: 30,
+                                                itemCount: 5,
+                                                isNoMargin: true,
+                                                isSymmetric: true)
+                                            : ProductImages(
+                                                photos: listPhotos,
+                                                selectedIndex: selectedIndex,
+                                                onTap: (index) {
+                                                  setState(() {
+                                                    selectedIndex = index;
+                                                    image = listPhotos[index]
+                                                        .images;
+                                                  });
+                                                },
+                                              ),
+                                      ),
                                     ),
-                                  ],
-                                ),
-                                SizedBox(height: 10),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    SizedBox(width: 8),
-                                    iconText(
-                                        MdiIcons.cart,
-                                        "Terjual " +
-                                            formatNumber(widget
-                                                .transaction.product.sold),
-                                        18,
-                                        null,
-                                        TextStyle(
+                            ],
+                          ),
+                          SizedBox(height: 16),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width -
+                                140, // 32 + 102
+                            child: Text(
+                              widget.transaction.product.name,
+                              style: blackFontStyle2.copyWith(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(width: 8),
+                                      Image.network(
+                                          widget.transaction.product.category
+                                              .icon,
+                                          width: 18,
+                                          height: 18,
+                                          color: mainAccentColor,
+                                          fit: BoxFit.cover),
+                                      SizedBox(width: 4),
+                                      Text(
+                                        'Kategori ' +
+                                            widget.transaction.product.category
+                                                .name,
+                                        style: TextStyle(
                                             color: Colors.grey,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500),
-                                        false),
-                                    SizedBox(width: 8),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  getFormatRupiah(
-                                      widget.transaction.product.price, true),
-                                  style: blackFontStyle2.copyWith(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                  "Stok " +
-                                      (widget.transaction.product.stock == 0
-                                          ? "habis"
-                                          : ": " +
-                                              widget.transaction.product.stock
-                                                  .toString()),
-                                  style: widget.transaction.product.stock == 0
-                                      ? redFontStyle.copyWith(fontSize: 14)
-                                      : blackFontStyle3.copyWith(fontSize: 14),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.start,
-                        //   children: [
-                        //     SizedBox(
-                        //       width: 5,
-                        //     ),
-                        //     Flexible(
-                        //       child: Chip(
-                        //         avatar: CircleAvatar(
-                        //           backgroundColor: mainAccentColor,
-                        //           child: Image.network(
-                        //               widget.transaction.product.category.icon,
-                        //               width: 18,
-                        //               height: 18,
-                        //               fit: BoxFit.cover),
-                        //         ),
-                        //         label: Text(
-                        //             widget.transaction.product.category.name,
-                        //             overflow: TextOverflow.fade,
-                        //             style:
-                        //                 blackFontStyle3.copyWith(fontSize: 13)),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        SizedBox(height: 15),
-                        Text("Deskripsi : ",
-                            style: titleListStyle.copyWith(fontSize: 16)),
-                        SizedBox(height: 10),
-                        Text(
-                          widget.transaction.product.description,
-                          style: blackFontStyle.copyWith(fontSize: 15),
-                        ),
-                        BlocBuilder<UserCubit, UserState>(builder: (_, state) {
-                          if (state is UserLoaded) {
-                            if (state.user.id ==
-                                widget.transaction.shop.user.id) {
-                              return SizedBox();
-                            } else {
-                              Transaction transaction =
-                                  widget.transaction.copyWith(user: state.user);
-                              User user = state.user;
-                              return Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  ButtonFlexible(
-                                    marginTop: 15,
-                                    icon: MdiIcons.cart,
-                                    press: () =>
-                                        (widget.transaction.product.stock == 0)
-                                            ? snackBar(
-                                                "Maaf, stok produk kosong",
-                                                "Silahkan hubungi penjual",
-                                                'warning')
-                                            : (!widget.transaction.product.shop
-                                                    .isOpen)
-                                                ? snackBar(
-                                                    "Maaf, toko sedang tutup",
-                                                    "Silahkan hubungi penjual",
-                                                    'warning')
-                                                : displayBottomSheet(
-                                                    context,
-                                                    ModalOrder(
-                                                      transaction,
-                                                      user,
-                                                    ),
-                                                    0.32,
-                                                    true),
-                                    title: "Beli Sekarang",
-                                    color: mainAccentColor,
+                                      ),
+                                    ],
                                   ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(width: 8),
+                                      iconText(
+                                          MdiIcons.cart,
+                                          "Terjual " +
+                                              formatNumber(widget
+                                                  .transaction.product.sold),
+                                          18,
+                                          null,
+                                          TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500),
+                                          false),
+                                      SizedBox(width: 8),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    getFormatRupiah(
+                                        widget.transaction.product.price, true),
+                                    style: blackFontStyle2.copyWith(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    "Stok " +
+                                        (widget.transaction.product.stock == 0
+                                            ? "habis"
+                                            : ": " +
+                                                widget.transaction.product.stock
+                                                    .toString()),
+                                    style: widget.transaction.product.stock == 0
+                                        ? redFontStyle.copyWith(fontSize: 14)
+                                        : blackFontStyle3.copyWith(
+                                            fontSize: 14),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.start,
+                          //   children: [
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     Flexible(
+                          //       child: Chip(
+                          //         avatar: CircleAvatar(
+                          //           backgroundColor: mainAccentColor,
+                          //           child: Image.network(
+                          //               widget.transaction.product.category.icon,
+                          //               width: 18,
+                          //               height: 18,
+                          //               fit: BoxFit.cover),
+                          //         ),
+                          //         label: Text(
+                          //             widget.transaction.product.category.name,
+                          //             overflow: TextOverflow.fade,
+                          //             style:
+                          //                 blackFontStyle3.copyWith(fontSize: 13)),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          SizedBox(height: 15),
+                          Text("Deskripsi : ",
+                              style: titleListStyle.copyWith(fontSize: 16)),
+                          SizedBox(height: 10),
+                          Text(
+                            widget.transaction.product.description,
+                            style: blackFontStyle.copyWith(fontSize: 15),
+                          ),
+                          BlocBuilder<UserCubit, UserState>(
+                              builder: (_, state) {
+                            if (state is UserLoaded) {
+                              if (state.user.id ==
+                                  widget.transaction.shop.user.id) {
+                                return SizedBox();
+                              } else {
+                                Transaction transaction = widget.transaction
+                                    .copyWith(user: state.user);
+                                User user = state.user;
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ButtonFlexible(
+                                      marginTop: 15,
+                                      icon: MdiIcons.cart,
+                                      press: () =>
+                                          (widget.transaction.product.stock ==
+                                                  0)
+                                              ? snackBar(
+                                                  "Maaf, stok produk kosong",
+                                                  "Silahkan hubungi penjual",
+                                                  'warning')
+                                              : (!isShopOpen(
+                                                      DateTime.now(),
+                                                      widget.transaction.product
+                                                          .shop.openedAt,
+                                                      widget.transaction.product
+                                                          .shop.closedAt))
+                                                  ? snackBar(
+                                                      "Maaf, toko sedang tutup",
+                                                      "Silahkan hubungi penjual",
+                                                      'warning')
+                                                  : displayBottomSheet(
+                                                      context,
+                                                      ModalOrder(
+                                                        transaction,
+                                                        user,
+                                                      ),
+                                                      0.32,
+                                                      true),
+                                      title: "Beli Sekarang",
+                                      color: mainAccentColor,
+                                    ),
+                                  ],
+                                );
+                              }
+                            } else {
+                              return Column(
+                                children: [
+                                  SizedBox(height: 15),
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        ButtonFlexible(
+                                          icon: MdiIcons.login,
+                                          press: () {
+                                            Get.to(() =>
+                                                SignInPage(isRedirect: true));
+                                          },
+                                          title: "Masuk akun untuk memesan",
+                                          color: mainColor,
+                                        ),
+                                      ]),
                                 ],
                               );
                             }
-                          } else {
-                            return Column(
-                              children: [
-                                SizedBox(height: 15),
-                                Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      ButtonFlexible(
-                                        icon: MdiIcons.login,
-                                        press: () {
-                                          Get.to(() =>
-                                              SignInPage(isRedirect: true));
-                                        },
-                                        title: "Masuk akun untuk memesan",
-                                        color: mainColor,
-                                      ),
-                                    ]),
-                              ],
-                            );
-                          }
+                          }),
+                        ],
+                      ),
+                    ),
+                    UserInfo(
+                        shopuser: widget.transaction.shop.user,
+                        pressContact: () async {
+                          String name = isLogin ? user.name : '';
+                          await launch("https://wa.me/62" +
+                              widget.transaction.shop.user.phoneNumber
+                                  .allAfter("0") +
+                              "?text=[Pesan dari aplikasi Tumbaspedia] Halo Saya " +
+                              name +
+                              " ingin bertanya-tanya kepada penjual toko " +
+                              widget.transaction.shop.name +
+                              " mengenai produk Anda yaitu " +
+                              widget.transaction.product.name);
                         }),
-                      ],
+                    InkWell(
+                      onTap: () async {
+                        await Get.to(
+                          () => ShopDetailsPage(
+                            transaction: Transaction(
+                                shop: widget.transaction.product.shop,
+                                user: (context.read<UserCubit>().state
+                                        is UserLoaded)
+                                    ? (context.read<UserCubit>().state
+                                            as UserLoaded)
+                                        .user
+                                    : null),
+                            onBackButtonPressed: () {
+                              Get.back();
+                            },
+                          ),
+                        );
+                      },
+                      child: ShopInfo(
+                        shop: widget.transaction.shop,
+                      ),
                     ),
-                  ),
-                  UserInfo(
-                      shopuser: widget.transaction.shop.user,
-                      pressContact: () async {
-                        String name = isLogin ? user.name : '';
-                        await launch("https://wa.me/62" +
-                            widget.transaction.shop.user.phoneNumber
-                                .allAfter("0") +
-                            "?text=[Pesan dari aplikasi Tumbaspedia] Halo Saya " +
-                            name +
-                            " ingin bertanya-tanya kepada penjual toko " +
-                            widget.transaction.shop.name +
-                            " mengenai produk Anda yaitu " +
-                            widget.transaction.product.name);
-                      }),
-                  InkWell(
-                    onTap: () async {
-                      await Get.to(
-                        () => ShopDetailsPage(
-                          transaction: Transaction(
-                              shop: widget.transaction.product.shop,
-                              user: (context.read<UserCubit>().state
-                                      is UserLoaded)
-                                  ? (context.read<UserCubit>().state
-                                          as UserLoaded)
-                                      .user
-                                  : null),
-                          onBackButtonPressed: () {
-                            Get.back();
-                          },
-                        ),
-                      );
-                    },
-                    child: ShopInfo(
-                      shop: widget.transaction.shop,
-                    ),
-                  ),
 
-                  getProduct(
-                      "Produk Lain Toko" + " " + widget.transaction.shop.name,
-                      () {
-                    Get.to(() =>
-                        AllProductsPage(shop: widget.transaction.product.shop));
-                  }, isLoading1, items1),
+                    getProduct(
+                        "Produk Lain Toko" + " " + widget.transaction.shop.name,
+                        () {
+                      Get.to(() => AllProductsPage(
+                          shop: widget.transaction.product.shop));
+                    }, isLoading1, items1),
 
-                  getProduct(
-                      "Produk Lain Kategori" +
-                          " " +
-                          widget.transaction.product.category.name, () {
-                    Get.to(() => AllProductsPage(
-                        category: widget.transaction.product.category));
-                  }, isLoading2, items2)
-                ],
-              ),
-            ],
-          ))
+                    getProduct(
+                        "Produk Lain Kategori" +
+                            " " +
+                            widget.transaction.product.category.name, () {
+                      Get.to(() => AllProductsPage(
+                          category: widget.transaction.product.category));
+                    }, isLoading2, items2)
+                  ],
+                ),
+              ],
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              child:
+                  //// Back Button
+                  IconDetailsPage(press: widget.onBackButtonPressed),
+            ),
+          ]))
         ],
       ),
     );
@@ -514,7 +527,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             defaultMargin: 15,
           ),
           SizedBox(height: 20),
-          isLoading ? ShimmerRow() : ProductsShop(products: products, emptyText: 'Tidak ada produk lain di kategori ini',),
+          isLoading
+              ? ShimmerRow()
+              : ProductsShop(
+                  products: products,
+                  emptyText: 'Tidak ada produk lain di kategori ini',
+                ),
           SizedBox(height: 20),
           SectionBottom(
             all: true,

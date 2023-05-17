@@ -91,9 +91,9 @@ class ButtonIconDefault extends StatelessWidget {
                 title,
                 style: isWhiteColor
                     ? whiteFontStyle3.copyWith(
-                        fontWeight: FontWeight.w500, fontSize: sizeText)
+                        fontWeight: FontWeight.w700, fontSize: sizeText)
                     : blackFontStyle3.copyWith(
-                        fontWeight: FontWeight.w500, fontSize: sizeText),
+                        fontWeight: FontWeight.w700, fontSize: sizeText),
               ),
             ),
     );

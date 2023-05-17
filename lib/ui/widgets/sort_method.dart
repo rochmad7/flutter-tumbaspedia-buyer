@@ -48,7 +48,7 @@ class _OptionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Wrap(
-        spacing: 10,
+        spacing: 15,
         children: [
           ...options.map(
             (option) {
@@ -60,7 +60,7 @@ class _OptionList extends StatelessWidget {
                 onSelected:
                     onOptionTap != null ? (_) => onOptionTap(option) : null,
                 selected: isItemSelected,
-                backgroundColor: Colors.grey[300],
+                backgroundColor: Colors.grey[250],
                 selectedColor: mainAccentColor,
               );
             },

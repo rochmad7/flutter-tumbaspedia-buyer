@@ -30,7 +30,7 @@ class ButtonFlexible extends StatelessWidget {
             size: 17,
           ),
           label: Text(title,
-              style: whiteFontStyle3.copyWith(fontWeight: FontWeight.w500)),
+              style: whiteFontStyle3.copyWith(fontWeight: FontWeight.w700)),
           onPressed: press,
         ),
       ),

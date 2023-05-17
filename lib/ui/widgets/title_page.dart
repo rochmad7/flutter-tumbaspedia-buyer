@@ -65,10 +65,14 @@ class TitlePage extends StatelessWidget {
                     title,
                     style: blackFontStyle1,
                   ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Text(
                     subtitle,
                     style: greyFontStyle.copyWith(
                       fontWeight: FontWeight.w300,
+                      fontSize: 14,
                     ),
                   ),
                 ],
