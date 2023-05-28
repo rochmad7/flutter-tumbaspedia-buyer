@@ -20,7 +20,7 @@ class UserServices {
       if (data['errors'] != null) {
         removeUserData();
         return ApiReturnValue(
-            message: 'Email atau password salah', error: data['errors']);
+            message: 'Email atau kata sandi salah', error: data['errors']);
       }
 
       // User.token = data['data']['access_token'];

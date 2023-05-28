@@ -102,7 +102,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   Get.to(() => MainPage(
                         initialPage: 4,
                       ));
-                  snackBar("Sukses", "Profile berhasil diupdate", 'success');
+                  snackBar("Sukses", "Profil berhasil diupdate", 'success');
 
                   setState(() {
                     isLoading = false;
@@ -111,7 +111,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 } else {
                   context.read<UserCubit>().getMyProfile(widget.user.id);
 
-                  snackBar("Profile gagal diupdate",
+                  snackBar("Profil gagal diupdate",
                       (state as UserLoadingFailed).message, 'error');
 
                   setState(() {
