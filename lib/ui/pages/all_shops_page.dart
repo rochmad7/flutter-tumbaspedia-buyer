@@ -6,7 +6,7 @@ class AllShopsPage extends StatefulWidget {
 }
 
 class _AllShopsPageState extends State<AllShopsPage> {
-  static const _pageSize = 5;
+  static const _pageSize = 8;
   final TextEditingController keywordController = TextEditingController();
   String query;
 
