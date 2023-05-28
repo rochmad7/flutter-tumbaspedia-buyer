@@ -133,7 +133,7 @@ String convertDate(DateTime dateTime, bool isFull) {
 }
 
 String convertTime(DateTime dateTime) {
-  String date = DateFormat('HH:mm', 'id_ID').format(dateTime.toLocal());
+  String date = DateFormat('HH:mm', 'id_ID').format(dateTime);
 
   return date + ' WIB';
 }

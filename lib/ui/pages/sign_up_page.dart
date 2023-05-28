@@ -77,7 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(height: 15),
             LabelFormField(
               label: "Kata Sandi",
-              example: "Minimal 8 karakter",
+              example: "Minimal 6 karakter",
             ),
             TextFieldDefault(
                 suffixIcon: () => _toggle(),
